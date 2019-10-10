@@ -31,7 +31,58 @@
   <!-- Argon CSS -->
   <link type="text/css" href="../assets/css/argon.css?v=1.1.0" rel="stylesheet">
 </head>
+<script type="text/javascript">
+	
+	function validate(){
+		var id=document.getElementById("inputId4").value;
+		if(id.length<=4 || id.length>=10){
+			alert("아이디 4~10자 사이 입력");
+			id.focus();
+			return false;
+		}else{return true;}
+	}
+		var idxhr=null;
+		var idspan=document.getElementById("idcheck");
+		function idcheck(){
+			var id=document.getElementById("inputId4").value;
+			if(id==""){
+				idspan.innerHTML="";
+				return;
+			}
+			idxhr=new XMLHttpRequest();
+			idxhr.onreadystatechange=idcallback;
+			idxhr.open('get','join?cmd=check&id='+id, true);
+			idxhr.send();
+			
+		}
+		function idcallback(){
+			if(idxhr.readyState==4 && idxhr.status==200){
+				var data=idxhr.responseText;
+				var idusing=JSON.parse(data);
+				if(idusing.idusing==true){
+					idspan.innerHTML="사용 중인 아이디 입니다.";
+				}else{
+					idspan.innerHTML="사용 가능한 아이디 입니다.";
+				}
+			}
+		}
+		
+	var pwdrspan=document.getElementById("pwdcheck");
+	function pwdcheck(){
+		var pwd=document.getElementById("inputPassword4").value;
+		var pwdr=document.getElementById("inputPasswordR4").value;
+		if(pwdr==""){
+			pwdrspan.innerHTML="";
+			return;
+		}
+		if(pwd==pwdr){
+			pwdrspan.innerHTML="";
+		}else{
+			pwdrspan.innerHTML="재입력 비밀번호 불일치";
+		}
+	}
 
+</script>
 <body>
   <header class="header-global">
     <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
@@ -184,13 +235,14 @@
                 <div class="text-center text-muted mb-4">
                   <small>Or sign up with credentials</small>
                 </div>
-                <form>
+                <form method="post" action="join?cmd=insert" onsubmit="return validate()" name="frm1">
                   <div class="form-group">
                     <div class="input-group input-group-alternative mb-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Name" type="text">
+                      <input class="form-control" id="inputId4" placeholder="ID" type="text" name="id" >
+                      <div class="col-12"><span id="idcheck" style="color:red; font-size:12px"></span></div>
                     </div>
                   </div>
                   <div class="form-group">
@@ -198,7 +250,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Email" type="email">
+                      <input class="form-control" placeholder="Email" type="email" name="email" id="inputEmail4">
                     </div>
                   </div>
                   <div class="form-group">
@@ -206,10 +258,19 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Password" type="password">
+                      <input class="form-control" placeholder="Password" type="password" id="inputPassword4" name="pwd">
                     </div>
                   </div>
-                  <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div>
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="PasswordR" type="password" id="inputPasswordR4" onkeyup="pwdcheck()">
+                      <div class="col-12"><span id="pwdcheck" style="color:red; font-size:12px"></span></div>
+                    </div>
+                  </div>
+              
                   <div class="row my-4">
                     <div class="col-12">
                       <div class="custom-control custom-control-alternative custom-checkbox">
@@ -219,7 +280,7 @@
                     </div>
                   </div>
                   <div class="text-center">
-                    <button type="button" class="btn btn-primary mt-4">Create account</button>
+                    <button type="submit" class="btn btn-primary mt-4">Create account</button>
                   </div>
                 </form>
               </div>

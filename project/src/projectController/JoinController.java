@@ -18,7 +18,7 @@ import org.json.JSONObject;
 
 import projectDao.AccountDao;
 import projectVo.AccountVo;
-@WebServlet("/join")
+@WebServlet("/examples/join")
 public class JoinController extends HttpServlet {
 	@Override
 	public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -63,8 +63,8 @@ public class JoinController extends HttpServlet {
 		PrintWriter pw=resp.getWriter();
 		int n=dao.insert(vo);
 		if(n>0) {
-			pw.print("alert(\"가입완료\")");
-			resp.sendRedirect("/index.html");
+			
+			//resp.sendRedirect("/project/index.html");
 		}else {
 			req.setAttribute("id", id);
 			req.setAttribute("pwd", pwd);
