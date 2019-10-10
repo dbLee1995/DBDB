@@ -63,6 +63,7 @@ public class GoodsDao {
 			con=JdbcUtil.getConn();
 			String sql="select * from goods where gdlistnum=?";
 			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				GoodsVo vo=
