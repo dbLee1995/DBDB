@@ -7,12 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import jdbc.JdbcUtil;
-import projectVo.GoodsDetailVo;
+import projectVo.NoticeVo;
 
-public class GoodsDetailDao {
-	private GoodsDetailDao() {}
-	private GoodsDetailDao dao=new GoodsDetailDao();
-	public GoodsDetailDao getInstance() {
+public class NoticeDao {
+	private NoticeDao() {}
+	private NoticeDao dao=new NoticeDao();
+	public NoticeDao getInstance() {
 		return dao;
 	}
 	public int getMaxNum() {
@@ -21,7 +21,7 @@ public class GoodsDetailDao {
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select NVL(max(gdnum),0) as maxnum from goodsdetail";
+			String sql="select NVL(max(ntnum),0) as maxnum from notice";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
@@ -37,19 +37,16 @@ public class GoodsDetailDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
-	public int insert(GoodsDetailVo vo) {
+	public int insert(NoticeVo vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="insert into goodsdetail values(?,?,?,?,?,?)";
+			String sql="insert into goodsdetail values(?,?,?,sysdate)";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, vo.getGDListNum());
-			pstmt.setInt(2, getMaxNum());
-			pstmt.setString(3, vo.getGDName());
-			pstmt.setInt(4, vo.getGDPrice());
-			pstmt.setInt(5, vo.getGDStock());
-			pstmt.setString(6, vo.getGDDetail());
+			pstmt.setInt(1, getMaxNum());
+			pstmt.setString(2, vo.getNtTitle());
+			pstmt.setString(3, vo.getNtContent());
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
@@ -58,24 +55,22 @@ public class GoodsDetailDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
-	public GoodsDetailVo select(int num) {
+	public NoticeVo select(int num) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select * from goodsdetail where gdnum=?";
+			String sql="select * from notice where ntnum=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				GoodsDetailVo vo=
-						new GoodsDetailVo(rs.getInt("gdlistnum"),
-										rs.getInt("gdnum"),
-										rs.getString("gdname"),
-										rs.getInt("gdprice"),
-										rs.getInt("gdstock"),
-										rs.getString("gddetail"));
+				NoticeVo vo=
+						new NoticeVo(rs.getInt("ntnum"),
+										rs.getString("nttitle"),
+										rs.getString("ntcontent"),
+										rs.getDate("ntdate"));
 				return vo;
 			}
 			return null;
@@ -86,24 +81,22 @@ public class GoodsDetailDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
-	public ArrayList<GoodsDetailVo> selectAll(){
+	public ArrayList<NoticeVo> selectAll(){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select * from goodsdetail";
+			String sql="select * from notice";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
-			ArrayList<GoodsDetailVo> list=new ArrayList<GoodsDetailVo>();
+			ArrayList<NoticeVo> list=new ArrayList<NoticeVo>();
 			while(rs.next()) {
-				GoodsDetailVo vo=
-						new GoodsDetailVo(rs.getInt("gdlistnum"),
-											rs.getInt("gdnum"),
-											rs.getString("gdname"),
-											rs.getInt("gdprice"),
-											rs.getInt("gdstock"),
-											rs.getString("gddetail"));
+				NoticeVo vo=
+						new NoticeVo(rs.getInt("ntnum"),
+									rs.getString("nttitle"),
+									rs.getString("ntcontent"),
+									rs.getDate("ntdate"));
 				list.add(vo);
 			}
 			return list;
@@ -114,18 +107,16 @@ public class GoodsDetailDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
-	public int update(GoodsDetailVo vo) {
+	public int update(NoticeVo vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="update goodsdetail set gdname=?,gdprice=?,gdstock=?,gddetail=? where gdnum=?";
+			String sql="update notice set nttitle=?,ntcontent=? where ntnum=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, vo.getGDName());
-			pstmt.setInt(2, vo.getGDPrice());
-			pstmt.setInt(3, vo.getGDStock());
-			pstmt.setString(4, vo.getGDDetail());
-			pstmt.setInt(5, vo.getGDNum());
+			pstmt.setString(1, vo.getNtTitle());
+			pstmt.setString(2, vo.getNtContent());
+			pstmt.setInt(3, vo.getNtNum());
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
@@ -139,7 +130,7 @@ public class GoodsDetailDao {
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="delete from goodsdetail where gdnum=?";
+			String sql="delete from notice where ntnum=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			return pstmt.executeUpdate();

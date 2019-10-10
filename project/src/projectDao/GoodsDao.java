@@ -21,7 +21,7 @@ public class GoodsDao {
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select NVL(max(num),0) as maxnum from goods";
+			String sql="select NVL(max(gdlistnum),0) as maxnum from goods";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {

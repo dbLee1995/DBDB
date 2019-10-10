@@ -21,7 +21,7 @@ public class CompanyDao {
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select NVL(max(num),0) as maxnum from company";
+			String sql="select NVL(max(cpnum),0) as maxnum from company";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
