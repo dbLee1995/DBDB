@@ -1,33 +1,33 @@
 package projectVo;
 
 public class GoodsVo {
-	private int CPNum;
-	private int GDListNum;
-	private String GDList;
+	private int cpNum;
+	private int gdListNum;
+	private String gdList;
 	public GoodsVo() {}
 	public GoodsVo(int cPNum, int gDListNum, String gDList) {
 		super();
-		CPNum = cPNum;
-		GDListNum = gDListNum;
-		GDList = gDList;
+		cpNum = cPNum;
+		gdListNum = gDListNum;
+		gdList = gDList;
 	}
 	public int getCPNum() {
-		return CPNum;
+		return cpNum;
 	}
 	public void setCPNum(int cPNum) {
-		CPNum = cPNum;
+		cpNum = cPNum;
 	}
 	public int getGDListNum() {
-		return GDListNum;
+		return gdListNum;
 	}
 	public void setGDListNum(int gDListNum) {
-		GDListNum = gDListNum;
+		gdListNum = gDListNum;
 	}
 	public String getGDList() {
-		return GDList;
+		return gdList;
 	}
 	public void setGDList(String gDList) {
-		GDList = gDList;
+		gdList = gDList;
 	}
 	
 }

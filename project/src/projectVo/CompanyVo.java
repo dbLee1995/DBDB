@@ -1,27 +1,27 @@
 package projectVo;
 
 public class CompanyVo {
-	private int CPNum;
-	private String CPName;
+	private int cpNum;
+	private String cpName;
 	private int phone;
 	public CompanyVo() {}
 	public CompanyVo(int cPNum, String cPName, int phone) {
 		super();
-		CPNum = cPNum;
-		CPName = cPName;
+		cpNum = cPNum;
+		cpName = cPName;
 		this.phone = phone;
 	}
 	public int getCPNum() {
-		return CPNum;
+		return cpNum;
 	}
 	public void setCPNum(int cPNum) {
-		CPNum = cPNum;
+		cpNum = cPNum;
 	}
 	public String getCPName() {
-		return CPName;
+		return cpName;
 	}
 	public void setCPName(String cPName) {
-		CPName = cPName;
+		cpName = cPName;
 	}
 	public int getPhone() {
 		return phone;

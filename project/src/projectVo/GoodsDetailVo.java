@@ -1,57 +1,57 @@
 package projectVo;
 
 public class GoodsDetailVo {
-	private int GDListNum;
-	private int GDNum;
-	private String GDName;
-	private int GDPrice;
-	private int GDStock;
-	private String GDDetail;
+	private int gdListNum;
+	private int gdNum;
+	private String gdName;
+	private int gdPrice;
+	private int gdStock;
+	private String gdDetail;
 	public GoodsDetailVo() {}
 	public GoodsDetailVo(int gDListNum, int gDNum, String gDName, int gDPrice, int gDStock, String gDDetail) {
 		super();
-		GDListNum = gDListNum;
-		GDNum = gDNum;
-		GDName = gDName;
-		GDPrice = gDPrice;
-		GDStock = gDStock;
-		GDDetail = gDDetail;
+		gdListNum = gDListNum;
+		gdNum = gDNum;
+		gdName = gDName;
+		gdPrice = gDPrice;
+		gdStock = gDStock;
+		gdDetail = gDDetail;
 	}
 	public int getGDListNum() {
-		return GDListNum;
+		return gdListNum;
 	}
 	public void setGDListNum(int gDListNum) {
-		GDListNum = gDListNum;
+		gdListNum = gDListNum;
 	}
 	public int getGDNum() {
-		return GDNum;
+		return gdNum;
 	}
 	public void setGDNum(int gDNum) {
-		GDNum = gDNum;
+		gdNum = gDNum;
 	}
 	public String getGDName() {
-		return GDName;
+		return gdName;
 	}
 	public void setGDName(String gDName) {
-		GDName = gDName;
+		gdName = gDName;
 	}
 	public int getGDPrice() {
-		return GDPrice;
+		return gdPrice;
 	}
 	public void setGDPrice(int gDPrice) {
-		GDPrice = gDPrice;
+		gdPrice = gDPrice;
 	}
 	public int getGDStock() {
-		return GDStock;
+		return gdStock;
 	}
 	public void setGDStock(int gDStock) {
-		GDStock = gDStock;
+		gdStock = gDStock;
 	}
 	public String getGDDetail() {
-		return GDDetail;
+		return gdDetail;
 	}
 	public void setGDDetail(String gDDetail) {
-		GDDetail = gDDetail;
+		gdDetail = gDDetail;
 	}
 	
 }
