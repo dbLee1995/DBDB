@@ -11,8 +11,8 @@ import projectVo.CartVo;
 
 public class CartDao {
 	private CartDao() {}
-	private CartDao dao=new CartDao();
-	public CartDao getInstance() {
+	private static CartDao dao=new CartDao();
+	public static CartDao getInstance() {
 		return dao;
 	}
 	public int insert(CartVo vo) {

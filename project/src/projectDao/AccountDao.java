@@ -11,8 +11,8 @@ import projectVo.AccountVo;
 
 public class AccountDao {
 	private AccountDao() {}
-	private AccountDao dao=new AccountDao();
-	public AccountDao getInstance() {
+	private static AccountDao dao=new AccountDao();
+	public static AccountDao getInstance() {
 		return dao;
 	}
 	public int insert(AccountVo vo) {

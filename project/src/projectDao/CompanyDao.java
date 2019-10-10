@@ -11,8 +11,8 @@ import projectVo.CompanyVo;
 
 public class CompanyDao {
 	private CompanyDao() {}
-	private CompanyDao dao=new CompanyDao();
-	public CompanyDao getInstance() {
+	private static CompanyDao dao=new CompanyDao();
+	public static CompanyDao getInstance() {
 		return dao;
 	}
 	public int getMaxNum() {

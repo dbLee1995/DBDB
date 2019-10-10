@@ -11,8 +11,8 @@ import projectVo.NoticeVo;
 
 public class NoticeDao {
 	private NoticeDao() {}
-	private NoticeDao dao=new NoticeDao();
-	public NoticeDao getInstance() {
+	private static NoticeDao dao=new NoticeDao();
+	public static NoticeDao getInstance() {
 		return dao;
 	}
 	public int getMaxNum() {

@@ -11,8 +11,8 @@ import projectVo.GoodsVo;
 
 public class GoodsDao {
 	private GoodsDao() {}
-	private GoodsDao dao=new GoodsDao();
-	public GoodsDao getInstance() {
+	private static GoodsDao dao=new GoodsDao();
+	public static GoodsDao getInstance() {
 		return dao;
 	}
 	public int getMaxNum() {

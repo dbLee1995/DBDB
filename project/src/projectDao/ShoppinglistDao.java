@@ -44,7 +44,16 @@ public class ShoppinglistDao {
 			con=JdbcUtil.getConn();
 			String sql="insert into shoppinglist values(?,?,?,?,sysdate,?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
-			
+			pstmt.setInt(1, vo.getGdNum());
+			pstmt.setString(2, vo.getId());
+			pstmt.setInt(3, getMaxNum());
+			pstmt.setInt(4, vo.getGdCount());
+			pstmt.setString(5, vo.getName());
+			pstmt.setString(6, vo.getPhone());
+			pstmt.setString(7, vo.getAddr());
+			pstmt.setString(8, vo.getMsg());
+			pstmt.setString(9, vo.getBuyway());
+			pstmt.setInt(10, vo.getState());
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
@@ -53,48 +62,29 @@ public class ShoppinglistDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
-	public NoticeVo select(int num) {
+	public ArrayList<ShoppinglistVo> selectAll(){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select * from notice where ntnum=?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			rs=pstmt.executeQuery();
-			if(rs.next()) {
-				NoticeVo vo=
-						new NoticeVo(rs.getInt("ntnum"),
-										rs.getString("nttitle"),
-										rs.getString("ntcontent"),
-										rs.getDate("ntdate"));
-				return vo;
-			}
-			return null;
-		}catch(SQLException se) {
-			se.printStackTrace();
-			return null;
-		}finally {
-			JdbcUtil.close(con, pstmt, rs);
-		}
-	}
-	public ArrayList<NoticeVo> selectAll(){
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		try {
-			con=JdbcUtil.getConn();
-			String sql="select * from notice";
+			String sql="select * from shoppinglist";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
-			ArrayList<NoticeVo> list=new ArrayList<NoticeVo>();
+			ArrayList<ShoppinglistVo> list=new ArrayList<ShoppinglistVo>();
 			while(rs.next()) {
-				NoticeVo vo=
-						new NoticeVo(rs.getInt("ntnum"),
-									rs.getString("nttitle"),
-									rs.getString("ntcontent"),
-									rs.getDate("ntdate"));
+				ShoppinglistVo vo=
+						new ShoppinglistVo(rs.getInt("gdnum"),
+											rs.getString("id"),
+											rs.getInt("ordernum"),
+											rs.getInt("gdcount"),
+											rs.getDate("regdate"),
+											rs.getString("name"),
+											rs.getString("phone"),
+											rs.getString("addr"),
+											rs.getString("msg"),
+											rs.getString("buyway"),
+											rs.getInt("state"));
 				list.add(vo);
 			}
 			return list;
@@ -105,16 +95,21 @@ public class ShoppinglistDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
-	public int update(NoticeVo vo) {
+	public int update(ShoppinglistVo vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="update notice set nttitle=?,ntcontent=? where ntnum=?";
+			String sql="update shoppinglist set gdcount=?,name=?,phone=?,addr=?,msg=?,buyway=?,state=? where gdnum=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, vo.getNtTitle());
-			pstmt.setString(2, vo.getNtContent());
-			pstmt.setInt(3, vo.getNtNum());
+			pstmt.setInt(1, vo.getGdCount());
+			pstmt.setString(2, vo.getName());
+			pstmt.setString(3, vo.getPhone());
+			pstmt.setString(4, vo.getAddr());
+			pstmt.setString(5, vo.getMsg());
+			pstmt.setString(6, vo.getBuyway());
+			pstmt.setInt(7, vo.getState());
+			pstmt.setInt(8, vo.getGdNum());
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
@@ -128,7 +123,7 @@ public class ShoppinglistDao {
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="delete from notice where ntnum=?";
+			String sql="delete from shoppinglist where gdnum=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			return pstmt.executeUpdate();
