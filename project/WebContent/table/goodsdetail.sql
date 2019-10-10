@@ -10,16 +10,16 @@ create table goodsdetail
 );
 alter table goodsdetail add(gdsumary varchar2(50));
 --1
-insert into Goodsdetail values(1,1,'닭가슴살 스테이크 오리지널',13900,1000,'1.png');
-insert into Goodsdetail values(1,2,'닭가슴살 스테이크 갈릭',14500,1000,'2.png');
-insert into Goodsdetail values(1,3,'닭가슴살 스테이크 고추',14500,1000,'3.png');
-insert into Goodsdetail values(1,4,'닭가슴살 스테이크 호박',14500,1000,'4.png');
-insert into Goodsdetail values(1,5,'닭가슴살 스테이크 야채',14500,1000,'5.png');
-insert into Goodsdetail values(1,6,'닭가슴살 스테이크 혼합',14500,1000,'6.png');
-insert into Goodsdetail values(1,7,'닭가슴살 스테이크 어니언',14500,1000,'7.png');
-insert into Goodsdetail values(1,8,'닭가슴살 스테이크 치즈',14500,1000,'8.png');
-insert into Goodsdetail values(1,9,'닭가슴살 스테이크 카레',14500,1000,'9.png');
-insert into Goodsdetail values(1,10,'닭가슴살 스테이크 칠리',14500,1000,'10.png');
+insert into Goodsdetail values(1,1,'닭가슴살 스테이크 오리지널',13900,1000,'1.jpg');
+insert into Goodsdetail values(1,2,'닭가슴살 스테이크 갈릭',14500,1000,'2.jpg');
+insert into Goodsdetail values(1,3,'닭가슴살 스테이크 고추',14500,1000,'3.jpg');
+insert into Goodsdetail values(1,4,'닭가슴살 스테이크 호박',14500,1000,'4.jpg');
+insert into Goodsdetail values(1,5,'닭가슴살 스테이크 야채',14500,1000,'5.jpg');
+insert into Goodsdetail values(1,6,'닭가슴살 스테이크 혼합',14500,1000,'6.jpg');
+insert into Goodsdetail values(1,7,'닭가슴살 스테이크 어니언',14500,1000,'1.jpg');
+insert into Goodsdetail values(1,8,'닭가슴살 스테이크 치즈',14500,1000,'2.jpg');
+insert into Goodsdetail values(1,9,'닭가슴살 스테이크 카레',14500,1000,'3.jpg');
+insert into Goodsdetail values(1,10,'닭가슴살 스테이크 칠리',14500,1000,'4.jpg');
 --2
 insert into goodsdetail VALUES (2,11,'소프트마늘 야채 닭가슴살 도시락',22200,100,'11.jpg');
 insert into goodsdetail VALUES (2,12,'소프트마늘 감자 닭가슴살 도시락',22200,95,'12.jpg');
@@ -43,16 +43,16 @@ insert into goodsdetail values(3, 28, '간장볶음밥', 21900, 100, 'mushroomri
 insert into goodsdetail values(3, 29, '계란볶음밥', 22900, 100, 'curryrice.jpg');
 insert into goodsdetail values(3, 30, '치킨볶음밥', 23900, 100, 'shrimprice.jpg');
 --4
-insert into Goodsdetail values(4,31,'훈제 닭가슴살',9900,1000,'40.png');
-insert into Goodsdetail values(4,32,'마늘 훈제 닭가슴살',10300,1000,'41.png');
-insert into Goodsdetail values(4,33,'칠리 훈제 닭가슴살',10300,1000,'42.png');
-insert into Goodsdetail values(4,34,'갈릭 훈제 닭가슴살',10300,1000,'43.png');
-insert into Goodsdetail values(4,35,'냉장 생 닭가슴살',7500,1000,'44.png');
-insert into Goodsdetail values(4,36,'카레훈제 닭가슴살',10300,1000,'45.png');
-insert into Goodsdetail values(4,37,'아몬드 훈제 닭가슴살',10300,1000,'46.png');
-insert into Goodsdetail values(4,38,'토마토훈제 닭가슴살',10300,1000,'47.png');
-insert into Goodsdetail values(4,39,'바질 훈제 닭가슴살',10300,1000,'48.png');
-insert into Goodsdetail values(4,40,'염분 무첨가 훈제 닭가슴살',10200,1000,'49.png');
+insert into Goodsdetail values(4,31,'훈제 닭가슴살',9900,1000,'40.jpg');
+insert into Goodsdetail values(4,32,'마늘 훈제 닭가슴살',10300,1000,'41.jpg');
+insert into Goodsdetail values(4,33,'칠리 훈제 닭가슴살',10300,1000,'42.jpg');
+insert into Goodsdetail values(4,34,'갈릭 훈제 닭가슴살',10300,1000,'43.jpg');
+insert into Goodsdetail values(4,35,'냉장 생 닭가슴살',7500,1000,'44.jpg');
+insert into Goodsdetail values(4,36,'카레훈제 닭가슴살',10300,1000,'40.jpg');
+insert into Goodsdetail values(4,37,'아몬드 훈제 닭가슴살',10300,1000,'41.jpg');
+insert into Goodsdetail values(4,38,'토마토훈제 닭가슴살',10300,1000,'42.jpg');
+insert into Goodsdetail values(4,39,'바질 훈제 닭가슴살',10300,1000,'43.jpg');
+insert into Goodsdetail values(4,40,'염분 무첨가 훈제 닭가슴살',10200,1000,'43.jpg');
 --5
 insert into goodsdetail VALUES (5,41,'닭가슴살 소시지 훈제',16500,100,'51.jpg');
 insert into goodsdetail VALUES (5,42,'닭가슴살 소시지 할라피뇨',16500,95,'52.jpg');
