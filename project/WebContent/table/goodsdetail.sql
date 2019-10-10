@@ -5,9 +5,10 @@ create table goodsdetail
 	GDname varchar2(50),
 	GDprice number(10),
 	GDstock number(5),
-	GDdetail varchar2(50)
+	GDdetail varchar2(50),
+	GDsumary varchar2(50)
 );
-
+alter table goodsdetail add(gdsumary varchar2(50));
 --1
 insert into Goodsdetail values(1,1,'닭가슴살 스테이크 오리지널',13900,1000,'1.png');
 insert into Goodsdetail values(1,2,'닭가슴살 스테이크 갈릭',14500,1000,'2.png');
