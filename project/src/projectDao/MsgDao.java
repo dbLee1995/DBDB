@@ -7,12 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import jdbc.JdbcUtil;
-import projectVo.ShoppinglistVo;
+import projectVo.MsgVo;
 
-public class ShoppinglistDao {
-	private ShoppinglistDao() {}
-	private static ShoppinglistDao dao=new ShoppinglistDao();
-	public static ShoppinglistDao getInstance() {
+public class MsgDao {
+	private MsgDao() {}
+	private static MsgDao dao=new MsgDao();
+	public static MsgDao getInstance() {
 		return dao;
 	}
 	public int getMaxNum() {
@@ -21,7 +21,7 @@ public class ShoppinglistDao {
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select NVL(max(ordernum),0) as maxnum from shoppinglist";
+			String sql="select NVL(max(msgnum),0) as maxnum from msg";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
@@ -37,23 +37,17 @@ public class ShoppinglistDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
-	public int insert(ShoppinglistVo vo) {
+	public int insert(MsgVo vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="insert into shoppinglist values(?,?,?,?,sysdate,?,?,?,?,?,?)";
+			String sql="insert into msg values(?,?,?,?,sysdate)";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, vo.getGdNum());
-			pstmt.setString(2, vo.getId());
-			pstmt.setInt(3, getMaxNum());
-			pstmt.setInt(4, vo.getGdCount());
-			pstmt.setString(5, vo.getName());
-			pstmt.setString(6, vo.getPhone());
-			pstmt.setString(7, vo.getAddr());
-			pstmt.setString(8, vo.getMsg());
-			pstmt.setString(9, vo.getBuyway());
-			pstmt.setInt(10, vo.getState());
+			pstmt.setString(1, vo.getId());
+			pstmt.setInt(2, vo.getMsgNum());
+			pstmt.setString(3, vo.getMsgTitle());
+			pstmt.setString(4, vo.getMsgContent());
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
@@ -62,29 +56,50 @@ public class ShoppinglistDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
-	public ArrayList<ShoppinglistVo> selectAll(){
+	public MsgVo select(int num) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select * from shoppinglist";
+			String sql="select * from msg where msgnum=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				MsgVo vo=
+						new MsgVo(rs.getString("id"),
+								rs.getInt("msgnum"),
+								rs.getString("msgtitle"),
+								rs.getString("msgcontent"),
+								rs.getDate("msgdate"));
+				return vo;
+			}
+			return null;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	public ArrayList<MsgVo> selectAll(){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select * from msg";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
-			ArrayList<ShoppinglistVo> list=new ArrayList<ShoppinglistVo>();
+			ArrayList<MsgVo> list=new ArrayList<MsgVo>();
 			while(rs.next()) {
-				ShoppinglistVo vo=
-						new ShoppinglistVo(rs.getInt("gdnum"),
-											rs.getString("id"),
-											rs.getInt("ordernum"),
-											rs.getInt("gdcount"),
-											rs.getDate("regdate"),
-											rs.getString("name"),
-											rs.getString("phone"),
-											rs.getString("addr"),
-											rs.getString("msg"),
-											rs.getString("buyway"),
-											rs.getInt("state"));
+				MsgVo vo=
+						new MsgVo(rs.getString("id"),
+								rs.getInt("msgnum"),
+								rs.getString("msgtitle"),
+								rs.getString("msgcontent"),
+								rs.getDate("msgdate"));
 				list.add(vo);
 			}
 			return list;
@@ -95,21 +110,16 @@ public class ShoppinglistDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
-	public int update(ShoppinglistVo vo) {
+	public int update(MsgVo vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="update shoppinglist set gdcount=?,name=?,phone=?,addr=?,msg=?,buyway=?,state=? where gdnum=?";
+			String sql="update msg set msgtitle=?,msgcontent=? where msgnum=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, vo.getGdCount());
-			pstmt.setString(2, vo.getName());
-			pstmt.setString(3, vo.getPhone());
-			pstmt.setString(4, vo.getAddr());
-			pstmt.setString(5, vo.getMsg());
-			pstmt.setString(6, vo.getBuyway());
-			pstmt.setInt(7, vo.getState());
-			pstmt.setInt(8, vo.getGdNum());
+			pstmt.setString(1, vo.getMsgTitle());
+			pstmt.setString(2, vo.getMsgContent());
+			pstmt.setInt(3, vo.getMsgNum());
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
@@ -123,7 +133,7 @@ public class ShoppinglistDao {
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="delete from shoppinglist where gdnum=?";
+			String sql="delete from msg where msgnum=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			return pstmt.executeUpdate();
