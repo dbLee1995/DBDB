@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import projectDao.GoodsDetailDao;
+import projectVo.GoodsDetailVo;
 
 @WebServlet("/list")
 public class IndexController extends HttpServlet{
@@ -21,6 +22,9 @@ public class IndexController extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		
 		GoodsDetailDao dao=GoodsDetailDao.getInstance();
-		ArrayList<GoodsDetailDao> list=null;
+		ArrayList<GoodsDetailVo> pricelist=dao.select("gdprice", 0);
+		ArrayList<GoodsDetailVo> steaklist=dao.select("gdlistnum", 1);
+		ArrayList<GoodsDetailVo> cblist=dao.select("gdlistnum", 4);
+		
 	}
 }

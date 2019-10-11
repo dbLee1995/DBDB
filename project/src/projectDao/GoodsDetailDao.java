@@ -58,27 +58,46 @@ public class GoodsDetailDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
-	public GoodsDetailVo select(int num) {
+	public ArrayList<GoodsDetailVo> select(String strdetail, int num) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
-			con=JdbcUtil.getConn();
-			String sql="select * from goodsdetail where gdnum=?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			rs=pstmt.executeQuery();
-			if(rs.next()) {
-				GoodsDetailVo vo=
-						new GoodsDetailVo(rs.getInt("gdlistnum"),
-										rs.getInt("gdnum"),
-										rs.getString("gdname"),
-										rs.getInt("gdprice"),
-										rs.getInt("gdstock"),
-										rs.getString("gddetail"));
-				return vo;
+			ArrayList<GoodsDetailVo> list=new ArrayList<GoodsDetailVo>();
+			if(strdetail.equals("gdprice")) {
+				con=JdbcUtil.getConn();
+				String sql="select * from goodsdetail order by "+strdetail+" desc";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					GoodsDetailVo vo=
+							new GoodsDetailVo(rs.getInt("gdlistnum"),
+											rs.getInt("gdnum"),
+											rs.getString("gdname"),
+											rs.getInt("gdprice"),
+											rs.getInt("gdstock"),
+											rs.getString("gddetail"));
+					list.add(vo);
+				}
+			}else {
+				con=JdbcUtil.getConn();
+				String sql="select * from goodsdetail where "+strdetail+"=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					GoodsDetailVo vo=
+							new GoodsDetailVo(rs.getInt("gdlistnum"),
+											rs.getInt("gdnum"),
+											rs.getString("gdname"),
+											rs.getInt("gdprice"),
+											rs.getInt("gdstock"),
+											rs.getString("gddetail"));
+					list.add(vo);
+				}
 			}
-			return null;
+			return list;
 		}catch(SQLException se) {
 			se.printStackTrace();
 			return null;
