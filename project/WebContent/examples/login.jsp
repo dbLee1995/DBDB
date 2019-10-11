@@ -8,6 +8,30 @@
   <meta name="description" content="Start your development with a Design System for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
   <title>Argon Design System - Free Design System for Bootstrap 4</title>
+  <script type="text/javascript">
+  	var xhr=null;
+  	function idcheck() {
+  		var id=document.getElementById("id").value;
+  		if(id==""){
+  			document.getElementById("idcheck").innerHTML="";
+  			return;
+  		}
+  		xhr=new XMLHttpRequest();
+  		xhr.onreadystatechange=callback;
+  		xhr.open('get',"idcheck.jsp?id="+id,true);
+  		xhr.send();
+  	}
+  	function callback() {
+  		if(xhr.readyState==4 && xhr.status==200) {
+  			var data=xhr.responseText;
+  			var json=JSON.parse(data);
+  			var span=document.getElementById("idcheck");
+  			if(json.using==true) {
+  				
+  			}
+  		}
+  	}
+  </script>
   <!-- Favicon -->
   <link href="../assets/img/brand/favicon.png" rel="icon" type="image/png">
   <!-- Fonts -->
@@ -18,7 +42,7 @@
   <!-- Argon CSS -->
   <link type="text/css" href="../assets/css/argon.css?v=1.1.0" rel="stylesheet">
 </head>
-
+	
 <body>
   <header class="header-global">
     <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
@@ -161,7 +185,8 @@
                     </label>
                   </div>
                   <div class="text-center">
-                    <button type="button" class="btn btn-primary my-4">Sign in</button>
+                    <input type="submit" value="Sign in" onclick="idcheck();">
+                    <span id="idcheck" style="color:red;font-size: 12px"></span><br>
                   </div>
                 </form>
               </div>
