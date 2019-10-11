@@ -63,13 +63,7 @@ public class JoinController extends HttpServlet {
 		PrintWriter pw=resp.getWriter();
 		int n=dao.insert(vo);
 		if(n>0) {
-			
-			//resp.sendRedirect("/project/index.html");
-		}else {
-			req.setAttribute("id", id);
-			req.setAttribute("pwd", pwd);
-			req.setAttribute("email", email);
-			req.getRequestDispatcher("/join.html").forward(req, resp);
+			resp.sendRedirect(req.getContextPath()+"/index.jsp");
 		}
 	}
 }
