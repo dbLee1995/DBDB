@@ -1,57 +1,67 @@
 package projectVo;
 
 public class GoodsDetailVo {
-	private int gdListNum;
-	private int gdNum;
-	private String gdName;
-	private int gdPrice;
-	private int gdStock;
-	private String gdDetail;
+	private int gdlistnum;
+	private int gdnum;
+	private String gdname;
+	private int gdprice;
+	private int gdstock;
+	private String gddetail;
+	private String gdsumary;
 	public GoodsDetailVo() {}
-	public GoodsDetailVo(int gDListNum, int gDNum, String gDName, int gDPrice, int gDStock, String gDDetail) {
+	public GoodsDetailVo(int gdlistnum, int gdnum, String gdname, int gdprice, int gdstock, String gddetail,
+			String gdsumary) {
 		super();
-		gdListNum = gDListNum;
-		gdNum = gDNum;
-		gdName = gDName;
-		gdPrice = gDPrice;
-		gdStock = gDStock;
-		gdDetail = gDDetail;
+		this.gdlistnum = gdlistnum;
+		this.gdnum = gdnum;
+		this.gdname = gdname;
+		this.gdprice = gdprice;
+		this.gdstock = gdstock;
+		this.gddetail = gddetail;
+		this.gdsumary = gdsumary;
 	}
-	public int getGDListNum() {
-		return gdListNum;
+	public int getGdlistnum() {
+		return gdlistnum;
 	}
-	public void setGDListNum(int gDListNum) {
-		gdListNum = gDListNum;
+	public void setGdlistnum(int gdlistnum) {
+		this.gdlistnum = gdlistnum;
 	}
-	public int getGDNum() {
-		return gdNum;
+	public int getGdnum() {
+		return gdnum;
 	}
-	public void setGDNum(int gDNum) {
-		gdNum = gDNum;
+	public void setGdnum(int gdnum) {
+		this.gdnum = gdnum;
 	}
-	public String getGDName() {
-		return gdName;
+	public String getGdname() {
+		return gdname;
 	}
-	public void setGDName(String gDName) {
-		gdName = gDName;
+	public void setGdname(String gdname) {
+		this.gdname = gdname;
 	}
-	public int getGDPrice() {
-		return gdPrice;
+	public int getGdprice() {
+		return gdprice;
 	}
-	public void setGDPrice(int gDPrice) {
-		gdPrice = gDPrice;
+	public void setGdprice(int gdprice) {
+		this.gdprice = gdprice;
 	}
-	public int getGDStock() {
-		return gdStock;
+	public int getGdstock() {
+		return gdstock;
 	}
-	public void setGDStock(int gDStock) {
-		gdStock = gDStock;
+	public void setGdstock(int gdstock) {
+		this.gdstock = gdstock;
 	}
-	public String getGDDetail() {
-		return gdDetail;
+	public String getGddetail() {
+		return gddetail;
 	}
-	public void setGDDetail(String gDDetail) {
-		gdDetail = gDDetail;
+	public void setGddetail(String gddetail) {
+		this.gddetail = gddetail;
 	}
+	public String getGdsumary() {
+		return gdsumary;
+	}
+	public void setGdsumary(String gdsumary) {
+		this.gdsumary = gdsumary;
+	}
+
 	
 }
