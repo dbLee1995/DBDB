@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import jdbc.JdbcUtil;
+import projectVo.GoodsDetailVo;
 import projectVo.ShoppinglistVo;
 
 public class ShoppinglistDao {
@@ -40,8 +41,15 @@ public class ShoppinglistDao {
 	public int insert(ShoppinglistVo vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
+		PreparedStatement upstmt=null;
 		try {
 			con=JdbcUtil.getConn();
+			GoodsDetailVo gvo=new GoodsDetailVo();
+			
+			String usql="update goodsdetail "+ 
+					"set gdstock=gdstock-(select sl.gdcount from goodsdetail gd,shoppinglist sl where gd.gdnum=? and sl.gdnum=?) "+ 
+					"where gdnum=(select gd.gdnum from goodsdetail gd,shoppinglist sl where gd.gdnum=? and sl.gdnum=?)";
+			
 			String sql="insert into shoppinglist values(?,?,?,?,sysdate,?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, vo.getGdNum());
@@ -60,6 +68,7 @@ public class ShoppinglistDao {
 			return -1;
 		}finally {
 			JdbcUtil.close(con, pstmt, null);
+			JdbcUtil.close(upstmt);
 		}
 	}
 	public ArrayList<ShoppinglistVo> selectAll(){
