@@ -12,24 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 import projectDao.GoodsDetailDao;
 import projectVo.GoodsDetailVo;
 
-@WebServlet("/index")
-public class IndexController extends HttpServlet{
+@WebServlet("/detail")
+public class DetailController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, 
 			HttpServletResponse resp) 
 					throws ServletException, IOException {
 		
-		req.setCharacterEncoding("utf-8");
+		int gdnum=Integer.parseInt(req.getParameter("gdnum"));
 		
 		GoodsDetailDao dao=GoodsDetailDao.getInstance();
-		ArrayList<GoodsDetailVo> pricelist=dao.select("gdprice", 0);
-		ArrayList<GoodsDetailVo> steaklist=dao.select("gdlistnum", 1);
-		ArrayList<GoodsDetailVo> cblist=dao.select("gdlistnum", 4);
+		ArrayList<GoodsDetailVo> list=dao.select("gdnum", gdnum);
 		
-		req.setAttribute("pricelist", pricelist);
-		req.setAttribute("steaklist", steaklist);
-		req.setAttribute("cblist", cblist);
-		
-		req.getRequestDispatcher("/index.jsp").forward(req, resp);
+		req.setAttribute("list", list);
+		req.getRequestDispatcher("/examples/detail.jsp").forward(req, resp);
 	}
 }
