@@ -28,7 +28,22 @@
 .card {
 	margin-left: 30px;
 }
+
+#header {
+	margin-left: 50px;
+}
+#count{float:right;}
+.count{float:right;}
+#btn{margin-left: 30px;}
 </style>
+	<script type="text/javascript">
+		var xhr=null;
+		function multi(price){
+			var count=document.getElementById("multicount");
+			var span=document.getElementById("result");
+			span.innerHTML=count.value * price +"원";
+		}
+	</script>
 </head>
 <body>
 	<header class="header-global">
@@ -73,35 +88,12 @@
 							<div class="dropdown-menu">
 								<a href="./examples/landing.html" class="dropdown-item">Landing</a>
 								<a href="./examples/profile.html" class="dropdown-item">Profile</a>
-								<a href="./examples/login.jsp" class="dropdown-item">Login</a>
-								<a href="./examples/register.html" class="dropdown-item">Register</a>
+								<a href="./examples/login.jsp" class="dropdown-item">Login</a> <a
+									href="./examples/register.html" class="dropdown-item">Register</a>
 							</div></li>
 					</ul>
 					<ul class="navbar-nav align-items-lg-center ml-lg-auto">
-						<li class="nav-item"><a class="nav-link nav-link-icon"
-							href="https://www.facebook.com/creativetim" target="_blank"
-							data-toggle="tooltip" title="Like us on Facebook"> <i
-								class="fa fa-facebook-square"></i> <span
-								class="nav-link-inner--text d-lg-none">Facebook</span>
-						</a></li>
-						<li class="nav-item"><a class="nav-link nav-link-icon"
-							href="https://www.instagram.com/creativetimofficial"
-							target="_blank" data-toggle="tooltip"
-							title="Follow us on Instagram"> <i class="fa fa-instagram"></i>
-								<span class="nav-link-inner--text d-lg-none">Instagram</span>
-						</a></li>
-						<li class="nav-item"><a class="nav-link nav-link-icon"
-							href="https://twitter.com/creativetim" target="_blank"
-							data-toggle="tooltip" title="Follow us on Twitter"> <i
-								class="fa fa-twitter-square"></i> <span
-								class="nav-link-inner--text d-lg-none">Twitter</span>
-						</a></li>
-						<li class="nav-item"><a class="nav-link nav-link-icon"
-							href="https://github.com/creativetimofficial/argon-design-system"
-							target="_blank" data-toggle="tooltip" title="Star us on Github">
-								<i class="fa fa-github"></i> <span
-								class="nav-link-inner--text d-lg-none">Github</span>
-						</a></li>
+
 						<li class="nav-item"><a href="./examples/login.jsp"
 							class="nav-link">Cart</a></li>
 						<li class="nav-item"><a href="./examples/login.jsp"
@@ -122,28 +114,34 @@
 			<div class="row justify-content-center">
 				<div class="col-lg-12">
 					<!-- Basic elements -->
-					<h2 class="mb-5">
-						<span>저렴이순</span>
-					</h2>
-					<div class="container">
-						<div class="row">
-							<%int n=0;%>
-							<c:forEach var="listvo" items="${pricelist }">
-								<%if(n<6){%>
-								<div class="card" style="width: 18rem;">
-									<img src="images/${listvo.gdsumary }" class="card-img-top"
-										alt="sm_chickenbreast">
-									<div class="card-body">
-										<h5 class="card-title">${listvo.gdname }</h5>
-										<a href="./examples/detail.jsp?gdnum=${listvo.gdnum }">
-											<button class="btn btn-1 btn-outline-warning" type="button">자세히보기</button>
-										</a>
-									</div>
+					<c:forEach var="listvo" items="${list }">
+						<div class="container">
+						<h2 class="mb-2">[${listvo.gdlistnum}]</h2>
+							<div class="row">
+								<div id="header">
+									<img src="images/${listvo.gdsumary }" alt="sm_chickenbreast"
+										width="400" height="400">
 								</div>
-								<%++n;}%>
-							</c:forEach>
+								<div id="header">
+									<form action="">
+										<h3 class="mb-2">
+											<span>${listvo.gdname }</span><br>
+											<span>&nbsp;&nbsp;&nbsp;: ${listvo.gdprice }원</span>
+										</h3>
+										<h6 id="count">갯수를 입력해주세요.</h6>
+										<input type="text" placeholder="숫자만 입력해주세요" class="form-control" 
+											name="count" onkeyup="multi(${listvo.gdprice })" id="multicount">
+										<hr>
+										<h6>총 금액</h6>
+										<h2 class="count"><span id="result"></span></h2>
+										<br><br><br>
+										<button class="btn btn-1 btn-warning" type="button" id="btn">장바구니에 담기</button>
+										<button class="btn btn-1 btn-outline-warning" type="button" id="btn">바로 결제하기</button>
+									</form>
+								</div>
+							</div>
 						</div>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>

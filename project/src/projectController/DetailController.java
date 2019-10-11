@@ -24,6 +24,7 @@ public class DetailController extends HttpServlet{
 		GoodsDetailDao dao=GoodsDetailDao.getInstance();
 		ArrayList<GoodsDetailVo> list=dao.select("gdnum", gdnum);
 		
+		req.setAttribute("gdnum", gdnum);
 		req.setAttribute("list", list);
 		req.getRequestDispatcher("/examples/detail.jsp").forward(req, resp);
 	}
