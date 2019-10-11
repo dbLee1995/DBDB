@@ -2,7 +2,7 @@ create table company
 (
 	CPNum number(5) primary key,
 	CPName varchar2(20),
-	phone number(20)
+	phone varchar2(40)
 );
 CREATE SEQUENCE company_SEQ;
 

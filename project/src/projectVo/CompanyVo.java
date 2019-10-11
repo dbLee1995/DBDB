@@ -3,31 +3,32 @@ package projectVo;
 public class CompanyVo {
 	private int cpNum;
 	private String cpName;
-	private int phone;
+	private String phone;
 	public CompanyVo() {}
-	public CompanyVo(int cPNum, String cPName, int phone) {
+	public CompanyVo(int cpNum, String cpName, String phone) {
 		super();
-		cpNum = cPNum;
-		cpName = cPName;
+		this.cpNum = cpNum;
+		this.cpName = cpName;
 		this.phone = phone;
 	}
-	public int getCPNum() {
+	public int getCpNum() {
 		return cpNum;
 	}
-	public void setCPNum(int cPNum) {
-		cpNum = cPNum;
+	public void setCpNum(int cpNum) {
+		this.cpNum = cpNum;
 	}
-	public String getCPName() {
+	public String getCpName() {
 		return cpName;
 	}
-	public void setCPName(String cPName) {
-		cpName = cPName;
+	public void setCpName(String cpName) {
+		this.cpName = cpName;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	
 }

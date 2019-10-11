@@ -35,6 +35,8 @@
 #count{float:right;}
 .count{float:right;}
 #btn{margin-left: 30px;}
+#detailcontent{margin-left: 420px; font-size: 1.2em;}
+
 </style>
 	<script type="text/javascript">
 		var xhr=null;
@@ -111,10 +113,10 @@
 	<section class="section section-components pb-0"
 		id="section-components">
 		<div class="container">
+		<c:forEach var="listvo" items="${list }">
 			<div class="row justify-content-center">
 				<div class="col-lg-12">
 					<!-- Basic elements -->
-					<c:forEach var="listvo" items="${list }">
 						<div class="container">
 						<h2 class="mb-2">[${listvo.gdlistnum}]</h2>
 							<div class="row">
@@ -141,8 +143,66 @@
 								</div>
 							</div>
 						</div>
-					</c:forEach>
+					
 				</div>
+			</div>
+			<hr>
+			<br><br>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-warning mt-4">
+	        <div class="container">
+	          <a class="navbar-brand" href="#" id="detailcontent">상세 내용</a>
+	          <div class="collapse navbar-collapse" id="navbar-warning">
+	            <div class="navbar-collapse-header">
+	              <div class="row">
+	                <div class="col-6 collapse-brand">
+	                  <a href="./index.html">
+	                    <img alt="image" src="./assets/img/brand/blue.png">
+	                  </a>
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	   	   </nav>
+      
+      	<img alt="gddetail" src="images/${listvo.gddetail }" width="100%" height="100%">
+      
+      	</c:forEach>
+      	<hr>
+      	<br><br>
+      	<nav class="navbar navbar-expand-lg navbar-dark bg-warning mt-4">
+	        <div class="container">
+	          <a class="navbar-brand" href="#" id="detailcontent">리뷰</a>
+	          <div class="collapse navbar-collapse" id="navbar-warning">
+	            <div class="navbar-collapse-header">
+	              <div class="row">
+	                <div class="col-6 collapse-brand">
+	                  <a href="./index.html">
+	                    <img alt="image" src="./assets/img/brand/blue.png">
+	                  </a>
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	   	   </nav>
+      	
+      		<div class="media">
+			  <img src="..." class="align-self-start mr-3" alt="...">
+			  <div class="media-body">
+			    <h5 class="mt-0">Top-aligned media</h5>
+			    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+			    <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+			  </div>
+			</div>
+			<br>
+			<div class="media">
+			  <img src="..." class="align-self-start mr-3" alt="...">
+			  <div class="media-body">
+			    <h5 class="mt-0">Top-aligned media</h5>
+			    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+			    <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+			  </div>
 			</div>
 		</div>
 	</section>

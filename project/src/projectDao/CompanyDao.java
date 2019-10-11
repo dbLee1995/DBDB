@@ -45,8 +45,8 @@ public class CompanyDao {
 			String sql="insert into company values(?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, getMaxNum());
-			pstmt.setString(2, vo.getCPName());
-			pstmt.setInt(3, vo.getPhone());
+			pstmt.setString(2, vo.getCpName());
+			pstmt.setString(3, vo.getPhone());
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
@@ -69,7 +69,7 @@ public class CompanyDao {
 				CompanyVo vo=
 						new CompanyVo(rs.getInt("cpnum"),
 										rs.getString("cpname"), 
-										rs.getInt("phone"));
+										rs.getString("phone"));
 				return vo;
 			}
 			return null;
@@ -94,7 +94,7 @@ public class CompanyDao {
 				CompanyVo vo=
 						new CompanyVo(rs.getInt("cpnum"),
 										rs.getString("cpname"), 
-										rs.getInt("phone"));
+										rs.getString("phone"));
 				list.add(vo);
 			}
 			return list;
@@ -112,9 +112,9 @@ public class CompanyDao {
 			con=JdbcUtil.getConn();
 			String sql="update company set cpname=?,phone=? where cpnum=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, vo.getCPName());
-			pstmt.setInt(2, vo.getPhone());
-			pstmt.setInt(3, vo.getCPNum());
+			pstmt.setString(1, vo.getCpName());
+			pstmt.setString(2, vo.getPhone());
+			pstmt.setInt(3, vo.getCpNum());
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
