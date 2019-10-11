@@ -27,7 +27,9 @@
   			var json=JSON.parse(data);
   			var span=document.getElementById("idcheck");
   			if(json.using==true) {
-  				
+  				span.innerHTML="사용중인 아이디입니다.";
+  			}else {
+  				span.innerHTML="사용가능한 아이디입니다.";
   			}
   		}
   	}
