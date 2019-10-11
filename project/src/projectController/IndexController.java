@@ -26,5 +26,10 @@ public class IndexController extends HttpServlet{
 		ArrayList<GoodsDetailVo> steaklist=dao.select("gdlistnum", 1);
 		ArrayList<GoodsDetailVo> cblist=dao.select("gdlistnum", 4);
 		
+		req.setAttribute("pricelist", pricelist);
+		req.setAttribute("steaklist", steaklist);
+		req.setAttribute("cblist", cblist);
+		
+		req.getRequestDispatcher("/index.jsp").forward(req, resp);
 	}
 }

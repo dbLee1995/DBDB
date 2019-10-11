@@ -162,6 +162,30 @@
 				<div class="col-lg-12">
 					<!-- Basic elements -->
 					<h2 class="mb-5">
+						<span>저렴이순</span>
+					</h2>
+					<div class="container">
+						<div class="row">
+							<% int n=0; %>
+							<c:forEach var="listvo" items="${pricelist }">
+							<%if(n<6){ %>
+							<div class="card" style="width: 18rem;">
+								<img src="images/${listvo.gdsumary }" class="card-img-top"
+									alt="sm_chickenbreast">
+								<div class="card-body">
+									<h5 class="card-title">${listvo.gdname }</h5>
+									<button class="btn btn-1 btn-outline-warning" type="button">자세히
+										보기</button>
+								</div>
+							</div>
+							<%++n;} %>
+							</c:forEach>
+						</div>
+					</div>
+					<br>
+					<br>
+					<br>
+					<h2 class="mb-5">
 						<span>Basic Elements</span>
 					</h2>
 					<div class="container">

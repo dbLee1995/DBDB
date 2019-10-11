@@ -42,14 +42,15 @@ public class GoodsDetailDao {
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="insert into goodsdetail values(?,?,?,?,?,?)";
+			String sql="insert into goodsdetail values(?,?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, vo.getGDListNum());
+			pstmt.setInt(1, vo.getGdlistnum());
 			pstmt.setInt(2, getMaxNum());
-			pstmt.setString(3, vo.getGDName());
-			pstmt.setInt(4, vo.getGDPrice());
-			pstmt.setInt(5, vo.getGDStock());
-			pstmt.setString(6, vo.getGDDetail());
+			pstmt.setString(3, vo.getGdname());
+			pstmt.setInt(4, vo.getGdprice());
+			pstmt.setInt(5, vo.getGdstock());
+			pstmt.setString(6, vo.getGddetail());
+			pstmt.setString(7, vo.getGdsumary());
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
@@ -68,7 +69,6 @@ public class GoodsDetailDao {
 				con=JdbcUtil.getConn();
 				String sql="select * from goodsdetail order by "+strdetail+" desc";
 				pstmt=con.prepareStatement(sql);
-				pstmt.setInt(1, num);
 				rs=pstmt.executeQuery();
 				while(rs.next()) {
 					GoodsDetailVo vo=
@@ -77,7 +77,8 @@ public class GoodsDetailDao {
 											rs.getString("gdname"),
 											rs.getInt("gdprice"),
 											rs.getInt("gdstock"),
-											rs.getString("gddetail"));
+											rs.getString("gddetail"),
+											rs.getString("gdsumary"));
 					list.add(vo);
 				}
 			}else {
@@ -93,7 +94,8 @@ public class GoodsDetailDao {
 											rs.getString("gdname"),
 											rs.getInt("gdprice"),
 											rs.getInt("gdstock"),
-											rs.getString("gddetail"));
+											rs.getString("gddetail"),
+											rs.getString("gdsumary"));
 					list.add(vo);
 				}
 			}
@@ -122,7 +124,8 @@ public class GoodsDetailDao {
 											rs.getString("gdname"),
 											rs.getInt("gdprice"),
 											rs.getInt("gdstock"),
-											rs.getString("gddetail"));
+											rs.getString("gddetail"),
+											rs.getString("gdsumary"));
 				list.add(vo);
 			}
 			return list;
@@ -138,13 +141,14 @@ public class GoodsDetailDao {
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="update goodsdetail set gdname=?,gdprice=?,gdstock=?,gddetail=? where gdnum=?";
+			String sql="update goodsdetail set gdname=?,gdprice=?,gdstock=?,gddetail=?,gdsumary=? where gdnum=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, vo.getGDName());
-			pstmt.setInt(2, vo.getGDPrice());
-			pstmt.setInt(3, vo.getGDStock());
-			pstmt.setString(4, vo.getGDDetail());
-			pstmt.setInt(5, vo.getGDNum());
+			pstmt.setString(1, vo.getGdname());
+			pstmt.setInt(2, vo.getGdprice());
+			pstmt.setInt(3, vo.getGdstock());
+			pstmt.setString(4, vo.getGddetail());
+			pstmt.setString(5, vo.getGdsumary());
+			pstmt.setInt(6, vo.getGdnum());
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
