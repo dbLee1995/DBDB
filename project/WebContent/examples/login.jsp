@@ -41,7 +41,11 @@
         <a class="navbar-brand mr-lg-5" href="../index.html">
           <img src="../assets/img/brand/white.png" alt="brand">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" 
+
+data-target="#navbar_global" aria-controls="navbar_global" aria-
+
+expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-collapse collapse" id="navbar_global">
@@ -152,7 +156,7 @@
                 <div class="text-center text-muted mb-4">
                   <small>Or sign in with credentials</small>
                 </div>
-                <form method="post" action="loginOk.jsp">
+                <form method="post" action="loginOK.jsp">
                   <div class="form-group mb-3">
                     <div class="input-group input-group-alternative">
                       <div class="input-group-prepend">
@@ -166,7 +170,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Password" type="password" name="pwd" >
+                      <input class="form-control" placeholder="Password" type="password" name="pwd">
                     </div>
                   </div>
                   <div class="custom-control custom-control-alternative custom-checkbox">
@@ -198,7 +202,8 @@
             </div>
             <div class="row mt-3">
               <div class="col-6">
-                <a href="#" class="text-light"><small>Forgot password?</small></a>
+                <a href="#" class="text-light"><small>Forgot password?
+</small></a>
               </div>
               <div class="col-6 text-right">
                 <a href="#" class="text-light"><small>Create new account</small></a>
@@ -209,7 +214,6 @@
       </div>
     </section>
   </main>
-
   <!-- Core -->
   <script src="../assets/vendor/jquery/jquery.min.js"></script>
   <script src="../assets/vendor/popper/popper.min.js"></script>

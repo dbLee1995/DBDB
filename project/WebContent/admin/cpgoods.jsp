@@ -3,10 +3,10 @@
 <!--  goods -->
 
 <div class="container">
-	<div class="card card-login mx-auto mt-5">
+ <!--  <div class="card card-login mx-auto mt-5">-->
+	<div class="card text-white card-login bg-secondary o-hidden h-100 mx-auto mt-5">
 		<div class="card-header">상품 분류 등록</div>
-		<div class="card-body">
-	
+		<div class="card-body bg-light">
 			<form>
 				<div class="form-group" action="/admin?cmd=cpInsert" onsubmit="return validate()">
 					<label for="exampleInputEmail1">상품</label> 
@@ -23,7 +23,7 @@
 						<small id="cpPhonesmall" class="form-text text-muted">하이픈(-)제외 입력</small>
 				</div>
 				<div class="col-lg-15 text-center">
-					<button type="submit" class="btn btn-primary" disabled="disabled">등록</button>
+					
 					<button type="submit" class="btn btn-primary">다음</button>
 				</div>
 			</form>
