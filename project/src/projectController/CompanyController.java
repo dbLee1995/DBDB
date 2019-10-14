@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import projectDao.CompanyDao;
 import projectVo.CompanyVo;
-@WebServlet("/company")
+@WebServlet("/admin/company")
 public class CompanyController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,16 +24,17 @@ public class CompanyController extends HttpServlet{
 		
 	}
 	protected void cpInsert(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-	}
-	protected void cpCheck(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String cpName=req.getParameter("cpName");
 		String cpPhone=req.getParameter("cpPhone");
 		CompanyDao dao=CompanyDao.getInstance();
 		CompanyVo vo=new CompanyVo(0, cpName, cpPhone);
 		int n=dao.insert(vo);
 		if(n>0) {
-			resp.sendRedirect(req.getContextPath()+"/temporaily/");
+			resp.sendRedirect(req.getContextPath()+"/admin/adindex.jsp?page=cpgoods.jsp");
 		}
+	}
+	protected void cpCheck(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
+	
 	}
 }

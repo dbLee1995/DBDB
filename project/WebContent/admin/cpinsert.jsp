@@ -7,30 +7,33 @@
 		<div class="card-header">신규 회사 정보 등록</div>
 		<div class="card-body">
 	
-			<form>
-				<div class="form-group">
-					<label for="exampleInputEmail1">회사명</label> <input
-						type="email" class="form-control" id="exampleInputEmail1"
-						aria-describedby="emailHelp" placeholder="Enter email"> <small
-						id="emailHelp" class="form-text text-muted">We'll never
-						share your email with anyone else.</small>
+			<form action="company?cmd=cpInsert" method="post" >
+				<div class="form-group" >
+					<label for="cpName">회사명</label> 
+					<!-- 사명 중복체크하기 -->
+					<input
+						type="text" class="form-control" id="cpName"
+						name="cpName"
+						aria-describedby="emailHelp" placeholder="회사명"> 
+					<small id="cpchk" class="form-text text-muted"> </small>
 				</div>
 				<div class="form-group">
-					<label for="exampleInputPassword1">회사 대표 연락처</label> <input
-						type="password" class="form-control" id="exampleInputPassword1"
-						placeholder="Password">
+					<label for="cpPhone">회사 대표 번호</label> <input
+						type="text" class="form-control" id="cpPhone"
+						name="cpPhone" placeholder="연락처 입력">
+						<small id="cpPhonesmall" class="form-text text-muted">하이픈(-)제외 입력</small>
 				</div>
-				<div class="form-group form-check">
-					<input type="checkbox" class="form-check-input" id="exampleCheck1">
-					<label class="form-check-label" for="exampleCheck1">Check
-						me out</label>
+				<div class="col-lg-15 text-center">
+					<button type="submit" class="btn btn-primary">등록</button>
 				</div>
-				<button type="submit" class="btn btn-primary">Submit</button>
 			</form>
-			<div class="text-center">
-				<a class="d-block small mt-3" href="register.html">Register an
-					Account</a> <a class="d-block small" href="login.html">Login Page</a>
-			</div>
 		</div>
 	</div>
 </div>
+
+<script>
+	var cxhr=null;
+	function cpcheck(){
+		cxhr=x
+	}
+</script>
