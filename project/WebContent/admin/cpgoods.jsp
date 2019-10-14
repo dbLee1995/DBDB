@@ -17,14 +17,13 @@
 					<small id="cpchk" class="form-text text-muted"> </small>
 				</div>
 				<div class="form-group">
-					<label for="exampleInputPassword1">회사 대표 번호</label> <input
+					<label for="exampleInputPassword1">상품종류 등록</label> <input
 						type="password" class="form-control" id="cpPhone"
-						placeholder="연락처 입력">
+						placeholder="상품종류 등록">
 						<small id="cpPhonesmall" class="form-text text-muted">하이픈(-)제외 입력</small>
 				</div>
 				<div class="col-lg-15 text-center">
-					
-					<button type="submit" class="btn btn-primary">다음</button>
+					<button type="submit" class="btn btn-primary">등록</button>
 				</div>
 			</form>
 		</div>

@@ -57,8 +57,43 @@
 			var span=document.getElementById("result");
 			span.innerHTML=count.value * price +"원";
 		}
+		window.onload=function(){
+			getList();
+		}
+		var listxhr=null;
+		function getList(){
+			listxhr=new XMLHttpRequest();
+			listxhr.onreadystatechange=listOk;
+			listxhr.open('get','review?cmd=list&gdnum=${gdnum}',true);
+			listxhr.send();
+		}
+		function listOk(){
+			if(listxhr.readyState==4 && listxhr.status==200){
+				var data=listxhr.responseText;
+				var list=JSON.parse(data)[0];
+				var revdiv=document.getElementById("revdiv");
+				for(var i=0;i<list.length;++i){
+					var str="<br>"+
+					"<div class='media'>"+
+					"<img src='images/${sumimg }' class='align-self-start mr-3'"+ 
+					"alt='' width='100' height='100'>"+
+					"<div class='media-body'>"+
+					"<h5 class='mt-0'>"+list[i].title+"</h5>"+
+					"<p>"+list[i].id+"("+list[i].regdate+")";
+					for(var j=0;j<list[i].score;++j){
+						str+="★";
+					}
+					str+="<a href='review?cmd=delete&gdnum=${gdnum}&id="+list[i].id+"&rid=${id}&revnum="+list[i].revnum+"'>"+
+						 "삭제</a></p><p>"+list[i].content+"</p></div></div>";
+					
+					var div=document.createElement("div");
+					div.innerHTML=str;
+					revdiv.appendChild(div);
+				}
+			}
+		}
 		var addxhr=null;
-		function addReview(id){
+		function addReview(){
 			var title=document.getElementById("title").value;
 			var score=document.getElementById("score").value;
 			var content=document.getElementById("content").value;
@@ -66,13 +101,23 @@
 			addxhr.onreadystatechange=addReviewOk;
 			addxhr.open('post','review?cmd=insert',true);
 			addxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-			var param="id="+id+"&title="+title+"&score="+score+"&content="+content;
+			var param="gdnum=${gdnum}&id=${id}&title="+title+"&score="+score+"&content="+content;
 			addxhr.send(param);
 		}
 		function addReviewOk(){
 			if(addxhr.readyState==4 && addxhr.status==200){
 				var data=addxhr.responseText;
 				var insert=JSON.parse(data);
+				removerevAll();
+				getList();
+			}
+		}
+		function removerevAll(){
+			var revdiv=document.getElementById("revdiv");
+			var child=revdiv.childNodes;
+			for(var i=child.length-1;i>=0;--i){
+				var rev=child.item(i);
+				revdiv.removeChild(rev);
 			}
 		}
 	</script>
@@ -142,8 +187,8 @@
 
 	<section class="section section-components pb-0"
 		id="section-components">
+		<c:forEach var="listvo" items="${list }">
 		<div class="container">
-			<c:forEach var="listvo" items="${list }">
 				<div class="row justify-content-center">
 					<div class="col-lg-12">
 						<!-- Basic elements -->
@@ -204,7 +249,6 @@
 				<img alt="gddetail" src="images/${listvo.gddetail }" width="100%"
 					height="100%">
 
-			</c:forEach>
 			<hr>
 			<br> <br>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-warning mt-4">
@@ -224,31 +268,12 @@
 				</div>
 			</nav>
 
-
-
+		
 			
-			<br>
-			<div class="media">
-				<img src="..." class="align-self-start mr-3" alt="...">
-				<div class="media-body">
-					<h5 class="mt-0">Top-aligned media</h5>
-					<p>all***(2019.10.14)★★★★</p>
-					<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-						scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-						vulputate at, tempus viverra turpis.</p>
-				</div>
-			</div>
-			<br>
-			<div class="media">
-				<img src="..." class="align-self-start mr-3" alt="...">
-				<div class="media-body">
-					<h5 class="mt-0">Top-aligned media</h5>
-					<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-						scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-						vulputate at, tempus viverra turpis.</p>
-				</div>
-			</div>
+			<div id="revdiv">
 
+			</div>
+			
 
 
 			<hr>
@@ -276,7 +301,7 @@
 						rows="3"></textarea>
 				</div>
 				<button class="btn btn-1 btn-outline-warning" type="button"
-					id="btnreview" onclick="addReview(${id})">리뷰 등록하기</button>
+					id="btnreview" onclick="addReview()">리뷰 등록하기</button>
 			</form>
 
 			
@@ -312,6 +337,7 @@
 
 
 		</div>
+		</c:forEach>
 	</section>
 
 

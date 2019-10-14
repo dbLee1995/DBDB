@@ -21,7 +21,7 @@ public class ReviewDao {
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select NVL(max(gdnum),0) as maxnum from review";
+			String sql="select NVL(max(revnum),0) as maxnum from review";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
@@ -42,13 +42,14 @@ public class ReviewDao {
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="insert into review values(?,?,?,?,sysdate,?)";
+			String sql="insert into review values(?,?,?,?,?,sysdate,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, getMaxNum()+1);
-			pstmt.setString(2, vo.getId());
-			pstmt.setString(3, vo.getTitle());
-			pstmt.setString(4, vo.getContent());
-			pstmt.setInt(5, vo.getScore());
+			pstmt.setInt(2, vo.getGdNum());
+			pstmt.setString(3, vo.getId());
+			pstmt.setString(4, vo.getTitle());
+			pstmt.setString(5, vo.getContent());
+			pstmt.setInt(6, vo.getScore());
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
@@ -57,7 +58,7 @@ public class ReviewDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
-	public ReviewVo select(int num) {
+	public ArrayList<ReviewVo> select(int num) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -67,17 +68,19 @@ public class ReviewDao {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			rs=pstmt.executeQuery();
-			if(rs.next()) {
+			ArrayList<ReviewVo> list=new ArrayList<ReviewVo>();
+			while(rs.next()) {
 				ReviewVo vo=
-						new ReviewVo(rs.getInt("gdnum"),
-									rs.getString("id"),
-									rs.getString("title"),
-									rs.getString("content"),
-									rs.getDate("regdate"),
-									rs.getInt("score"));
-				return vo;
+						new ReviewVo(rs.getInt("revnum"),
+								rs.getInt("gdnum"),
+								rs.getString("id"),
+								rs.getString("title"),
+								rs.getString("content"),
+								rs.getDate("regdate"),
+								rs.getInt("score"));
+				list.add(vo);
 			}
-			return null;
+			return list;
 		}catch(SQLException se) {
 			se.printStackTrace();
 			return null;
@@ -97,7 +100,8 @@ public class ReviewDao {
 			ArrayList<ReviewVo> list=new ArrayList<ReviewVo>();
 			while(rs.next()) {
 				ReviewVo vo=
-						new ReviewVo(rs.getInt("gdnum"),
+						new ReviewVo(rs.getInt("revnum"),
+								rs.getInt("gdnum"),
 								rs.getString("id"),
 								rs.getString("title"),
 								rs.getString("content"),
@@ -137,7 +141,7 @@ public class ReviewDao {
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="delete from review where gdnum=?";
+			String sql="delete from review where revnum=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			return pstmt.executeUpdate();

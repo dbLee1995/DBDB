@@ -9,15 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import org.json.JSONObject;
-
 
 import projectDao.CompanyDao;
 import projectVo.CompanyVo;
-
-
-
 
 @WebServlet("/admin/company")
 

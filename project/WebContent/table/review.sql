@@ -1,5 +1,6 @@
 create table review
 (
+	revnum number(10) primary key,
 	GDNum number(10),
 	id varchar2(20),
 	title varchar2(20),
