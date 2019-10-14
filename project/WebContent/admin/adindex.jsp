@@ -29,19 +29,19 @@
 <%
 	String contentpage=request.getParameter("page");
 	if(contentpage==null){
-		contentpage="/company/main.jsp";
+		contentpage="/admin/main.jsp";
 	}
 
 %>
 <body id="page-top">
 
 	<!-- 네비게이션 바 -->
-	<jsp:include page="/company/header.jsp" />
+	<jsp:include page="/admin/header.jsp" />
 
 
 	<div id="wrapper">
 		<!-- 사이드바 -->
-		<jsp:include page="/company/sidebar.jsp" />
+		<jsp:include page="/admin/sidebar.jsp" />
 
 		<div id="content-wrapper">
 
@@ -60,7 +60,7 @@
 			</div>
 			<!-- /.container-fluid -->
 
-			<jsp:include page="/company/footer.jsp" />
+			<jsp:include page="/admin/footer.jsp" />
 
 		</div>
 		<!-- /.content-wrapper -->
