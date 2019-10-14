@@ -8,32 +8,6 @@
   <meta name="description" content="Start your development with a Design System for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
   <title>Argon Design System - Free Design System for Bootstrap 4</title>
-  <script type="text/javascript">
-  	var xhr=null;
-  	function idcheck() {
-  		var id=document.getElementById("id").value;
-  		if(id==""){
-  			document.getElementById("idcheck").innerHTML="";
-  			return;
-  		}
-  		xhr=new XMLHttpRequest();
-  		xhr.onreadystatechange=callback;
-  		xhr.open('get',"idcheck.jsp?id="+id,true);
-  		xhr.send();
-  	}
-  	function callback() {
-  		if(xhr.readyState==4 && xhr.status==200) {
-  			var data=xhr.responseText;
-  			var json=JSON.parse(data);
-  			var span=document.getElementById("idcheck");
-  			if(json.using==true) {
-  				span.innerHTML="사용중인 아이디입니다.";
-  			}else {
-  				span.innerHTML="사용가능한 아이디입니다.";
-  			}
-  		}
-  	}
-  </script>
   <!-- Favicon -->
   <link href="../assets/img/brand/favicon.png" rel="icon" type="image/png">
   <!-- Fonts -->
@@ -44,15 +18,20 @@
   <!-- Argon CSS -->
   <link type="text/css" href="../assets/css/argon.css?v=1.1.0" rel="stylesheet">
 </head>
-	
+
 <body>
+
   <header class="header-global">
     <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
       <div class="container">
         <a class="navbar-brand mr-lg-5" href="../index.html">
           <img src="../assets/img/brand/white.png" alt="brand">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" 
+
+data-target="#navbar_global" aria-controls="navbar_global" aria-
+
+expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-collapse collapse" id="navbar_global">
@@ -163,13 +142,13 @@
                 <div class="text-center text-muted mb-4">
                   <small>Or sign in with credentials</small>
                 </div>
-                <form>
+                <form method="post" action="loginOK.jsp">
                   <div class="form-group mb-3">
                     <div class="input-group input-group-alternative">
                       <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Email" type="email">
+                      <input class="form-control" placeholder="ID" type="text" name="id">
                     </div>
                   </div>
                   <div class="form-group">
@@ -177,25 +156,25 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Password" type="password">
+                      <input class="form-control" placeholder="Password" type="password" name="pwd">
                     </div>
                   </div>
                   <div class="custom-control custom-control-alternative custom-checkbox">
-                    <input class="custom-control-input" id="customCheckLogin" type="checkbox">
+                    <input class="custom-control-input" id="customCheckLogin" type="checkbox" name="chk" checked="checked">
                     <label class="custom-control-label" for="customCheckLogin">
                       <span>Remember me</span>
                     </label>
                   </div>
                   <div class="text-center">
-                    <input type="submit" value="Sign in" onclick="idcheck();">
-                    <span id="idcheck" style="color:red;font-size: 12px"></span><br>
+                    <button type="submit" class="btn btn-primary my-4" >Sign in</button>
                   </div>
                 </form>
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-6">
-                <a href="#" class="text-light"><small>Forgot password?</small></a>
+                <a href="#" class="text-light"><small>Forgot password?
+</small></a>
               </div>
               <div class="col-6 text-right">
                 <a href="#" class="text-light"><small>Create new account</small></a>
@@ -206,7 +185,6 @@
       </div>
     </section>
   </main>
-
   <!-- Core -->
   <script src="../assets/vendor/jquery/jquery.min.js"></script>
   <script src="../assets/vendor/popper/popper.min.js"></script>
