@@ -45,7 +45,7 @@ public class MsgDao {
 			String sql="insert into msg values(?,?,?,?,sysdate)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
-			pstmt.setInt(2, vo.getMsgNum());
+			pstmt.setInt(2, getMaxNum()+1);
 			pstmt.setString(3, vo.getMsgTitle());
 			pstmt.setString(4, vo.getMsgContent());
 			return pstmt.executeUpdate();

@@ -20,18 +20,28 @@
 </head>
 
 <body>
-
+<%
+	Cookie[] cooks=request.getCookies();
+	boolean check=false;
+	String id="";
+	if(cooks!=null){
+		for(Cookie cook:cooks){
+		String name=cook.getName();
+		String value=cook.getValue();
+		if(name.equals("id")){
+			id=value;
+			check=true;
+			}
+		}
+	}
+%>
   <header class="header-global">
     <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
       <div class="container">
         <a class="navbar-brand mr-lg-5" href="../index.html">
           <img src="../assets/img/brand/white.png" alt="brand">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" 
-
-data-target="#navbar_global" aria-controls="navbar_global" aria-
-
-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-collapse collapse" id="navbar_global">
@@ -142,13 +152,13 @@ expanded="false" aria-label="Toggle navigation">
                 <div class="text-center text-muted mb-4">
                   <small>Or sign in with credentials</small>
                 </div>
-                <form method="post" action="loginOK.jsp">
+                <form method="post" action="loginOk.jsp">
                   <div class="form-group mb-3">
                     <div class="input-group input-group-alternative">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                       </div>
-                      <input class="form-control" placeholder="ID" type="text" name="id">
+                      <input class="form-control" placeholder="ID" type="text" name="id" value="<%=id%>">
                     </div>
                   </div>
                   <div class="form-group">
@@ -156,13 +166,26 @@ expanded="false" aria-label="Toggle navigation">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Password" type="password" name="pwd">
+                      <input class="form-control" placeholder="Password" type="password" name="pwd" >
                     </div>
                   </div>
                   <div class="custom-control custom-control-alternative custom-checkbox">
+                    <%
+                    if(check==true){
+                    %>
                     <input class="custom-control-input" id="customCheckLogin" type="checkbox" name="chk" checked="checked">
                     <label class="custom-control-label" for="customCheckLogin">
                       <span>Remember me</span>
+                    </label>
+                    <%
+                       }else{
+                    %>
+                    <input class="custom-control-input" id="customCheckLogin" type="checkbox" name="chk" >
+                    <label class="custom-control-label" for="customCheckLogin">
+                      <span>Remember me</span>
+                      <%
+                       }
+                      %>
                     </label>
                   </div>
                   <div class="text-center">
@@ -173,8 +196,7 @@ expanded="false" aria-label="Toggle navigation">
             </div>
             <div class="row mt-3">
               <div class="col-6">
-                <a href="#" class="text-light"><small>Forgot password?
-</small></a>
+                <a href="#" class="text-light"><small>Forgot password?</small></a>
               </div>
               <div class="col-6 text-right">
                 <a href="#" class="text-light"><small>Create new account</small></a>
@@ -185,6 +207,7 @@ expanded="false" aria-label="Toggle navigation">
       </div>
     </section>
   </main>
+
   <!-- Core -->
   <script src="../assets/vendor/jquery/jquery.min.js"></script>
   <script src="../assets/vendor/popper/popper.min.js"></script>

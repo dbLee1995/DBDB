@@ -44,7 +44,7 @@ public class ReviewDao {
 			con=JdbcUtil.getConn();
 			String sql="insert into review values(?,?,?,?,sysdate,?)";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, vo.getGdNum());
+			pstmt.setInt(1, getMaxNum()+1);
 			pstmt.setString(2, vo.getId());
 			pstmt.setString(3, vo.getTitle());
 			pstmt.setString(4, vo.getContent());

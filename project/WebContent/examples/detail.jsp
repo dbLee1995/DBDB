@@ -32,18 +32,48 @@
 #header {
 	margin-left: 50px;
 }
-#count{float:right;}
-.count{float:right;}
-#btn{margin-left: 30px;}
-#detailcontent{margin-left: 420px; font-size: 1.2em;}
 
+#count {
+	float: right;
+}
+
+.count {
+	float: right;
+}
+
+#btn {
+	margin-left: 30px;
+}
+
+#detailcontent {
+	margin-left: 420px;
+	font-size: 1.2em;
+}
 </style>
-	<script type="text/javascript">
+<script type="text/javascript">
 		var xhr=null;
 		function multi(price){
 			var count=document.getElementById("multicount");
 			var span=document.getElementById("result");
 			span.innerHTML=count.value * price +"원";
+		}
+		var addxhr=null;
+		function addReview(id){
+			var title=document.getElementById("title").value;
+			var score=document.getElementById("score").value;
+			var content=document.getElementById("content").value;
+			addxhr=new XMLHttpRequest();
+			addxhr.onreadystatechange=addReviewOk;
+			addxhr.open('post','review?cmd=insert',true);
+			addxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+			var param="id="+id+"&title="+title+"&score="+score+"&content="+content;
+			addxhr.send(param);
+		}
+		function addReviewOk(){
+			if(addxhr.readyState==4 && addxhr.status==200){
+				var data=addxhr.responseText;
+				var insert=JSON.parse(data);
+			}
 		}
 	</script>
 </head>
@@ -113,12 +143,12 @@
 	<section class="section section-components pb-0"
 		id="section-components">
 		<div class="container">
-		<c:forEach var="listvo" items="${list }">
-			<div class="row justify-content-center">
-				<div class="col-lg-12">
-					<!-- Basic elements -->
+			<c:forEach var="listvo" items="${list }">
+				<div class="row justify-content-center">
+					<div class="col-lg-12">
+						<!-- Basic elements -->
 						<div class="container">
-						<h2 class="mb-2">[${listvo.gdlistnum}]</h2>
+							<h2 class="mb-2">[${compname}]</h2>
 							<div class="row">
 								<div id="header">
 									<img src="images/${listvo.gdsumary }" alt="sm_chickenbreast"
@@ -127,83 +157,160 @@
 								<div id="header">
 									<form action="">
 										<h3 class="mb-2">
-											<span>${listvo.gdname }</span><br>
-											<span>&nbsp;&nbsp;&nbsp;: ${listvo.gdprice }원</span>
+											<span>${listvo.gdname }</span><br> <span>&nbsp;&nbsp;&nbsp;:
+												${listvo.gdprice }원</span>
 										</h3>
-										<h6 id="count">갯수를 입력해주세요.</h6>
-										<input type="text" placeholder="숫자만 입력해주세요" class="form-control" 
-											name="count" onkeyup="multi(${listvo.gdprice })" id="multicount">
+										<h6 id="count">구매수량 입력</h6>
+										<input type="text" placeholder="숫자만 입력해주세요"
+											class="form-control" name="count"
+											onkeyup="multi(${listvo.gdprice })" id="multicount">
 										<hr>
 										<h6>총 금액</h6>
-										<h2 class="count"><span id="result"></span></h2>
-										<br><br><br>
-										<button class="btn btn-1 btn-warning" type="button" id="btn">장바구니에 담기</button>
-										<button class="btn btn-1 btn-outline-warning" type="button" id="btn">바로 결제하기</button>
+										<h2 class="count">
+											<span id="result"></span>
+										</h2>
+										<br> <br> <br>
+										<button class="btn btn-1 btn-warning" type="button" id="btn">장바구니에
+											담기</button>
+										<button class="btn btn-1 btn-outline-warning" type="button"
+											id="btn">바로 결제하기</button>
 									</form>
 								</div>
 							</div>
 						</div>
-					
+
+					</div>
 				</div>
-			</div>
+				<hr>
+				<br>
+				<br>
+				<nav class="navbar navbar-expand-lg navbar-dark bg-warning mt-4">
+					<div class="container">
+						<a class="navbar-brand" href="#" id="detailcontent">상세 내용</a>
+						<div class="collapse navbar-collapse" id="navbar-warning">
+							<div class="navbar-collapse-header">
+								<div class="row">
+									<div class="col-6 collapse-brand">
+										<a href="./index.html"> <img alt="image"
+											src="./assets/img/brand/blue.png">
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</nav>
+
+				<img alt="gddetail" src="images/${listvo.gddetail }" width="100%"
+					height="100%">
+
+			</c:forEach>
 			<hr>
-			<br><br>
+			<br> <br>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-warning mt-4">
-	        <div class="container">
-	          <a class="navbar-brand" href="#" id="detailcontent">상세 내용</a>
-	          <div class="collapse navbar-collapse" id="navbar-warning">
-	            <div class="navbar-collapse-header">
-	              <div class="row">
-	                <div class="col-6 collapse-brand">
-	                  <a href="./index.html">
-	                    <img alt="image" src="./assets/img/brand/blue.png">
-	                  </a>
-	                </div>
-	              </div>
-	            </div>
-	          </div>
-	        </div>
-	   	   </nav>
-      
-      	<img alt="gddetail" src="images/${listvo.gddetail }" width="100%" height="100%">
-      
-      	</c:forEach>
-      	<hr>
-      	<br><br>
-      	<nav class="navbar navbar-expand-lg navbar-dark bg-warning mt-4">
-	        <div class="container">
-	          <a class="navbar-brand" href="#" id="detailcontent">리뷰</a>
-	          <div class="collapse navbar-collapse" id="navbar-warning">
-	            <div class="navbar-collapse-header">
-	              <div class="row">
-	                <div class="col-6 collapse-brand">
-	                  <a href="./index.html">
-	                    <img alt="image" src="./assets/img/brand/blue.png">
-	                  </a>
-	                </div>
-	              </div>
-	            </div>
-	          </div>
-	        </div>
-	   	   </nav>
-      	
-      		<div class="media">
-			  <img src="..." class="align-self-start mr-3" alt="...">
-			  <div class="media-body">
-			    <h5 class="mt-0">Top-aligned media</h5>
-			    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-			    <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-			  </div>
+				<div class="container">
+					<a class="navbar-brand" href="#" id="detailcontent">구매 후기</a>
+					<div class="collapse navbar-collapse" id="navbar-warning">
+						<div class="navbar-collapse-header">
+							<div class="row">
+								<div class="col-6 collapse-brand">
+									<a href="./index.html"> <img alt="image"
+										src="./assets/img/brand/blue.png">
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+
+
+
+			
+			<br>
+			<div class="media">
+				<img src="..." class="align-self-start mr-3" alt="...">
+				<div class="media-body">
+					<h5 class="mt-0">Top-aligned media</h5>
+					<p>all***(2019.10.14)★★★★</p>
+					<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
+						scelerisque ante sollicitudin. Cras purus odio, vestibulum in
+						vulputate at, tempus viverra turpis.</p>
+				</div>
 			</div>
 			<br>
 			<div class="media">
-			  <img src="..." class="align-self-start mr-3" alt="...">
-			  <div class="media-body">
-			    <h5 class="mt-0">Top-aligned media</h5>
-			    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-			    <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-			  </div>
+				<img src="..." class="align-self-start mr-3" alt="...">
+				<div class="media-body">
+					<h5 class="mt-0">Top-aligned media</h5>
+					<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
+						scelerisque ante sollicitudin. Cras purus odio, vestibulum in
+						vulputate at, tempus viverra turpis.</p>
+				</div>
 			</div>
+
+
+
+			<hr>
+			<form>
+				<div class="form-row">
+					<div class="col-md-8 mb-3">
+						<label for="exampleFormControlInput1">제목</label> <input
+							type="text" class="form-control" id="title"
+							placeholder="제목을 입력해주세요..">
+					</div>
+					<div class="col-md-2 mb-1">
+						<label for="exampleFormControlSelect1">평가</label> <select
+							class="form-control" id="score">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlTextarea1">내용</label>
+					<textarea class="form-control" id="content"
+						rows="3"></textarea>
+				</div>
+				<button class="btn btn-1 btn-outline-warning" type="button"
+					id="btnreview" onclick="addReview(${id})">리뷰 등록하기</button>
+			</form>
+
+			
+
+			<footer class="footer has-cards">
+				<div class="container">
+					<hr>
+					<div class="row align-items-center justify-content-md-between">
+						<div class="col-md-6">
+							<div class="copyright">
+								&copy; 2019 <a href="https://www.creative-tim.com"
+									target="_blank">Creative Tim</a>.
+							</div>
+						</div>
+						<div class="col-md-6">
+							<ul class="nav nav-footer justify-content-end">
+								<li class="nav-item"><a href="https://www.creative-tim.com"
+									class="nav-link" target="_blank">Creative Tim</a></li>
+								<li class="nav-item"><a
+									href="https://www.creative-tim.com/presentation"
+									class="nav-link" target="_blank">About Us</a></li>
+								<li class="nav-item"><a href="http://blog.creative-tim.com"
+									class="nav-link" target="_blank">Blog</a></li>
+								<li class="nav-item"><a
+									href="https://github.com/creativetimofficial/argon-design-system/blob/master/LICENSE.md"
+									class="nav-link" target="_blank">MIT License</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</footer>
+
+
+
 		</div>
 	</section>
 
