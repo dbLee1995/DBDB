@@ -13,7 +13,7 @@
 					<!-- 사명 중복체크하기 -->
 					<input
 						type="text" class="form-control" id="cpName"
-						name="cpName"
+						name="cpName" onkeyup="cpcheck()"
 						aria-describedby="emailHelp" placeholder="회사명"> 
 					<small id="cpchk" class="form-text text-muted"> </small>
 				</div>
@@ -34,6 +34,15 @@
 <script>
 	var cxhr=null;
 	function cpcheck(){
-		cxhr=x
+		cxhr=new XMLHttpRequest();
+		var cpName=document.getElementById("cpName").value;
+		cxhr.onreadystatechange=cpchkcallback;
+		cxhr.open('get', 'company?cmd=cpCheck&cpName='+cpName,true);
+		cxhr.send();
+	}
+	function cpchkcallback(){
+		if(cxhr.readyState==4 && cxhr.status==200){
+			
+		}
 	}
 </script>

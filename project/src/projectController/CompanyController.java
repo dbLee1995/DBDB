@@ -1,12 +1,15 @@
 package projectController;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONObject;
 
 import projectDao.CompanyDao;
 import projectVo.CompanyVo;
@@ -34,7 +37,20 @@ public class CompanyController extends HttpServlet{
 		}
 	}
 	protected void cpCheck(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-	
+		resp.setContentType("text/plain;charset=utf-8");
+		String cpName=req.getParameter("cpName");
+		boolean using=false;
+		CompanyDao dao=CompanyDao.getInstance();
+		CompanyVo vo=new CompanyVo(0, cpName, null);
+		vo=dao.select(cpName);
+		JSONObject json=new JSONObject();
+		if(vo!=null) {
+			using = true;
+		}
+		
+		json.put("using", using);
+		PrintWriter pw=resp.getWriter();
+		pw.print(json.toString());
+		
 	}
 }
