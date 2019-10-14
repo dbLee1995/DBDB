@@ -8,24 +8,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/dbLee1995/DBDB.git
 import org.json.JSONObject;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/dbLee1995/DBDB.git
 import projectDao.CompanyDao;
 import projectVo.CompanyVo;
 
 @WebServlet("/admin/company")
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/dbLee1995/DBDB.git
 public class CompanyController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
