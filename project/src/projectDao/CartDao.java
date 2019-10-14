@@ -15,14 +15,37 @@ public class CartDao {
 	public static CartDao getInstance() {
 		return dao;
 	}
+	public int getMaxNum() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select NVL(max(cnum),0) as maxnum from cart";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				int num=rs.getInt("maxnum");
+				return num;
+			}else {
+				return 0;
+			}
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 	public int insert(CartVo vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="insert into goodsdetail values(?,sysdate)";
+			String sql="insert into cart values(?,?,sysdate)";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, vo.getGDNum());
+			pstmt.setInt(1, getMaxNum()+1);
+			pstmt.setInt(2, vo.getGdNum());
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
@@ -43,7 +66,8 @@ public class CartDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				CartVo vo=
-						new CartVo(rs.getInt("gdnum"),
+						new CartVo(rs.getInt("cnum"),
+									rs.getInt("gdnum"),
 									rs.getDate("regdate"));
 				return vo;
 			}
@@ -67,8 +91,9 @@ public class CartDao {
 			ArrayList<CartVo> list=new ArrayList<CartVo>();
 			while(rs.next()) {
 				CartVo vo=
-						new CartVo(rs.getInt("gdnum"),
-									rs.getDate("regdate"));
+						new CartVo(rs.getInt("cnum"),
+								rs.getInt("gdnum"),
+								rs.getDate("regdate"));
 				list.add(vo);
 			}
 			return list;
@@ -84,7 +109,7 @@ public class CartDao {
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="delete from cart where gdnum=?";
+			String sql="delete from cart where cnum=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			return pstmt.executeUpdate();

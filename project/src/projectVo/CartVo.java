@@ -3,19 +3,27 @@ package projectVo;
 import java.sql.Date;
 
 public class CartVo {
+	private int cnum;
 	private int gdNum;
 	private Date regdate;
 	public CartVo() {}
-	public CartVo(int gDNum, Date regdate) {
+	public CartVo(int cnum, int gdNum, Date regdate) {
 		super();
-		gdNum = gDNum;
+		this.cnum = cnum;
+		this.gdNum = gdNum;
 		this.regdate = regdate;
 	}
-	public int getGDNum() {
+	public int getCnum() {
+		return cnum;
+	}
+	public void setCnum(int cnum) {
+		this.cnum = cnum;
+	}
+	public int getGdNum() {
 		return gdNum;
 	}
-	public void setGDNum(int gDNum) {
-		gdNum = gDNum;
+	public void setGdNum(int gdNum) {
+		this.gdNum = gdNum;
 	}
 	public Date getRegdate() {
 		return regdate;
@@ -23,5 +31,6 @@ public class CartVo {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
+
 	
 }

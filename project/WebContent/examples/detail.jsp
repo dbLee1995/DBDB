@@ -120,6 +120,23 @@
 				revdiv.removeChild(rev);
 			}
 		}
+		var cartxhr=null;
+		function addCart(){
+			var count=document.getElementById("multicount");
+			cartxhr=new XMLHttpRequest();
+			cartxhr.onreadystatechange=addCartOk;
+			cartxhr.open('post','cart?gdnum=${gdnum}',true);
+			addxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+			var param="count="+count;
+			cartxhr.send(param);
+		}
+		function addCartOk(){
+			if(cartxhr.readyState==4 && cartxhr.status==200){
+				var data=cartxhr.responseText;
+				var insert=JSON.parse(data);
+				alert("장바구니에 추가되었습니다!");
+			}
+		}
 	</script>
 </head>
 <body>
@@ -215,8 +232,8 @@
 											<span id="result"></span>
 										</h2>
 										<br> <br> <br>
-										<button class="btn btn-1 btn-warning" type="button" id="btn">장바구니에
-											담기</button>
+										<button class="btn btn-1 btn-warning" type="button" id="btn"
+											onclick="addCart()">장바구니에 담기</button>
 										<button class="btn btn-1 btn-outline-warning" type="button"
 											id="btn">바로 결제하기</button>
 									</form>
