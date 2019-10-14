@@ -55,6 +55,32 @@ public class CompanyDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
+	public CompanyVo select(String name) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select * from company where cpname=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				CompanyVo vo=
+						new CompanyVo(rs.getInt("cpnum"),
+										rs.getString("cpname"), 
+										rs.getString("phone"));
+				return vo;
+			}
+			return null;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	
 	public CompanyVo select(int num) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
