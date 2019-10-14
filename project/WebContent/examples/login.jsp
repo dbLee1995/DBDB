@@ -21,19 +21,19 @@
 
 <body>
 <%
-	Cookie[] cooks=request.getCookies();
-	boolean check=false;
-	String id="";
-	if(cooks!=null){
-		for(Cookie cook:cooks){
-		String name=cook.getName();
-		String value=cook.getValue();
-		if(name.equals("id")){
-			id=value;
-			check=true;
-			}
-		}
-	}
+   Cookie[] cooks=request.getCookies();
+   boolean check=false;
+   String id="";
+   if(cooks!=null){
+      for(Cookie cook:cooks){
+      String name=cook.getName();
+      String value=cook.getValue();
+      if(name.equals("id")){
+         id=value;
+         check=true;
+         }
+      }
+   }
 %>
   <header class="header-global">
     <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
@@ -179,11 +179,7 @@ expanded="false" aria-label="Toggle navigation">
                     %>
                     <input class="custom-control-input" id="customCheckLogin" type="checkbox" name="chk" checked="checked">
                     <label class="custom-control-label" for="customCheckLogin">
-<<<<<<< HEAD
-                    <input class="custom-control-input" id="customCheckLogin" type="checkbox" name="chk" checked="checked">
-=======
                     <input class="custom-control-input" id="customCheckLogin" type="checkbox" name="chk" checked="checked";>
->>>>>>> branch 'master' of https://github.com/dbLee1995/DBDB.git
                     <label class="custom-control-label" for="customCheckLogin" type="checkbox" name="chk">
                       <span>Remember me</span>
                     </label>
