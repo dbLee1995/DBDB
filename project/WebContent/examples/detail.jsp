@@ -57,6 +57,24 @@
 			var span=document.getElementById("result");
 			span.innerHTML=count.value * price +"원";
 		}
+		var addxhr=null;
+		function addReview(id){
+			var title=document.getElementById("title").value;
+			var score=document.getElementById("score").value;
+			var content=document.getElementById("content").value;
+			addxhr=new XMLHttpRequest();
+			addxhr.onreadystatechange=addReviewOk;
+			addxhr.open('post','review?cmd=insert',true);
+			addxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+			var param="id="+id+"&title="+title+"&score="+score+"&content="+content;
+			addxhr.send(param);
+		}
+		function addReviewOk(){
+			if(addxhr.readyState==4 && addxhr.status==200){
+				var data=addxhr.responseText;
+				var insert=JSON.parse(data);
+			}
+		}
 	</script>
 </head>
 <body>
@@ -191,7 +209,7 @@
 			<br> <br>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-warning mt-4">
 				<div class="container">
-					<a class="navbar-brand" href="#" id="detailcontent">리뷰</a>
+					<a class="navbar-brand" href="#" id="detailcontent">구매 후기</a>
 					<div class="collapse navbar-collapse" id="navbar-warning">
 						<div class="navbar-collapse-header">
 							<div class="row">
@@ -208,7 +226,8 @@
 
 
 
-
+			
+			<br>
 			<div class="media">
 				<img src="..." class="align-self-start mr-3" alt="...">
 				<div class="media-body">
@@ -216,11 +235,7 @@
 					<p>all***(2019.10.14)★★★★</p>
 					<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
 						scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-						vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-						nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-					<p>Donec sed odio dui. Nullam quis risus eget urna mollis
-						ornare vel eu leo. Cum sociis natoque penatibus et magnis dis
-						parturient montes, nascetur ridiculus mus.</p>
+						vulputate at, tempus viverra turpis.</p>
 				</div>
 			</div>
 			<br>
@@ -230,18 +245,14 @@
 					<h5 class="mt-0">Top-aligned media</h5>
 					<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
 						scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-						vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-						nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-					<p>Donec sed odio dui. Nullam quis risus eget urna mollis
-						ornare vel eu leo. Cum sociis natoque penatibus et magnis dis
-						parturient montes, nascetur ridiculus mus.</p>
+						vulputate at, tempus viverra turpis.</p>
 				</div>
 			</div>
 
 
 
 			<hr>
-			<form action="" onsubmit="return setReview(${id})">
+			<form>
 				<div class="form-row">
 					<div class="col-md-8 mb-3">
 						<label for="exampleFormControlInput1">제목</label> <input
@@ -264,11 +275,11 @@
 					<textarea class="form-control" id="content"
 						rows="3"></textarea>
 				</div>
-				<button class="btn btn-1 btn-outline-warning" type="submit"
-					id="btnreview">리뷰 등록하기</button>
+				<button class="btn btn-1 btn-outline-warning" type="button"
+					id="btnreview" onclick="addReview(${id})">리뷰 등록하기</button>
 			</form>
 
-
+			
 
 			<footer class="footer has-cards">
 				<div class="container">

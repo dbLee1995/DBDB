@@ -33,7 +33,8 @@ public class DetailController extends HttpServlet{
 		GoodsVo goodsvo=goodsdao.select(vo.getGdlistnum());
 		CompanyDao comdao=CompanyDao.getInstance();
 		CompanyVo comvo=comdao.select(goodsvo.getCPNum());
-		String id="allen";
+		String id="allen1225";
+		
 		
 		req.setAttribute("id", id);
 		req.setAttribute("gdnum", gdnum);
