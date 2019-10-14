@@ -28,7 +28,7 @@ public class CompanyController extends HttpServlet{
 	}
 	protected void cpCheck(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String cpName=req.getParameter("cpName");
-		int cpPhone=Integer.parseInt(req.getParameter("cpPhone"));
+		String cpPhone=req.getParameter("cpPhone");
 		CompanyDao dao=CompanyDao.getInstance();
 		CompanyVo vo=new CompanyVo(0, cpName, cpPhone);
 		int n=dao.insert(vo);
