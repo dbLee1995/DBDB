@@ -35,9 +35,9 @@ public class DetailController extends HttpServlet{
 		CompanyVo comvo=comdao.select(goodsvo.getCPNum());
 		String id="allen1225";
 		
-		
 		req.setAttribute("id", id);
 		req.setAttribute("gdnum", gdnum);
+		req.setAttribute("sumimg", vo.getGdsumary());
 		req.setAttribute("compname", comvo.getCpName());
 		req.setAttribute("list", list);
 		req.getRequestDispatcher("/examples/detail.jsp").forward(req, resp);

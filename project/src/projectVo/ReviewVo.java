@@ -3,6 +3,7 @@ package projectVo;
 import java.sql.Date;
 
 public class ReviewVo {
+	private int revnum;
 	private int gdNum;
 	private String id;
 	private String title;
@@ -10,14 +11,21 @@ public class ReviewVo {
 	private Date regdate;
 	private int score;
 	public ReviewVo() {}
-	public ReviewVo(int gdNum, String id, String title, String content, Date regdate, int score) {
+	public ReviewVo(int revnum, int gdNum, String id, String title, String content, Date regdate, int score) {
 		super();
+		this.revnum = revnum;
 		this.gdNum = gdNum;
 		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.regdate = regdate;
 		this.score = score;
+	}
+	public int getRevnum() {
+		return revnum;
+	}
+	public void setRevnum(int revnum) {
+		this.revnum = revnum;
 	}
 	public int getGdNum() {
 		return gdNum;
@@ -55,5 +63,6 @@ public class ReviewVo {
 	public void setScore(int score) {
 		this.score = score;
 	}
+
 	
 }
