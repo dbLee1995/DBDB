@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import projectDao.CompanyDao;
 import projectVo.CompanyVo;
-@WebServlet("/admin")
+@WebServlet("/company")
 public class CompanyController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,7 +33,7 @@ public class CompanyController extends HttpServlet{
 		CompanyVo vo=new CompanyVo(0, cpName, cpPhone);
 		int n=dao.insert(vo);
 		if(n>0) {
-			resp.sendRedirect(req.getContextPath()+"/admin/");
+			resp.sendRedirect(req.getContextPath()+"/temporaily/");
 		}
 	}
 }
