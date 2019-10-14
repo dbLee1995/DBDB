@@ -2,6 +2,7 @@ package projectController;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import projectDao.CompanyDao;
@@ -26,6 +28,15 @@ public class CompanyController extends HttpServlet{
 		}
 		if(cmd!=null && cmd.equals("cpInsert")) {
 			cpInsert(req,resp);
+		}
+		if(cmd!=null && cmd.equals("cpList")) {
+			cpList(req,resp);
+		}
+		if(cmd!=null && cmd.equals("cpDelete")) {
+			cpDelete(req,resp);
+		}
+		if(cmd!=null && cmd.equals("cpUpdate")) {
+			cpUpdate(req,resp);
 		}
 		
 	}
@@ -55,5 +66,20 @@ public class CompanyController extends HttpServlet{
 		PrintWriter pw=resp.getWriter();
 		pw.print(json.toString());
 		
+	}
+	protected void cpList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/plain;charset=utf-8");
+		JSONArray arr=new JSONArray();
+		CompanyDao dao=CompanyDao.getInstance();
+		ArrayList<CompanyVo> list=dao.selectAll();
+		PrintWriter pw=resp.getWriter();
+		arr.put(list);
+		pw.print(arr);
+	}
+	protected void cpDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/plain;charset=utf-8");
+	}
+	protected void cpUpdate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/plain;charset=utf-8");
 	}
 }

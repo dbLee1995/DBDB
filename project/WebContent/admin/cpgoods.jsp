@@ -9,12 +9,12 @@
 		<div class="card-body bg-light">
 			<form>
 				<div class="form-group" action="/admin?cmd=cpInsert" onsubmit="return validate()">
-					<label for="exampleInputEmail1">상품</label> 
-					<!-- 사명 중복체크하기 -->
-					<input
-						type="email" class="form-control" id="cpName"
-						aria-describedby="emailHelp" placeholder="회사명"> 
-					<small id="cpchk" class="form-text text-muted"> </small>
+					<label for="exampleInputEmail1" style="color:black">회사 선택</label> 
+				<select class="custom-select">
+				  <option selected>select company</option>
+				  <option value="1">One</option>
+				 
+				</select>
 				</div>
 				<div class="form-group">
 					<label for="exampleInputPassword1">상품종류 등록</label> <input

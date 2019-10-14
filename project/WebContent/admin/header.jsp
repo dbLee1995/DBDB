@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 	<nav class="navbar fixed-top navbar-dark bg-dark">
-  <a class="navbar-brand" href="index.jsp">로고 </a>
+  <a class="navbar-brand" href="adindex.jsp?page=main.jsp">로고 </a>
   <ul class="nav justify-content-end">
 	  <li class="nav-item">
 	    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">로그인 회원 아이디 보여주기</a>
