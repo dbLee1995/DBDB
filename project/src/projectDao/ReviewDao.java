@@ -58,7 +58,7 @@ public class ReviewDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
-	public ReviewVo select(int num) {
+	public ArrayList<ReviewVo> select(int num) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -68,18 +68,19 @@ public class ReviewDao {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			rs=pstmt.executeQuery();
-			if(rs.next()) {
+			ArrayList<ReviewVo> list=new ArrayList<ReviewVo>();
+			while(rs.next()) {
 				ReviewVo vo=
 						new ReviewVo(rs.getInt("revnum"),
-									rs.getInt("gdnum"),
-									rs.getString("id"),
-									rs.getString("title"),
-									rs.getString("content"),
-									rs.getDate("regdate"),
-									rs.getInt("score"));
-				return vo;
+								rs.getInt("gdnum"),
+								rs.getString("id"),
+								rs.getString("title"),
+								rs.getString("content"),
+								rs.getDate("regdate"),
+								rs.getInt("score"));
+				list.add(vo);
 			}
-			return null;
+			return list;
 		}catch(SQLException se) {
 			se.printStackTrace();
 			return null;

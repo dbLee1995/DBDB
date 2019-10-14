@@ -64,7 +64,7 @@
 		function getList(){
 			listxhr=new XMLHttpRequest();
 			listxhr.onreadystatechange=listOk;
-			listxhr.open('get','review?cmd=list',true);
+			listxhr.open('get','review?cmd=list&gdnum=${gdnum}',true);
 			listxhr.send();
 		}
 		function listOk(){

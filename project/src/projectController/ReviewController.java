@@ -37,10 +37,12 @@ public class ReviewController extends HttpServlet{
 			HttpServletResponse resp) 
 					throws ServletException, IOException{
 		
+		int gdnum=Integer.parseInt(req.getParameter("gdnum"));
+		
 		resp.setContentType("text/plain;charset=utf-8");
 		PrintWriter pw=resp.getWriter();
 		ReviewDao dao=ReviewDao.getInstance();
-		ArrayList<ReviewVo> list=dao.selectAll();
+		ArrayList<ReviewVo> list=dao.select(gdnum);
 		JSONArray arr=new JSONArray();
 		arr.put(list);
 		pw.print(arr);
