@@ -179,11 +179,11 @@ expanded="false" aria-label="Toggle navigation">
                     %>
                     <input class="custom-control-input" id="customCheckLogin" type="checkbox" name="chk" checked="checked">
                     <label class="custom-control-label" for="customCheckLogin">
-<<<<<<< HEAD
+
                     <input class="custom-control-input" id="customCheckLogin" type="checkbox" name="chk" checked="checked">
-=======
+
                     <input class="custom-control-input" id="customCheckLogin" type="checkbox" name="chk" checked="checked";>
->>>>>>> branch 'master' of https://github.com/dbLee1995/DBDB.git
+
                     <label class="custom-control-label" for="customCheckLogin" type="checkbox" name="chk">
                       <span>Remember me</span>
                     </label>
