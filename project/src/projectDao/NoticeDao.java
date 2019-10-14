@@ -44,7 +44,7 @@ public class NoticeDao {
 			con=JdbcUtil.getConn();
 			String sql="insert into goodsdetail values(?,?,?,sysdate)";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, getMaxNum());
+			pstmt.setInt(1, getMaxNum()+1);
 			pstmt.setString(2, vo.getNtTitle());
 			pstmt.setString(3, vo.getNtContent());
 			return pstmt.executeUpdate();

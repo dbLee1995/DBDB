@@ -106,8 +106,20 @@
 							class="nav-link">Cart</a></li>
 						<li class="nav-item"><a href="./examples/login.jsp"
 							class="nav-link">MyPage</a></li>
-						<li class="nav-item"><a href="./examples/login.jsp"
+						<%
+							String id=(String)session.getAttribute("id");
+							if(id==null) {
+						%>
+							<li class="nav-item"><a href="./examples/login.jsp"
 							class="nav-link">Login</a></li>
+						<%
+							}else {
+						%>
+							<li class="nav-item"><a href="./examples/logout.jsp"
+							class="nav-link">Logout</a></li>
+						<%
+							}
+						%>
 						<li class="nav-item"><a href="./examples/register.html"
 							class="nav-link">Register</a></li>
 					</ul>

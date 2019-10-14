@@ -27,15 +27,15 @@
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				session.setAttribute("id", id);
+				session.setAttribute("pwd", pwd);
 				response.sendRedirect(request.getContextPath() + "/index.jsp");
-			} else {
+			} 
 	%>
 	<script type="text/javascript">
 		alert("아이디 또는 비밀번호 오류");
 		history.go(-1);
 	</script>
 	<%
-		}
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} finally {

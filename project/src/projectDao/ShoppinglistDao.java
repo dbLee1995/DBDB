@@ -54,7 +54,7 @@ public class ShoppinglistDao {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, vo.getGdNum());
 			pstmt.setString(2, vo.getId());
-			pstmt.setInt(3, getMaxNum());
+			pstmt.setInt(3, getMaxNum()+1);
 			pstmt.setInt(4, vo.getGdCount());
 			pstmt.setString(5, vo.getName());
 			pstmt.setString(6, vo.getPhone());

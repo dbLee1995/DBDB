@@ -160,8 +160,8 @@ expanded="false" aria-label="Toggle navigation">
                     </div>
                   </div>
                   <div class="custom-control custom-control-alternative custom-checkbox">
-                    <input class="custom-control-input" id="customCheckLogin" type="checkbox" name="chk" checked="checked">
-                    <label class="custom-control-label" for="customCheckLogin">
+                    <input class="custom-control-input" id="customCheckLogin" type="checkbox" name="chk" checked="checked";>
+                    <label class="custom-control-label" for="customCheckLogin" type="checkbox" name="chk">
                       <span>Remember me</span>
                     </label>
                   </div>
