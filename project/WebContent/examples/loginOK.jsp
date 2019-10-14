@@ -17,11 +17,11 @@
       String pwd = request.getParameter("pwd");
       String chk=request.getParameter("chk");
       if(chk!=null){
-         Cookie cook1=new Cookie("id1",id);
+         Cookie cook1=new Cookie("id",id);
          cook1.setMaxAge(60*60*24*30);
          response.addCookie(cook1);
       }else{
-         Cookie cook1=new Cookie("id1","");
+         Cookie cook1=new Cookie("id","");
          cook1.setMaxAge(0);
          response.addCookie(cook1);
          
