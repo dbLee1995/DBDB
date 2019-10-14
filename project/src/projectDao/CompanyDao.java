@@ -44,7 +44,7 @@ public class CompanyDao {
 			con=JdbcUtil.getConn();
 			String sql="insert into company values(?,?,?)";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, getMaxNum());
+			pstmt.setInt(1, getMaxNum()+1);
 			pstmt.setString(2, vo.getCPName());
 			pstmt.setString(3, vo.getPhone());
 			return pstmt.executeUpdate();

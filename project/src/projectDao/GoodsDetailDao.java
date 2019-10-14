@@ -45,7 +45,7 @@ public class GoodsDetailDao {
 			String sql="insert into goodsdetail values(?,?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, vo.getGdlistnum());
-			pstmt.setInt(2, getMaxNum());
+			pstmt.setInt(2, getMaxNum()+1);
 			pstmt.setString(3, vo.getGdname());
 			pstmt.setInt(4, vo.getGdprice());
 			pstmt.setInt(5, vo.getGdstock());
