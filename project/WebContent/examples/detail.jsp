@@ -127,7 +127,7 @@
 			cartxhr.onreadystatechange=addCartOk;
 			cartxhr.open('post','cart?gdnum=${gdnum}',true);
 			addxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-			var param="count="+count;
+			var param="count="+count+"&cmd=insert";
 			cartxhr.send(param);
 		}
 		function addCartOk(){

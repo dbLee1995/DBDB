@@ -42,10 +42,11 @@ public class CartDao {
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="insert into cart values(?,?,sysdate)";
+			String sql="insert into cart values(?,?,?,sysdate)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, getMaxNum()+1);
 			pstmt.setInt(2, vo.getGdNum());
+			pstmt.setInt(3, vo.getCount());
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
@@ -68,6 +69,7 @@ public class CartDao {
 				CartVo vo=
 						new CartVo(rs.getInt("cnum"),
 									rs.getInt("gdnum"),
+									rs.getInt("count"),
 									rs.getDate("regdate"));
 				return vo;
 			}
@@ -93,6 +95,7 @@ public class CartDao {
 				CartVo vo=
 						new CartVo(rs.getInt("cnum"),
 								rs.getInt("gdnum"),
+								rs.getInt("count"),
 								rs.getDate("regdate"));
 				list.add(vo);
 			}
@@ -112,6 +115,21 @@ public class CartDao {
 			String sql="delete from cart where cnum=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
+	public int deleteAll() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="delete from cart";
+			pstmt=con.prepareStatement(sql);
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
