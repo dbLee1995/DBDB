@@ -3,9 +3,9 @@ package projectVo;
 public class CompanyVo {
 	private int cpNum;
 	private String cpName;
-	private int phone;
+	private String phone;
 	public CompanyVo() {}
-	public CompanyVo(int cPNum, String cPName, int phone) {
+	public CompanyVo(int cPNum, String cPName, String phone) {
 		super();
 		cpNum = cPNum;
 		cpName = cPName;
@@ -23,10 +23,10 @@ public class CompanyVo {
 	public void setCPName(String cPName) {
 		cpName = cPName;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	
