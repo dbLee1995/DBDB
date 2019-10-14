@@ -22,6 +22,7 @@
 					<input type="text" class="form-control" 
 						id="cpPhone" 
 						name="cpPhone" placeholder="대표 번호">
+						<small id="cpPhonesmall" class="form-text text-muted">하이픈(-)제외 입력</small>
 						 <span style="color:red; font-size:12px;" id="phonechk"></span>
 				
 				</div>
