@@ -55,15 +55,16 @@ public class GoodsDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
-	public GoodsVo cpSelect(int num) {
+	public GoodsVo cpSelect(int num, String gdlist) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select * from goods where cpnum=?";
+			String sql="select * from goods where cpnum=? and gdlist=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
+			pstmt.setString(2, gdlist);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				GoodsVo vo=
