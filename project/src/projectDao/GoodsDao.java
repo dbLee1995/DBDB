@@ -55,6 +55,31 @@ public class GoodsDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
+	public GoodsVo cpSelect(int num) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select * from goods where cpnum=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				GoodsVo vo=
+						new GoodsVo(rs.getInt("cpnum"),
+									rs.getInt("gdlistnum"), 
+									rs.getString("gdlist"));
+				return vo;
+			}
+			return null;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 	public GoodsVo select(int num) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
