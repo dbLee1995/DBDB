@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import projectDao.AccountDao;
 import projectDao.CartDao;
+import projectDao.UserInfoDao;
 import projectVo.AccountVo;
 import projectVo.CartInfoVo;
+import projectVo.UserInfoVo;
 
 @WebServlet("/mypage")
 public class MypageController extends HttpServlet{
@@ -27,6 +29,8 @@ public class MypageController extends HttpServlet{
 		
 		if(cmd!=null && cmd.equals("user")) {
 			user(req, resp);
+		}if(cmd!=null && cmd.equals("userinfo")) {
+			userinfo(req, resp);
 		}if(cmd!=null && cmd.equals("shoppinglist")) {
 			shoppinglist(req, resp);
 		}if(cmd!=null && cmd.equals("cart")) {
@@ -48,9 +52,35 @@ public class MypageController extends HttpServlet{
 		AccountDao adao=AccountDao.getInstance();
 		AccountVo avo=adao.select(id);
 		
+		UserInfoDao udao=UserInfoDao.getInstance();
+		UserInfoVo uvo=udao.select(id);
+		
 		req.setAttribute("id", id);
 		req.setAttribute("email", avo.getEmail());
+		req.setAttribute("fname", uvo.getFname());
+		req.setAttribute("lname", uvo.getLname());
+		req.setAttribute("addr", uvo.getAddr());
 		req.getRequestDispatcher("/mypage/userpage.jsp").forward(req, resp);
+	}
+	protected static void userinfo(HttpServletRequest req, 
+			HttpServletResponse resp) throws ServletException, IOException {
+		
+		String id=req.getParameter("id");
+		String email=req.getParameter("email");
+		String fname=req.getParameter("fname");
+		String lname=req.getParameter("lname");
+		String addr=req.getParameter("addr");
+		
+		AccountDao adao=AccountDao.getInstance();
+		AccountVo avo=adao.select(id);
+		AccountVo avoUpdate=new AccountVo(id, avo.getPwd(), email, avo.getPoint());
+		adao.update(avoUpdate);
+		
+		UserInfoDao udao=UserInfoDao.getInstance();
+		UserInfoVo uvoUpdate=new UserInfoVo(id, fname, lname, addr);
+		udao.update(uvoUpdate);
+		
+		user(req, resp);
 	}
 	protected static void shoppinglist(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {

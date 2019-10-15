@@ -19,6 +19,35 @@
   <link href="./assets/css/now-ui-dashboard.css?v=1.3.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="./assets/demo/demo.css" rel="stylesheet" />
+  
+  	<script type="text/javascript">
+  		var pwdxhr=null;
+  		function modipwd(){
+  			
+  		}
+  		function modipwdOk(){
+  			
+  		}
+  		var infoxhr=null;
+  		function modiinfo(){
+  			var email=document.getElementById("email").value;
+  			var fname=document.getElementById("fname").value;
+  			var lname=document.getElementById("lname").value;
+  			var addr=document.getElementById("addr").value;
+  			infoxhr=new XMLHttpRequest();
+  			infoxhr.onreadystatechange=modiinfoOk;
+  			infoxhr.open('post','./mypage?cmd=userinfo',true);
+  			infoxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+			var param="id=${id}&email="+email+"&fname="+fname+"&lname="+lname+"&addr="+addr;
+			infoxhr.send(param);
+  		}
+		function modiinfoOk(){
+			if(infoxhr.readyState==4 && infoxhr.status==200){
+				alert("정보가 수정되었습니다!");
+			}
+		}
+  	</script>
+  
 </head>
 
 <body class="user-profile">
@@ -114,7 +143,7 @@
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" placeholder="Email" value="${email }">
+                        <input type="email" class="form-control" placeholder="Email" id="email" value="${email }">
                       </div>
                     </div>
                   </div>
@@ -122,13 +151,13 @@
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>First Name</label>
-                        <input type="text" class="form-control" placeholder="Company" value="">
+                        <input type="text" class="form-control" placeholder="Company" id="fname" value="${fname }">
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" placeholder="Last Name" value="">
+                        <input type="text" class="form-control" placeholder="Last Name" id="lname" value="${lname }">
                       </div>
                     </div>
                   </div>
@@ -136,12 +165,12 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Address</label>
-                        <input type="text" class="form-control" placeholder="Home Address" value="">
+                        <input type="text" class="form-control" placeholder="Home Address" id="addr" value="${addr }">
                       </div>
                     </div>
                   </div>
-                  <button class="btn btn-1 btn-primary" type="button" id="btn">비밀번호 변경하기</button>
-                  <button class="btn btn-1 btn-primary" type="button" id="btn">수정하기</button>
+                  <button class="btn btn-1 btn-primary" type="button" id="pwdbtn" onclick="modipwd()">비밀번호 변경하기</button>
+                  <button class="btn btn-1 btn-primary" type="button" id="infobtn" onclick="modiinfo()">수정하기</button>
                 </form>
               </div>
             </div>
