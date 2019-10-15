@@ -102,12 +102,14 @@
 								<i class="fa fa-github"></i> <span
 								class="nav-link-inner--text d-lg-none">Github</span>
 						</a></li>
-						<li class="nav-item"><a href="./mypage/cartpage.jsp"
-							class="nav-link">Cart</a></li>
-						<li class="nav-item"><a href="./mypage/userpage.jsp"
-							class="nav-link">MyPage</a></li>
 						<%
 							String id=(String)session.getAttribute("id");
+						%>
+						<li class="nav-item"><a href="./mypage?cmd=cart&id=<%=id %>"
+							class="nav-link">Cart</a></li>
+						<li class="nav-item"><a href="./mypage?cmd=user&id=<%=id %>"
+							class="nav-link">MyPage</a></li>
+						<%
 							if(id==null) {
 						%>
 							<li class="nav-item"><a href="./examples/login.jsp"

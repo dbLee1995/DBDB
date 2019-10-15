@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <meta charset="utf-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     mypage
@@ -15,10 +15,10 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <!-- CSS Files -->
-  <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../assets/css/now-ui-dashboard.css?v=1.3.0" rel="stylesheet" />
+  <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="./assets/css/now-ui-dashboard.css?v=1.3.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <link href="./assets/demo/demo.css" rel="stylesheet" />
 </head>
 
 <body class="user-profile">
@@ -31,14 +31,14 @@
         <a href="#" class="simple-text logo-mini">
           CT
         </a>
-        <a href="../index" class="simple-text logo-normal">
+        <a href="./index" class="simple-text logo-normal">
           	랭닭킹컴
         </a>
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
           <li class="active ">
-            <a href="./userpage.jsp">
+            <a href="./mypage?cmd=user">
               <i class="now-ui-icons users_single-02"></i>
               <p>내 정보</p>
             </a>
@@ -50,7 +50,7 @@
             </a>
           </li>
           <li>
-            <a href="./cartpage.jsp">
+            <a href="./mypage?cmd=cart">
               <i class="now-ui-icons design_app"></i>
               <p>장바구니</p>
             </a>
