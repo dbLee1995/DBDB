@@ -43,8 +43,10 @@
 	function getList() {
 		lxhr = new XMLHttpRequest();
 		lxhr.onreadystatechange = listcallback;
-		lxhr.open('get', 'company?cmd=cpList', true);
-		lxhr.send();
+		lxhr.open('post', 'company?', true);
+		lxhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		var param="cmd=cpList";
+		lxhr.send(param);
 	}
 	function listcallback() {
 		if (lxhr.readyState == 4 && lxhr.status == 200) {

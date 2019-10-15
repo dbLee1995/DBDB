@@ -51,9 +51,9 @@
 		cxhr.onreadystatechange=cpchkcallback;
 		
 		
-		cxhr.open('post', 'company?cmd=cpCheck',true);
+		cxhr.open('post', 'company?',true);
 		cxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-		var param="cpName="+cpName;
+		var param="cmd=cpCheck&cpName="+cpName;
 		cxhr.send(param);
 	}
 	function cpchkcallback(){
