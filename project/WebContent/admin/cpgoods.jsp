@@ -25,8 +25,8 @@
 				
 				</div>
 				<div class="col-lg-15 text-center">
-					<button type="button" class="btn btn-secondary">취소</button>
-					<button type="button" class="btn btn-primary">등록</button>
+					<button type="button" class="btn btn-secondary" onclick="insertSubmit(1)">취소</button>
+					<button type="button" class="btn btn-primary" onclick="insertSubmit(2)">등록</button>
 				</div>
 			</form>
 		</div>
@@ -97,6 +97,17 @@
 			gdListCheck.innerHTML="";
 		}
 	}
+	function insertSubmit(index){
+		var gdList=document.getElementById("gdList").value;
+		if(index==1){
+			document.gdForm.action="adindex.jsp?page=cpinfo.jsp";
+		}
+		if(index==2){
+			document.gdForm.action="goods?cmd=gdInsert";
+		}
+		document.gdForm.submit();
+	}
+	
 	function validate(){
 		var gdList=document.getElementById("gdList").value;
 		if(gdList==""){
@@ -104,5 +115,6 @@
 		}
 		return true;
 	}
+	
 
 </script>

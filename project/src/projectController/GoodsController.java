@@ -27,8 +27,11 @@ public class GoodsController extends HttpServlet {
 		if(cmd!=null&& cmd.equals("cpList")) {
 			cpList(req, resp);
 		}
-		if(cmd!=null&cmd.equals("gdCheck")){
+		if(cmd!=null&&cmd.equals("gdCheck")){
 			gdCheck(req, resp);
+		}
+		if(cmd!=null&&cmd.equals("gdInsert")) {
+			gdInsert(req, resp);
 		}
 	}
 	protected void cpList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -45,7 +48,6 @@ public class GoodsController extends HttpServlet {
 		resp.setContentType("text/plain;charset=utf-8");
 		int cpListNum=Integer.parseInt(req.getParameter("cpListNum"));
 		String gdList=req.getParameter("gdList");
-		//cpListNum으로 조회해서 넘겨받은 gdList 값이 있는지 확인
 		GoodsDao gdao=GoodsDao.getInstance();
 		GoodsVo gvo=gdao.cpSelect(cpListNum,gdList);
 		JSONObject json=new JSONObject();
@@ -57,5 +59,13 @@ public class GoodsController extends HttpServlet {
 		PrintWriter pw=resp.getWriter();
 		pw.print(json);
 
+	}
+	protected void gdInsert(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		resp.setContentType("text/plain;charset=utf-8");
+		String gdList=req.getParameter("gdList");
+		
+		
+		
+		
 	}
 }
