@@ -156,7 +156,10 @@
 							<a href="./mypage?cmd=cartdelete&cnum=${clist.cnum }">삭제</a></p></div></div>
                 	</c:forEach>
                 	<hr>
-                	<button class="btn btn-1 btn-primary" type="button" id="btn">구매하기</button>
+                	<% String id=(String)session.getAttribute("id"); %>
+                	<a href="./buy?id=<%=id%>">
+                	<button class="btn btn-1 btn-primary" type="button" id="buybtn">구매하기</button>
+                	</a>
                 </form>
               </div>
             </div>

@@ -16,7 +16,7 @@ public class ShoppinglistDao {
 	public static ShoppinglistDao getInstance() {
 		return dao;
 	}
-	public int getMaxNum() {
+	public static int getMaxNum() {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -41,34 +41,26 @@ public class ShoppinglistDao {
 	public int insert(ShoppinglistVo vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
-		PreparedStatement upstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			GoodsDetailVo gvo=new GoodsDetailVo();
-			
-			String usql="update goodsdetail "+ 
-					"set gdstock=gdstock-(select sl.gdcount from goodsdetail gd,shoppinglist sl where gd.gdnum=? and sl.gdnum=?) "+ 
-					"where gdnum=(select gd.gdnum from goodsdetail gd,shoppinglist sl where gd.gdnum=? and sl.gdnum=?)";
-			
 			String sql="insert into shoppinglist values(?,?,?,?,sysdate,?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, vo.getGdNum());
 			pstmt.setString(2, vo.getId());
-			pstmt.setInt(3, getMaxNum()+1);
+			pstmt.setInt(3, vo.getOrderNum());
 			pstmt.setInt(4, vo.getGdCount());
 			pstmt.setString(5, vo.getName());
 			pstmt.setString(6, vo.getPhone());
 			pstmt.setString(7, vo.getAddr());
 			pstmt.setString(8, vo.getMsg());
 			pstmt.setString(9, vo.getBuyway());
-			pstmt.setInt(10, vo.getState());
+			pstmt.setInt(10, 1);
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
 			return -1;
 		}finally {
 			JdbcUtil.close(con, pstmt, null);
-			JdbcUtil.close(upstmt);
 		}
 	}
 	public ArrayList<ShoppinglistVo> selectAll(){
