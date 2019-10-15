@@ -33,6 +33,9 @@ public class GoodsController extends HttpServlet {
 		if(cmd!=null&&cmd.equals("gdInsert")) {
 			gdInsert(req, resp);
 		}
+		if(cmd!=null&&cmd.equals("gdList")) {
+			gdList(req, resp);
+		}
 	}
 	protected void cpList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/plain;charset=utf-8");
@@ -70,9 +73,17 @@ public class GoodsController extends HttpServlet {
 		if(n>0) {
 			resp.sendRedirect(req.getContextPath()+"/admin/adindex.jsp?page=cpgoods.jsp");
 		}
+	}
+	protected void gdList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/plain;charset=utf-8");
+		GoodsDao gdao=GoodsDao.getInstance();
+		ArrayList<GoodsVo> list=gdao.selectAll();
 		
 		
-		
+		JSONArray arr=new JSONArray();
+		arr.put(list);
+		PrintWriter pw=resp.getWriter();
+		pw.print(arr);
 		
 	}
 }
