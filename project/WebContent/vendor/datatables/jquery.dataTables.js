@@ -1729,6 +1729,7 @@
 	 *  @param {object} oSettings dataTables settings object
 	 *  @memberof DataTable#oApi
 	 */
+	
 	function _fnLanguageCompat( lang )
 	{
 		// Note the use of the Hungarian notation for the parameters in this method as
@@ -1741,34 +1742,7 @@
 			_addNumericSort( defaultDecimal );
 		}
 	
-		if ( lang ) {
-			var zeroRecords = lang.sZeroRecords;
 	
-			// Backwards compatibility - if there is no sEmptyTable given, then use the same as
-			// sZeroRecords - assuming that is given.
-			if ( ! lang.sEmptyTable && zeroRecords &&
-				defaults.sEmptyTable === "No data available in table" )
-			{
-				_fnMap( lang, lang, 'sZeroRecords', 'sEmptyTable' );
-			}
-	
-			// Likewise with loading records
-			if ( ! lang.sLoadingRecords && zeroRecords &&
-				defaults.sLoadingRecords === "Loading..." )
-			{
-				_fnMap( lang, lang, 'sZeroRecords', 'sLoadingRecords' );
-			}
-	
-			// Old parameter name of the thousands separator mapped onto the new
-			if ( lang.sInfoThousands ) {
-				lang.sThousands = lang.sInfoThousands;
-			}
-	
-			var decimal = lang.sDecimal;
-			if ( decimal && defaultDecimal !== decimal ) {
-				_addNumericSort( decimal );
-			}
-		}
 	}
 	
 	
@@ -3469,26 +3443,6 @@
 				anRows.push( nRow );
 				iRowCount++;
 			}
-		}
-		else
-		{
-			/* Table is empty - create a row with an empty message in it */
-			var sZero = oLang.sZeroRecords;
-			if ( oSettings.iDraw == 1 &&  _fnDataSource( oSettings ) == 'ajax' )
-			{
-				sZero = oLang.sLoadingRecords;
-			}
-			else if ( oLang.sEmptyTable && oSettings.fnRecordsTotal() === 0 )
-			{
-				sZero = oLang.sEmptyTable;
-			}
-	
-			anRows[ 0 ] = $( '<tr/>', { 'class': iStripes ? asStripeClasses[0] : '' } )
-				.append( $('<td />', {
-					'valign':  'top',
-					'colSpan': _fnVisbleColumns( oSettings ),
-					'class':   oSettings.oClasses.sRowEmpty
-				} ).html( sZero ) )[0];
 		}
 	
 		/* Header and footer callbacks */
@@ -10034,7 +9988,7 @@
 		 * [jQuery.ajax](http://api.jquery.com/jQuery.ajax/) allowing fine control
 		 * of the Ajax request. DataTables has a number of default parameters which
 		 * you can override using this option. Please refer to the jQuery
-		 * documentation for a full description of the options available, although
+		 * documentation for a full description of the options , although
 		 * the following parameters provide additional options in DataTables or
 		 * require special consideration:
 		 *
@@ -11434,7 +11388,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "No data available in table",
+			
 	
 	
 			/**
@@ -11765,7 +11719,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sZeroRecords": "No matching records found"
+			
 		},
 	
 	
@@ -14395,11 +14349,11 @@
 		"sPageButtonDisabled": "disabled",
 	
 		/* Striping classes */
-		"sStripeOdd": "odd",
+	
 		"sStripeEven": "even",
 	
 		/* Empty row */
-		"sRowEmpty": "dataTables_empty",
+	
 	
 		/* Features */
 		"sWrapper": "dataTables_wrapper",
