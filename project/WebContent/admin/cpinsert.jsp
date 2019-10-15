@@ -64,18 +64,22 @@
 				cpchk.innerHTML="동명의 회사가 존재합니다."
 				check = false;
 				return check;
-				validate();
+				
 			}else{
 				cpchk.innerHTML="";
-				check=true;
+				check=false;
 				return check;
-				validate();
+	
 			}
 		}
 	}
 	
 	function validate(){
 		var cpPhone=document.getElementById("cpPhone").value;
+		var cpName=document.getElementById("cpName").value;
+		if(cpName==""){
+			return false;
+		}
 		if(cpPhone==""){
 			phonechk.innerHTML="전화번호 입력 필수";
 			return false;

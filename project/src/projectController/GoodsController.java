@@ -63,6 +63,13 @@ public class GoodsController extends HttpServlet {
 	protected void gdInsert(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		resp.setContentType("text/plain;charset=utf-8");
 		String gdList=req.getParameter("gdList");
+		int cpListNum=Integer.parseInt(req.getParameter("cpListNum"));
+		GoodsDao gdao=GoodsDao.getInstance();
+		GoodsVo vo=new GoodsVo(cpListNum, 0, gdList);
+		int n=gdao.insert(vo);
+		if(n>0) {
+			resp.sendRedirect(req.getContextPath()+"/admin/adindex.jsp?page=cpgoods.jsp");
+		}
 		
 		
 		

@@ -5,9 +5,10 @@
 <div class="container">
  <!--  <div class="card card-login mx-auto mt-5">-->
 	<div class="card text-white card-login bg-secondary o-hidden h-100 mx-auto mt-5">
+
 		<div class="card-header">상품 카테고리 등록</div>
 		<div class="card-body bg-light">
-			<form method="post" name="gdForm" onsubmit="reurn validate()">
+			<form method="post" name="gdForm" onsubmit="return validate()">
 				<div class="form-group" >
 					<label for="cpSelect" style="color:black">회사 선택</label> 
 					<!-- 사명 중복체크하기 -->
@@ -26,7 +27,7 @@
 				</div>
 				<div class="col-lg-15 text-center">
 					<button type="button" class="btn btn-secondary" onclick="insertSubmit(1)">취소</button>
-					<button type="button" class="btn btn-primary" onclick="insertSubmit(2)">등록</button>
+					<button type="submit" class="btn btn-primary" >등록</button>
 				</div>
 			</form>
 		</div>
@@ -34,8 +35,11 @@
 </div>
 
 <script>
+
+
 	window.onload=companyList;
 	var cpxhr=null;
+	var check=true;
 	function companyList(){
 		cpxhr=new XMLHttpRequest();
 		cpxhr.onreadystatechange=cpCallback;
@@ -58,12 +62,13 @@
 		}
 	}
 	var glxhr=null;
+	var cpListNum=null;
 	var gdListCheck= document.getElementById("gdListCheck");
 	function gdListchk(){
 		var gdList=document.getElementById("gdList").value;
 		var cpList=document.getElementsByName("cpList")[0];
 		var cpIndex=cpList.selectedIndex;
-		var cpListNum=cpList.options[cpIndex].value;
+		cpListNum=cpList.options[cpIndex].value;
 		if(gdListCheck==""){
 			gdListCheck.innerHTML="";
 			return;
@@ -81,8 +86,11 @@
 			var json=JSON.parse(data);
 			if(json.using==true){
 				gdListCheck.innerHTML="이미 등록된 상품 종류입니다."
-				return false;
+				check = false;
+				return check;
 				validate();
+			}else{
+				gdListCheck.innerHTML="";
 			}
 		}
 	}
@@ -91,10 +99,16 @@
 		if(obj.value==0){
 			GL.disabled=true;
 			GL.value="";
+			check=false;
+			return check;
+			validate();
 		}else{
 			GL.disabled=false;
 			GL.value="";
 			gdListCheck.innerHTML="";
+			check=false;
+			return check;
+			validate();
 		}
 	}
 	function insertSubmit(index){
@@ -103,7 +117,10 @@
 			document.gdForm.action="adindex.jsp?page=cpinfo.jsp";
 		}
 		if(index==2){
-			document.gdForm.action="goods?cmd=gdInsert";
+			document.gdForm.action="goods?cmd=gdInsert&cpListNum="+cpListNum;
+			alert("성공적으로 등록되었습니다.");
+			alert(check)
+	
 		}
 		document.gdForm.submit();
 	}
@@ -115,6 +132,5 @@
 		}
 		return true;
 	}
-	
 
 </script>
