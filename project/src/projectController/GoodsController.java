@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
+import projectDao.CompanyDao;
 import projectDao.GoodsDao;
+import projectVo.CompanyVo;
 import projectVo.GoodsVo;
 @WebServlet("/admin/goods")
 public class GoodsController extends HttpServlet {
@@ -21,17 +24,38 @@ public class GoodsController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		String cmd=req.getParameter("cmd");
-		if(cmd!=null&& cmd.equals("goodsList")) {
-			goodsList(req, resp);
+		if(cmd!=null&& cmd.equals("cpList")) {
+			cpList(req, resp);
+		}
+		if(cmd!=null&cmd.equals("gdCheck")){
+			gdCheck(req, resp);
 		}
 	}
-	protected void goodsList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void cpList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/plain;charset=utf-8");
 		JSONArray arr=new JSONArray();
 		GoodsDao dao=GoodsDao.getInstance();
-		ArrayList<GoodsVo> list=dao.selectAll();
+		CompanyDao cpdao=CompanyDao.getInstance();
+		ArrayList<CompanyVo> list=cpdao.selectAll();
 		arr.put(list);
 		PrintWriter pw=resp.getWriter();
 		pw.print(arr);
+	}
+	protected void gdCheck(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		resp.setContentType("text/plain;charset=utf-8");
+		int cpListNum=Integer.parseInt(req.getParameter("cpListNum"));
+		String gdList=req.getParameter("gdList");
+		//cpListNum으로 조회해서 넘겨받은 gdList 값이 있는지 확인
+		GoodsDao gdao=GoodsDao.getInstance();
+		GoodsVo gvo=gdao.cpSelect(cpListNum,gdList);
+		JSONObject json=new JSONObject();
+		boolean using=false;
+		if(gvo!=null) {
+			using=true;
+		}
+		json.put("using", using);
+		PrintWriter pw=resp.getWriter();
+		pw.print(json);
+
 	}
 }
