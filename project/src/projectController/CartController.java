@@ -38,6 +38,8 @@ public class CartController extends HttpServlet{
 			delete(req, resp);
 		}if(cmd!=null && cmd.equals("deleteall")) {
 			deleteall(req, resp);
+		}if(cmd!=null && cmd.equals("cartpage")) {
+			
 		}
 	}
 	protected void list(HttpServletRequest req, 

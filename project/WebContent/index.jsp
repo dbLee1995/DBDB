@@ -102,9 +102,9 @@
 								<i class="fa fa-github"></i> <span
 								class="nav-link-inner--text d-lg-none">Github</span>
 						</a></li>
-						<li class="nav-item"><a href="./examples/login.jsp"
+						<li class="nav-item"><a href="./mypage/cartpage.jsp"
 							class="nav-link">Cart</a></li>
-						<li class="nav-item"><a href="./examples/login.jsp"
+						<li class="nav-item"><a href="./mypage/userpage.jsp"
 							class="nav-link">MyPage</a></li>
 						<%
 							String id=(String)session.getAttribute("id");
@@ -171,6 +171,19 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-lg-12">
+					
+
+			
+					<div class="form-group">
+		              <div class="input-group mb-4">
+		                <div class="input-group-prepend">
+		                  <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
+		                </div>
+		                <input class="form-control" placeholder="Search" type="text">
+		              </div>
+		            </div>
+
+					
 					<!-- Basic elements -->
 					<h2 class="mb-5">
 						<span>저렴이순</span>
