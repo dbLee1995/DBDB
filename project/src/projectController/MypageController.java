@@ -1,6 +1,7 @@
 package projectController;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.websocket.Session;
 
 import projectDao.AccountDao;
+import projectDao.CartDao;
+import projectDao.GoodsDetailDao;
 import projectVo.AccountVo;
+import projectVo.CartInfoVo;
+import projectVo.CartVo;
 
 @WebServlet("/mypage")
 public class MypageController extends HttpServlet{
@@ -55,6 +60,10 @@ public class MypageController extends HttpServlet{
 	protected static void cart(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {
 		
+		CartDao vdao=CartDao.getInstance();
+		ArrayList<CartInfoVo> clist=vdao.getCartInfo();
+		
+		req.setAttribute("cartlist", clist);
 		req.getRequestDispatcher("/mypage/cartpage.jsp").forward(req, resp);
 	}
 	protected static void point(HttpServletRequest req, 

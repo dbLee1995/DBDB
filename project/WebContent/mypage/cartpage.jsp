@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,7 @@
 	function getList(){
 		listxhr=new XMLHttpRequest();
 		listxhr.onreadystatechange=listOk;
-		listxhr.open('get','mypage?cmd=list&gdnum=${gdnum}',true);
+		listxhr.open('get','mypage?cmd=cart',true);
 		listxhr.send();
 	}
 	function listOk(){
@@ -139,11 +140,23 @@
           <div class="col-md-10">
             <div class="card">
               <div class="card-header">
+              	<br>
                 <h5 >내 장바구니</h5>
               </div>
               <div class="card-body">
                 <form>
-                	
+                	<c:forEach var="clist" items="${cartlist }">
+                		<br>
+						<div class='media'>
+						<img src='images/${clist.gdsumary }' class='align-self-start mr-3'
+						alt='' width='100' height='100'>
+						<div class='media-body'>
+						<h5 class='mt-0'><a href="./detail?gdnum=${clist.gdnum }">${clist.gdname }</a></h5>
+						<p>${clist.count }개  &nbsp; 총 금액: ${clist.count * clist.gdprice }원 &nbsp; (${clist.regdate })
+							<a href="#">삭제</a></p></div></div>
+                	</c:forEach>
+                	<hr>
+                	<button class="btn btn-1 btn-primary" type="button" id="btn">구매하기</button>
                 </form>
               </div>
             </div>

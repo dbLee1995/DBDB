@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import jdbc.JdbcUtil;
+import projectVo.CartInfoVo;
 import projectVo.CartVo;
 
 public class CartDao {
@@ -102,6 +103,38 @@ public class CartDao {
 			return list;
 		}catch(SQLException se) {
 			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	public ArrayList<CartInfoVo> getCartInfo(){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select g.gdnum, c.cnum, g.gdname, g.gdprice, c.count, c.regdate, g.gdsumary"+ 
+					" from goodsdetail g, cart c"+ 
+					" where g.gdnum=c.gdnum";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			ArrayList<CartInfoVo> cilist=new ArrayList<CartInfoVo>();
+			while(rs.next()) {
+				CartInfoVo civo=
+						new CartInfoVo(rs.getInt("gdnum"),
+										rs.getInt("cnum"),
+										rs.getString("gdname"),
+										rs.getInt("gdprice"),
+										rs.getInt("count"),
+										rs.getDate("regdate"),
+										rs.getString("gdsumary"));
+				cilist.add(civo);
+			}
+			return cilist;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			System.out.println(se.getMessage());
 			return null;
 		}finally {
 			JdbcUtil.close(con, pstmt, rs);
