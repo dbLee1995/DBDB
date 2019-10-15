@@ -112,7 +112,7 @@ public class CompanyDao {
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select * from company";
+			String sql="select * from company order by cpnum";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			ArrayList<CompanyVo> list=new ArrayList<CompanyVo>();
