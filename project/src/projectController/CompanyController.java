@@ -82,8 +82,12 @@ public class CompanyController extends HttpServlet{
 	protected void cpDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/plain;charset=utf-8");
 		int cpNum=Integer.parseInt(req.getParameter("cpnum"));
+		CompanyDao dao=CompanyDao.getInstance();
+		int n=dao.delete(cpNum);
+		if(n>0) {
+			resp.sendRedirect(req.getContextPath()+"/admin/adindex.jsp?page=cpinfo.jsp");
+		}
 		
-		req.getRequestDispatcher("adindex.jsp?page=cpinfo.jsp").forward(req, resp);
 	}
 	protected void cpUpdate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/plain;charset=utf-8");
