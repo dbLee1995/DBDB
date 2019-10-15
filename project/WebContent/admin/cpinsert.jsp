@@ -49,8 +49,12 @@
 			return;
 		}
 		cxhr.onreadystatechange=cpchkcallback;
-		cxhr.open('get', 'company?cmd=cpCheck&cpName='+cpName,true);
-		cxhr.send();
+		
+		
+		cxhr.open('post', 'company?cmd=cpCheck',true);
+		cxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+		var param="cpName="+cpName;
+		cxhr.send(param);
 	}
 	function cpchkcallback(){
 		if(cxhr.readyState==4 && cxhr.status==200){
