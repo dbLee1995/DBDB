@@ -39,7 +39,7 @@
          if (rs.next()) {
             session.setAttribute("id", id);
             session.setAttribute("pwd", pwd);
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            response.sendRedirect(request.getContextPath() + "/index");
          } 
    %>
    <script type="text/javascript">

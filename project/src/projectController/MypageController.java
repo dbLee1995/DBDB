@@ -8,14 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.Session;
 
 import projectDao.AccountDao;
 import projectDao.CartDao;
-import projectDao.GoodsDetailDao;
 import projectVo.AccountVo;
 import projectVo.CartInfoVo;
-import projectVo.CartVo;
 
 @WebServlet("/mypage")
 public class MypageController extends HttpServlet{
@@ -34,6 +31,8 @@ public class MypageController extends HttpServlet{
 			shoppinglist(req, resp);
 		}if(cmd!=null && cmd.equals("cart")) {
 			cart(req, resp);
+		}if(cmd!=null && cmd.equals("cartdelete")) {
+			cartdelete(req, resp);
 		}if(cmd!=null && cmd.equals("point")) {
 			point(req, resp);
 		}if(cmd!=null && cmd.equals("qna")) {
@@ -65,6 +64,16 @@ public class MypageController extends HttpServlet{
 		
 		req.setAttribute("cartlist", clist);
 		req.getRequestDispatcher("/mypage/cartpage.jsp").forward(req, resp);
+	}
+	protected static void cartdelete(HttpServletRequest req, 
+			HttpServletResponse resp) throws ServletException, IOException {
+		
+		int cnum=Integer.parseInt(req.getParameter("cnum"));
+		
+		CartDao cdao=CartDao.getInstance();
+		cdao.delete(cnum);
+		
+		cart(req, resp);
 	}
 	protected static void point(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {

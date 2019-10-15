@@ -153,7 +153,7 @@
 						<div class='media-body'>
 						<h5 class='mt-0'><a href="./detail?gdnum=${clist.gdnum }">${clist.gdname }</a></h5>
 						<p>${clist.count }개  &nbsp; 총 금액: ${clist.count * clist.gdprice }원 &nbsp; (${clist.regdate })
-							<a href="#">삭제</a></p></div></div>
+							<a href="./mypage?cmd=cartdelete&cnum=${clist.cnum }">삭제</a></p></div></div>
                 	</c:forEach>
                 	<hr>
                 	<button class="btn btn-1 btn-primary" type="button" id="btn">구매하기</button>
