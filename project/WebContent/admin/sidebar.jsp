@@ -14,9 +14,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
         <!-- "layout.jsp?page=home.jsp -->
-          <a class="dropdown-item" href="adindex.jsp?page=cpinsert.jsp">회사 등록</a>
-          <a class="dropdown-item" href="adindex.jsp?page=cpinfo.jsp">파트너 회사</a>
-          <a class="dropdown-item" href="">회사 정보 수정</a>
+          <a class="dropdown-item" href="adindex.jsp?page=cpinsert.jsp">파트너 회사 등록</a>
+          <a class="dropdown-item" href="adindex.jsp?page=cpinfo.jsp">파트너 회사 관리</a>
         <!--   <div class="dropdown-divider"></div> -->
         </div>
       </li>

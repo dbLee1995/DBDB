@@ -38,6 +38,9 @@ public class CompanyController extends HttpServlet{
 		if(cmd!=null && cmd.equals("cpUpdate")) {
 			cpUpdate(req,resp);
 		}
+		if(cmd!=null && cmd.equals("cpSelect")) {
+			cpSelect(req,resp);
+		}
 		
 	}
 	protected void cpInsert(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -78,8 +81,30 @@ public class CompanyController extends HttpServlet{
 	}
 	protected void cpDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/plain;charset=utf-8");
+		int cpNum=Integer.parseInt(req.getParameter("cpnum"));
+		
+		req.getRequestDispatcher("adindex.jsp?page=cpinfo.jsp").forward(req, resp);
 	}
 	protected void cpUpdate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/plain;charset=utf-8");
+		int cpNum=Integer.parseInt(req.getParameter("cpNum"));
+		String cpName=req.getParameter("cpName");
+		String cpPhone=req.getParameter("cpPhone");
+		
+		CompanyDao dao=CompanyDao.getInstance();
+		CompanyVo vo=new CompanyVo(cpNum,cpName,cpPhone);
+		int n=dao.update(vo);
+		if(n>0) {
+			resp.sendRedirect(req.getContextPath()+"/admin/adindex.jsp?page=cpinfo.jsp");
+		}
 	}
+	protected void cpSelect(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/plain;charset=utf-8");
+		int cpNum=Integer.parseInt(req.getParameter("cpnum"));
+		CompanyDao dao=CompanyDao.getInstance();
+		CompanyVo vo=dao.select(cpNum);
+		req.setAttribute("vo", vo);
+		req.getRequestDispatcher("adindex.jsp?page=cpupdate.jsp").forward(req, resp);
+	}
+
 }
