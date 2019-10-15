@@ -26,8 +26,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
       	  <a class="dropdown-item" href="adindex.jsp?page=cpgoods.jsp">상품 종류 등록</a>
-          <a class="dropdown-item" href="test.html">상품등록</a>
-          <a class="dropdown-item" href="">등록상품수정</a>
+          <a class="dropdown-item" href="#">상품등록</a>
+          <a class="dropdown-item" href="#">등록상품수정</a>
         <!--   <div class="dropdown-divider"></div> -->
         </div>
       </li>
