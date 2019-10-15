@@ -55,6 +55,7 @@ public class MypageController extends HttpServlet{
 	protected static void shoppinglist(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {
 		
+		req.getRequestDispatcher("/mypage/shoppinglistpage.jsp").forward(req, resp);
 	}
 	protected static void cart(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {
@@ -78,9 +79,11 @@ public class MypageController extends HttpServlet{
 	protected static void point(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {
 		
+		req.getRequestDispatcher("/mypage/pointpage.jsp").forward(req, resp);
 	}
 	protected static void qna(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {
 		
+		req.getRequestDispatcher("/mypage/qnapage.jsp").forward(req, resp);
 	}
 }

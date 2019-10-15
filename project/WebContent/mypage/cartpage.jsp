@@ -84,7 +84,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="./mypage?cmd=shoppinglist">
               <i class="now-ui-icons design_app"></i>
               <p>구매목록</p>
             </a>
@@ -96,13 +96,13 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="./mypage?cmd=point">
               <i class="now-ui-icons location_map-big"></i>
               <p>포인트 내역</p>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="./mypage?cmd=qna">
               <i class="now-ui-icons ui-1_bell-53"></i>
               <p>1:1 문의</p>
             </a>

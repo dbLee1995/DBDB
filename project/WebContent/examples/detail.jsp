@@ -188,14 +188,26 @@
 					</ul>
 					<ul class="navbar-nav align-items-lg-center ml-lg-auto">
 
-						<li class="nav-item"><a href="./examples/login.jsp"
-							class="nav-link">Cart</a></li>
-						<li class="nav-item"><a href="./examples/login.jsp"
-							class="nav-link">MyPage</a></li>
-						<li class="nav-item"><a href="./examples/login.jsp"
+						<%
+							String id=(String)session.getAttribute("id");
+							if(id==null) {
+						%>
+							<li class="nav-item"><a href="./examples/login.jsp"
 							class="nav-link">Login</a></li>
-						<li class="nav-item"><a href="./examples/register.html"
+							<li class="nav-item"><a href="./examples/register.html"
 							class="nav-link">Register</a></li>
+						<%
+							}else {
+						%>
+							<li class="nav-item"><a href="./mypage?cmd=cart&id=<%=id %>"
+							class="nav-link">Cart</a></li>
+							<li class="nav-item"><a href="./mypage?cmd=user&id=<%=id %>"
+							class="nav-link">MyPage</a></li>
+							<li class="nav-item"><a href="./examples/logout.jsp"
+							class="nav-link">Logout</a></li>
+						<%
+							}
+						%>
 					</ul>
 				</div>
 			</div>

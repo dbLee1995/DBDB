@@ -17,7 +17,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import projectDao.AccountDao;
+import projectDao.UserInfoDao;
 import projectVo.AccountVo;
+import projectVo.UserInfoVo;
 @WebServlet("/examples/join")
 public class JoinController extends HttpServlet {
 	@Override
@@ -60,8 +62,11 @@ public class JoinController extends HttpServlet {
 		String pwd=(String)req.getParameter("pwd");
 		AccountDao dao=AccountDao.getInstance();
 		AccountVo vo=new AccountVo(id,pwd,email,0);
-		PrintWriter pw=resp.getWriter();
 		int n=dao.insert(vo);
+		UserInfoDao udao=UserInfoDao.getInstance();
+		UserInfoVo uvo=new UserInfoVo(id, "", "", "");
+		int u=udao.insert(uvo);
+		PrintWriter pw=resp.getWriter();
 		if(n>0) {
 			resp.sendRedirect(req.getContextPath()+"/index.jsp");
 		}
