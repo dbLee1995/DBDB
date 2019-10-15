@@ -108,13 +108,13 @@
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
                         <label>Username</label>
-                        <input type="text" class="form-control" placeholder="Username" value="">
+                        <input type="text" class="form-control" placeholder="Username" value="${id }">
                       </div>
                     </div>
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="email" class="form-control" placeholder="Email" value="${email }">
                       </div>
                     </div>
                   </div>

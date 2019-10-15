@@ -12,7 +12,7 @@
 <meta name="author" content="Creative Tim">
 <title>랭닭킹컴</title>
 <!-- Favicon -->
-<link href="./assets/img/brand/favicon.png" rel="icon" type="image/png">
+<link href="./icon/mainicon.png" rel="icon" type="image/png">
 <!-- Fonts -->
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
@@ -38,7 +38,7 @@
 			<!-- navbar navbar-expand-lg navbar-dark bg-warning mt-4 -->
 			<!-- navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom -->
 			<div class="container">
-				<a class="navbar-brand mr-lg-5" href="./index.html"> <img
+				<a class="navbar-brand mr-lg-5" href="./index"> <img
 					alt="image" src="./assets/img/brand/white.png">
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -68,7 +68,7 @@
 						<li class="nav-item dropdown"><a href="#" class="nav-link"
 							data-toggle="dropdown" role="button"> <i
 								class="ni ni-collection d-lg-none"></i> <span
-								class="nav-link-inner--text">카테고리</span>
+								class="nav-link-inner--text">category</span>
 						</a>
 							<div class="dropdown-menu">
 								<a href="./examples/landing.html" class="dropdown-item">Landing</a>
@@ -104,26 +104,24 @@
 						</a></li>
 						<%
 							String id=(String)session.getAttribute("id");
-						%>
-						<li class="nav-item"><a href="./mypage?cmd=cart&id=<%=id %>"
-							class="nav-link">Cart</a></li>
-						<li class="nav-item"><a href="./mypage?cmd=user&id=<%=id %>"
-							class="nav-link">MyPage</a></li>
-						<%
 							if(id==null) {
 						%>
 							<li class="nav-item"><a href="./examples/login.jsp"
 							class="nav-link">Login</a></li>
+							<li class="nav-item"><a href="./examples/register.html"
+							class="nav-link">Register</a></li>
 						<%
 							}else {
 						%>
+							<li class="nav-item"><a href="./mypage?cmd=cart&id=<%=id %>"
+							class="nav-link">Cart</a></li>
+							<li class="nav-item"><a href="./mypage?cmd=user&id=<%=id %>"
+							class="nav-link">MyPage</a></li>
 							<li class="nav-item"><a href="./examples/logout.jsp"
 							class="nav-link">Logout</a></li>
 						<%
 							}
 						%>
-						<li class="nav-item"><a href="./examples/register.html"
-							class="nav-link">Register</a></li>
 					</ul>
 				</div>
 			</div>

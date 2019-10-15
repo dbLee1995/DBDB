@@ -14,6 +14,7 @@ import projectVo.AccountVo;
 
 @WebServlet("/mypage")
 public class MypageController extends HttpServlet{
+	public static String id="";
 	@Override
 	protected void service(HttpServletRequest req, 
 			HttpServletResponse resp) 
@@ -34,28 +35,33 @@ public class MypageController extends HttpServlet{
 			qna(req, resp);
 		}
 	}
-	protected void user(HttpServletRequest req, 
+	protected static void user(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {
+		
+		String rid=req.getParameter("id");
+		if(id!=null && id.equals("")) {id=rid;}
 		
 		AccountDao adao=AccountDao.getInstance();
-		AccountVo avo=adao.select("");
+		AccountVo avo=adao.select(id);
 		
+		req.setAttribute("id", id);
+		req.setAttribute("email", avo.getEmail());
 		req.getRequestDispatcher("/mypage/userpage.jsp").forward(req, resp);
 	}
-	protected void shoppinglist(HttpServletRequest req, 
+	protected static void shoppinglist(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {
 		
 	}
-	protected void cart(HttpServletRequest req, 
+	protected static void cart(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {
 		
 		req.getRequestDispatcher("/mypage/cartpage.jsp").forward(req, resp);
 	}
-	protected void point(HttpServletRequest req, 
+	protected static void point(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {
 		
 	}
-	protected void qna(HttpServletRequest req, 
+	protected static void qna(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {
 		
 	}

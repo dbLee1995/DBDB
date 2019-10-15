@@ -12,7 +12,7 @@
 <meta name="author" content="Creative Tim">
 <title>랭닭킹컴</title>
 <!-- Favicon -->
-<link href="./assets/img/brand/favicon.png" rel="icon" type="image/png">
+<link href="./icon/mainicon.png" rel="icon" type="image/png">
 <!-- Fonts -->
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
@@ -147,7 +147,7 @@
 			<!-- navbar navbar-expand-lg navbar-dark bg-warning mt-4 -->
 			<!-- navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom -->
 			<div class="container">
-				<a class="navbar-brand mr-lg-5" href="./index.html"> <img
+				<a class="navbar-brand mr-lg-5" href="./index"> <img
 					alt="image" src="./assets/img/brand/white.png">
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
