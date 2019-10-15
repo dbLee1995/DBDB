@@ -122,12 +122,12 @@
 		}
 		var cartxhr=null;
 		function addCart(){
-			var count=document.getElementById("multicount");
+			var count=document.getElementById("multicount").value;
 			cartxhr=new XMLHttpRequest();
 			cartxhr.onreadystatechange=addCartOk;
-			cartxhr.open('post','cart?gdnum=${gdnum}',true);
-			addxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-			var param="count="+count+"&cmd=insert";
+			cartxhr.open('post','cart?cmd=insert',true);
+			cartxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+			var param="count="+count+"&gdnum=${gdnum}";
 			cartxhr.send(param);
 		}
 		function addCartOk(){

@@ -27,15 +27,13 @@ public class CartController extends HttpServlet{
 			HttpServletResponse resp) 
 					throws ServletException, IOException {
 		
-		//ScheduledExecutorService sc=new ScheduledExecutorService() {
-		//}
-		
 		req.setCharacterEncoding("utf-8");
 		String cmd=req.getParameter("cmd");
 		if(cmd!=null && cmd.equals("list")) {
 			list(req, resp);
 		}if(cmd!=null && cmd.equals("insert")) {
 			insert(req, resp);
+			System.out.println("dd");
 		}if(cmd!=null && cmd.equals("delete")) {
 			delete(req, resp);
 		}if(cmd!=null && cmd.equals("deleteall")) {

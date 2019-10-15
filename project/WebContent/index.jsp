@@ -68,7 +68,7 @@
 						<li class="nav-item dropdown"><a href="#" class="nav-link"
 							data-toggle="dropdown" role="button"> <i
 								class="ni ni-collection d-lg-none"></i> <span
-								class="nav-link-inner--text">Examples</span>
+								class="nav-link-inner--text">카테고리</span>
 						</a>
 							<div class="dropdown-menu">
 								<a href="./examples/landing.html" class="dropdown-item">Landing</a>
