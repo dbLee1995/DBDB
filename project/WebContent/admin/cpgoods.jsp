@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!--  goods -->
+<script>
 
+
+</script>
 <div class="container">
  <!--  <div class="card card-login mx-auto mt-5">-->
 	<div class="card text-white card-login bg-secondary o-hidden h-100 mx-auto mt-5">
 
 		<div class="card-header">상품 카테고리 등록</div>
 		<div class="card-body bg-light">
-			<form method="post" name="gdForm" onsubmit="return validate()">
+			<form method="post" name="gdForm"  >
 				<div class="form-group" >
 					<label for="cpSelect" style="color:black">회사 선택</label> 
 					<!-- 사명 중복체크하기 -->
@@ -27,7 +30,7 @@
 				</div>
 				<div class="col-lg-15 text-center">
 					<button type="button" class="btn btn-secondary" onclick="insertSubmit(1)">취소</button>
-					<button type="submit" class="btn btn-primary" >등록</button>
+					<button type="button" class="btn btn-primary" onclick="insertSubmit(2)" >등록</button>
 				</div>
 			</form>
 		</div>
@@ -36,15 +39,15 @@
 
 <script>
 
-
 	window.onload=companyList;
 	var cpxhr=null;
 	var check=true;
+	
 	function companyList(){
 		cpxhr=new XMLHttpRequest();
 		cpxhr.onreadystatechange=cpCallback;
 		cpxhr.open('post', 'goods?',true);//상대경로
-		cpxhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		cpxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 		var param="cmd=cpList";
 		cpxhr.send(param);
 	}
@@ -71,7 +74,8 @@
 		cpListNum=cpList.options[cpIndex].value;
 		if(gdListCheck==""){
 			gdListCheck.innerHTML="";
-			return;
+			check=false;
+			return check;
 		}
 		glxhr=new XMLHttpRequest();
 		glxhr.onreadystatechange=gdlistCallback;
@@ -88,9 +92,9 @@
 				gdListCheck.innerHTML="이미 등록된 상품 종류입니다."
 				check = false;
 				return check;
-				validate();
 			}else{
 				gdListCheck.innerHTML="";
+				return check;
 			}
 		}
 	}
@@ -106,11 +110,10 @@
 			GL.disabled=false;
 			GL.value="";
 			gdListCheck.innerHTML="";
-			check=false;
-			return check;
-			validate();
+
 		}
 	}
+	
 	function insertSubmit(index){
 		var gdList=document.getElementById("gdList").value;
 		if(index==1){
@@ -118,19 +121,21 @@
 		}
 		if(index==2){
 			document.gdForm.action="goods?cmd=gdInsert&cpListNum="+cpListNum;
-			alert("성공적으로 등록되었습니다.");
-			alert(check)
-	
+		//	alert("성공적으로 등록되었습니다.");
+			alert(check);
 		}
 		document.gdForm.submit();
 	}
-	
 	function validate(){
 		var gdList=document.getElementById("gdList").value;
+		
+		var list=JSON.parse(data)[0];
 		if(gdList==""){
 			return false;
 		}
+		
 		return true;
 	}
+
 
 </script>
