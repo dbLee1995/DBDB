@@ -70,7 +70,7 @@ public class ShoppinglistDao {
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select * from shoppinglist";
+			String sql="select * from shoppinglist order by ordernum";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			ArrayList<ShoppinglistVo> list=new ArrayList<ShoppinglistVo>();
@@ -82,7 +82,7 @@ public class ShoppinglistDao {
 											rs.getInt("gdcount"),
 											rs.getDate("regdate"),
 											rs.getString("name"),
-											rs.getString("phone"),
+											rs.getString("email"),
 											rs.getString("addr"),
 											rs.getString("msg"),
 											rs.getString("buyway"),
@@ -128,7 +128,7 @@ public class ShoppinglistDao {
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="update shoppinglist set gdcount=?,name=?,phone=?,addr=?,msg=?,buyway=?,state=? where gdnum=?";
+			String sql="update shoppinglist set gdcount=?,name=?,email=?,addr=?,msg=?,buyway=?,state=? where gdnum=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, vo.getGdCount());
 			pstmt.setString(2, vo.getName());

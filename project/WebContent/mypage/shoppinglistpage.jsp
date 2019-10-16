@@ -103,30 +103,48 @@
       </div>
       <div class="content">
         <div class="row">
-          <div class="col-md-10">
+          <div class="col-md-12">
             <div class="card">
               <div class="card-header">
               	<br>
                 <h5 >구매 내역</h5>
               </div>
               <div class="card-body">
-                <form>
-                	<c:forEach var="clist" items="${cartlist }">
-                		<br>
-						<div class='media'>
-						<img src='images/${clist.gdsumary }' class='align-self-start mr-3'
-						alt='' width='100' height='100'>
-						<div class='media-body'>
-						<h5 class='mt-0'><a href="./detail?gdnum=${clist.gdnum }">${clist.gdname }</a></h5>
-						<p>${clist.count }개  &nbsp; 총 금액: ${clist.count * clist.gdprice }원 &nbsp; (${clist.regdate })
-							<a href="./mypage?cmd=cartdelete&cnum=${clist.cnum }">삭제</a></p></div></div>
-                	</c:forEach>
-                	<hr>
-                	<% String id=(String)session.getAttribute("id"); %>
-                	<a href="./buypage?cmd=cart&id=<%=id%>">
-                	<button class="btn btn-1 btn-primary" type="button" id="buybtn">구매하기</button>
-                	</a>
-                </form>
+	              	<div class="table-responsive">
+	               		<table class="table">
+	               			<thead class=" text-primary">
+	               			<th>주문번호</th><th>상품명</th><th>갯수</th><th>가격</th>
+	               			<th>주소</th><th>배송메시지</th><th>교환/반품</th><th>배송확정</th>
+	               			</thead>
+	               			<tbody>
+	               			
+	               			
+	               		
+	               				<c:forEach var="slist" items="${shoppinglist }">
+	               				<tr>
+	               					<td >${slist.orderNum}</td>
+
+	               					<c:forEach var="glist" items="${goodsdetaillist }">
+	               						<c:if test="${slist.gdNum == glist.gdnum }">
+	               							<td>${glist.gdname }</td>
+	               							<td>${slist.gdCount }</td>
+	               							<td>${slist.gdCount * glist.gdprice }</td>
+	               							<td>${slist.addr }</td>
+	               							<td>${slist.msg }</td>
+	               							<td>
+	               								<button class="btn btn-1 btn-primary" type="button" id="btn">신청하기</button>
+	               							</td>
+	               							<td>
+	               								<button class="btn btn-1 btn-primary" type="button" id="btn">확정하기</button>
+	               							</td>
+	               						</c:if>
+	               					</c:forEach>
+	               				</tr>
+	               				</c:forEach>
+	               			</tbody>
+	               		</table>
+	               	</div>
+               	
               </div>
             </div>
           </div>

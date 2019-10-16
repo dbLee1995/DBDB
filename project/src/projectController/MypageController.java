@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import projectDao.AccountDao;
 import projectDao.CartDao;
+import projectDao.GoodsDetailDao;
 import projectDao.ShoppinglistDao;
 import projectDao.UserInfoDao;
 import projectVo.AccountVo;
 import projectVo.CartInfoVo;
+import projectVo.GoodsDetailVo;
 import projectVo.OrdernumInfoVo;
 import projectVo.ShoppinglistVo;
 import projectVo.UserInfoVo;
@@ -90,10 +92,15 @@ public class MypageController extends HttpServlet{
 		
 		ShoppinglistDao sdao=ShoppinglistDao.getInstance();
 		ArrayList<ShoppinglistVo> slist=sdao.selectAll();
-		req.setAttribute("slist", slist);
+		req.setAttribute("shoppinglist", slist);
 		
 		ArrayList<OrdernumInfoVo> olist=sdao.getOrdernumInfo();
-		req.setAttribute("olist", olist);
+		req.setAttribute("orderinfolist", olist);
+		req.setAttribute("orderinfolistsize", olist.size());
+		
+		GoodsDetailDao gdao=GoodsDetailDao.getInstance();
+		ArrayList<GoodsDetailVo> glist=gdao.selectAll();
+		req.setAttribute("goodsdetaillist", glist);
 		
 		req.getRequestDispatcher("/mypage/shoppinglistpage.jsp").forward(req, resp);
 	}
