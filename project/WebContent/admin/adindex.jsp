@@ -28,7 +28,6 @@
 </head>
 <%
 	String contentpage=request.getParameter("page");
-	System.out.println(contentpage);
 	if(contentpage==null){
 		contentpage="/admin/main.jsp";
 	}

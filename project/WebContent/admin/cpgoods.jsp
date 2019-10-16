@@ -111,15 +111,13 @@
 	
 	function insertSubmit(index){
 		var gdList=document.getElementById("gdList").value;
-		if(check==true&&gdList!=""){
-			if(index==1){
-				document.gdForm.action="adindex.jsp?page=cpinfo.jsp";
-				document.gdForm.submit();
-			}
-			if(index==2){
+		if(index==1){
+			document.gdForm.action="adindex.jsp?page=cpinfo.jsp";
+			document.gdForm.submit();
+		}
+		if(check==true&&gdList!=""&&index==2){
 				document.gdForm.action="goods?cmd=gdInsert&cpListNum="+cpListNum;
 				document.gdForm.submit();
-			}
 		}
 	}
 </script>

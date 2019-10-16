@@ -45,6 +45,9 @@ public class GoodsController extends HttpServlet {
 		if(cmd!=null&&cmd.equals("gdDelete")) {
 			gdDelete(req, resp);
 		}
+		if(cmd!=null&&cmd.equals("UpdateGdList")) {
+			UpdateGdList(req, resp);
+		}
 	}
 	int cpNum=0;
 	protected void cpList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -124,9 +127,34 @@ public class GoodsController extends HttpServlet {
 			req.setAttribute("gvo", gvoAll);
 			req.getRequestDispatcher("/admin/adindex.jsp?page=cpgoodsinfo.jsp").forward(req, resp);
 		}
-		
 	}
+	protected void UpdateGdList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/plain;charset=utf-8");
+		int cpNum=Integer.parseInt(req.getParameter("cpNum"));
+		GoodsDao gdao=GoodsDao.getInstance();
+		GoodsVo gvo=new GoodsVo(cpNum, 0, null);
+		ArrayList<GoodsVo> list=gdao.cpSelectAll(cpNum);
+		JSONArray arr=new JSONArray();
+		arr.put(list);
+		PrintWriter pw=resp.getWriter();
+		pw.print(arr);
+}
+	
 	protected void gdDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/plain;charset=utf-8");
+		int GDListNum=Integer.parseInt(req.getParameter("GDListNum"));
+		GoodsDao gdao=GoodsDao.getInstance();
+		GoodsVo gvo=new GoodsVo(0, GDListNum, null);
+		GoodsVo selvo=gdao.select(GDListNum);
+		int n=gdao.delete(GDListNum);
+		JSONObject json=new JSONObject();
+		PrintWriter pw=resp.getWriter();
+		if(n>0) {
+			json.put("code", "success");
+			json.put("selvo",selvo.getCPNum());
+		}else {
+			json.put("code", "false");
+		}
+		pw.print(json);
 	}
 }

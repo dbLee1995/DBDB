@@ -15,7 +15,7 @@
 					<input
 						type="text" class="form-control" id="cpName"
 						name="cpName"  value="${cvo.cpName }"
-						aria-describedby="emailHelp" > 
+						aria-describedby="emailHelp" disabled> 
 					  <span style="color:red; font-size:12px;" id="cpchk"></span>
 				</div>
 				<div class="form-group">
