@@ -94,7 +94,6 @@
 		cpxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 		var param="cmd=cpList";
 		cpxhr.send(param);
-	
 	}
 	function cpCallback(){
 		if(cpxhr.readyState==4 && cpxhr.status==200){

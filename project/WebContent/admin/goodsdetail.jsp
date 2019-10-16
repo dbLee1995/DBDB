@@ -115,7 +115,7 @@
 		glxhr.onreadystatechange = goodsListCallback;
 		glxhr.open('post', 'goods?', true);
 		glxhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		var param="cmd=gdList";
+		var param="cmd=gdList";//여기서 파라미터값을 넘겨서 셀렉트 구문 사용해야함
 		glxhr.send(param);
 	}
 	function goodsListCallback(){
@@ -135,8 +135,8 @@
          var gdSelect=document.getElementById("gdSelect");
          var childs=gdSelect.childNodes;
          for(var i=childs.length-1;i>=0;i--){
-                 var gs=childs.item(i);
-                 gdSelect.removeChild(gs);
+               var gs=childs.item(i);
+               gdSelect.removeChild(gs);
          }
  	}
 	
