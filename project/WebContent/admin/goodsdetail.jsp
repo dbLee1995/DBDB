@@ -9,7 +9,7 @@
 						    <tr>
 						      <td >회사선택</td>
 						      <td width="70%">
-							      <select class="custom-select" id="cpSelect" name="cpList" onchange="" >
+							      <select class="custom-select" id="cpSelect" name="cpList" onchange="cpSelect(this.value)" >
 							  		<option selected value="0" >select company</option>
 								  </select>	
 								</td>
@@ -81,5 +81,66 @@
 					</div>
 			</div>
 			</div>
+<script>
+	//에버노트 켜기 전 정렬하기
+	window.onload=companyList;
+	var cpxhr=null;
+	function companyList(){
+		cpxhr=new XMLHttpRequest();
+		cpxhr.onreadystatechange=cpCallback;
+		cpxhr.open('post', 'goods?',true);//상대경로
+		cpxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+		var param="cmd=cpList";
+		cpxhr.send(param);
+	}
+	function cpCallback(){
+		if(cpxhr.readyState==4 && cpxhr.status==200){
+			var cpSelect=document.getElementById("cpSelect");
+			var data=cpxhr.responseText;
+			var cpList=JSON.parse(data)[0];
+			for(var i=0;i<cpList.length;i++){
+				var cpOpt=document.createElement("option");
+				cpOpt.value=cpList[i].cpNum;
+				cpOpt.text=cpList[i].cpName;
+				cpSelect.appendChild(cpOpt);
+			}
+		}
+	}
+	var selectvalue=null;
+	var glxhr=null;
+	function cpSelect(obj){
+		removegoodsOption();
+		selectvalue = obj;
+		glxhr=new XMLHttpRequest();
+		glxhr.onreadystatechange = goodsListCallback;
+		glxhr.open('post', 'goods?', true);
+		glxhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		var param="cmd=gdList";
+		glxhr.send(param);
+	}
+	function goodsListCallback(){
+		if(glxhr.readyState==4 && glxhr.status==200){
+			var gdSelect=document.getElementById("gdSelect");
+			var gdData=glxhr.responseText;
+			var gdList=JSON.parse(gdData)[0];
+			for(var i=0;i<gdList.length;i++){
+				var gdOpt=document.createElement("option");
+				gdOpt.value=gdList[i].GDList;
+				gdOpt.text=gdList[i].GDList;
+				gdSelect.appendChild(gdOpt);
+			}
+		}
+	}
+	 function removegoodsOption(){
+         var gdSelect=document.getElementById("gdSelect");
+         var childs=gdSelect.childNodes;
+         for(var i=childs.length-1;i>=0;i--){
+                 var gs=childs.item(i);
+                 gdSelect.removeChild(gs);
+         }
+ 	}
+	
+
+</script>			
+	
 		
-	</div>

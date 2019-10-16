@@ -75,6 +75,7 @@
 	}
 	function cpDelSubmit(cpnum){
 		document.frm.action="company?cmd=cpDelete&cpnum="+cpnum;
+		//상세페이지 검색하고 값 있으면 서브밋 구문 실행 아닐 경우 실행x(상품 상세 조회 기능 있어야 가능)
 		document.frm.submit();
 	}
 	
