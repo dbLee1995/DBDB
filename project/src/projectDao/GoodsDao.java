@@ -106,13 +106,39 @@ public class GoodsDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	public ArrayList<GoodsVo> cpSelectAll(int num){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select * from goods where cpnum=? order by gdlistnum";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs=pstmt.executeQuery();
+			ArrayList<GoodsVo> list=new ArrayList<GoodsVo>();
+			while(rs.next()) {
+				GoodsVo vo=
+						new GoodsVo(rs.getInt("cpnum"),
+									rs.getInt("gdlistnum"), 
+									rs.getString("gdlist"));
+				list.add(vo);
+			}
+			return list;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 	public ArrayList<GoodsVo> selectAll(){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select * from goods";
+			String sql="select * from goods order by gdlistnum";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			ArrayList<GoodsVo> list=new ArrayList<GoodsVo>();
