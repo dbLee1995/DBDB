@@ -69,8 +69,8 @@
 						    <tr>
 						    	<td colspan="2">
 						    		<div class="col-lg-15 text-center">
-										<button type="submit" class="btn btn-secondary" >취소</button>
-										<button type="submit" class="btn btn-outline-primary" >미리보기</button>
+										<button type="submit" class="btn btn-secondary" >취소</button>&nbsp;&nbsp;
+										<button type="submit" class="btn btn-outline-primary" >미리보기</button>&nbsp;&nbsp;
 										<button type="submit" class="btn btn-primary" >다음</button>
 									</div>
 						    	
