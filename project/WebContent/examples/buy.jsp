@@ -66,7 +66,6 @@
 	<script type="text/javascript">
 		var buyxhr=null;
 		function addbuy(){
-			var name=document.getElementsByName("name")[0].value;
 			var email=document.getElementsByName("email")[0].value;
 			var addr=document.getElementsByName("addr")[0].value;
 			
@@ -80,6 +79,7 @@
 			}
 			var usepoint=document.getElementById("usepoint").value;
 			var useablepoint=document.getElementById("useablepoint").value;
+			var updatepoint=useablepoint-usepoint;
 			var msg=document.getElementById("msg").value;
 			
 			if(usepoint>useablepoint){
@@ -88,15 +88,16 @@
 			}
 			
 			buyxhr=new XMLHttpRequest();
-			buyxhr.onreadystatechange=modiinfoOk;
+			buyxhr.onreadystatechange=addbuyOk;
 			buyxhr.open('post','./buy?cmd=user',true);
 			buyxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-			var param="name="+name+"&email="+email+"&addr="+addr+"b";
+			var param="email="+email+"&addr="+addr+"&bwvalue="+bwvalue+
+						"&point="+updatepoint+"&msg="+msg+"&id=${account.id}";
 			buyxhr.send(param);
 		}
 		function addbuyOk(){
 			if(buyxhr.readyState==4 && buyxhr.status==200){
-				alert("");
+				alert("구매가 완료되었습니다!");
 				location.href="./index";
 			}
 		}
@@ -225,7 +226,7 @@
 								<div class="form-group">
 				             		<input type="text" placeholder="이름을 입력해주세요" id="margintext" 
 				             		class="form-control" value="${userinfo.fname}${userinfo.lname}"
-				             		name="name"/>
+				             		name="name" disabled/>
 				            	</div>
 							</div>
 							<div class="row">
