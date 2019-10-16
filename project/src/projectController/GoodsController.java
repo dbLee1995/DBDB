@@ -36,7 +36,17 @@ public class GoodsController extends HttpServlet {
 		if(cmd!=null&&cmd.equals("gdList")) {
 			gdList(req, resp);
 		}
+		if(cmd!=null&&cmd.equals("gdSelect")) {
+			gdSelect(req, resp);
+		}
+		if(cmd!=null&&cmd.equals("gdUpdate")) {
+			gdUpdate(req, resp);
+		}
+		if(cmd!=null&&cmd.equals("gdDelete")) {
+			gdDelete(req, resp);
+		}
 	}
+	int cpNum=0;
 	protected void cpList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/plain;charset=utf-8");
 		JSONArray arr=new JSONArray();
@@ -85,5 +95,38 @@ public class GoodsController extends HttpServlet {
 		PrintWriter pw=resp.getWriter();
 		pw.print(arr);
 		
+	}
+	protected void gdSelect(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/plain;charset=utf-8");
+		int GDListNum=Integer.parseInt(req.getParameter("GDListNum"));
+		GoodsDao dao=GoodsDao.getInstance();
+		GoodsVo vo=dao.select(GDListNum);
+		cpNum=	vo.getCPNum();
+		CompanyDao cdao=CompanyDao.getInstance();
+		CompanyVo cvo=cdao.select(cpNum);
+
+
+		req.setAttribute("vo", vo);
+		req.setAttribute("cvo", cvo);
+		req.getRequestDispatcher("adindex.jsp?page=gdupdate.jsp").forward(req, resp);
+		
+	}
+	
+	protected void gdUpdate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/plain;charset=utf-8");
+		String gdList=req.getParameter("gdList");
+		int gdListNum=Integer.parseInt(req.getParameter("gdListNum"));
+		GoodsDao gdao=GoodsDao.getInstance();
+		GoodsVo gvo=new GoodsVo(0,gdListNum, gdList);
+		GoodsVo gvoAll=new GoodsVo(cpNum, gdListNum, gdList);
+		int n=gdao.update(gvo);
+		if(n>0) {
+			req.setAttribute("gvo", gvoAll);
+			req.getRequestDispatcher("/admin/adindex.jsp?page=cpgoodsinfo.jsp").forward(req, resp);
+		}
+		
+	}
+	protected void gdDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/plain;charset=utf-8");
 	}
 }

@@ -45,6 +45,8 @@
 	window.onload=companyList;
 	var cpxhr=null;
 	function companyList(){
+	//	var cpNum=${gvo.CPNum}
+	//	alert(cpNum);
 		cpxhr=new XMLHttpRequest();
 		cpxhr.onreadystatechange=cpCallback;
 		cpxhr.open('post', 'goods?',true);//상대경로
@@ -76,7 +78,6 @@
 		var param="cmd=gdList";
 		glxhr.send(param);
 	}
-	//var listNum=null
 	function goodsListCallback(){
 		if(glxhr.readyState==4&&glxhr.status==200){
 			removeTablebody();
@@ -94,8 +95,8 @@
 					cpNumCell.innerHTML=list[i].CPNum;
 					gdListNumCell.innerHTML=list[i].GDListNum;
 					gdListCell.innerHTML=list[i].GDList;
-					UpdateCell.innerHTML = "<button type='button' class='btn btn-info' onClick='cpUpSubmit(" +list[i].cpNum +")'>수정</button>"
-					delCell.innerHTML = "<button type='button' class='btn btn-warning' onClick='cpDelSubmit("+list[i].cpNum+")'>삭제</button>"
+					UpdateCell.innerHTML = "<button type='button' class='btn btn-info' onClick='goodsUpSubmit(" +list[i].GDListNum +")'>수정</button>"
+					delCell.innerHTML = "<button type='button' class='btn btn-warning' onClick='goodsDelSubmit("+list[i].GDListNum+")'>삭제</button>"
 				}
 			}
 		}
@@ -107,7 +108,14 @@
                  var tbody=childs.item(i);
                  tablebody.removeChild(tbody);
          }
- }
+ 	}
 
-	
+	function goodsUpSubmit(GDListNum) {
+		document.frm.action = "goods?cmd=gdSelect&GDListNum=" + GDListNum;
+		document.frm.submit();
+	}
+	function goodsDelSubmit(GDListNum) {
+		document.frm.action = "goods?cmd=gdDelete&GDListNum="+ GDListNum;
+		document.frm.submit();
+	}
 </script>
