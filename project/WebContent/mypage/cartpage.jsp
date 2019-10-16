@@ -157,7 +157,7 @@
                 	</c:forEach>
                 	<hr>
                 	<% String id=(String)session.getAttribute("id"); %>
-                	<a href="./buy?id=<%=id%>">
+                	<a href="./buypage?cmd=cart&id=<%=id%>">
                 	<button class="btn btn-1 btn-primary" type="button" id="buybtn">구매하기</button>
                 	</a>
                 </form>

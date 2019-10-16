@@ -56,9 +56,50 @@
 #margintext{
 	margin-left: 35px;
 }
+#margindiv{
+	margin-left: 800px;
+}
+#pointinfo{
+	font-size: 0.7em;
+}
 </style>
 	<script type="text/javascript">
-
+		var buyxhr=null;
+		function addbuy(){
+			var name=document.getElementsByName("name")[0].value;
+			var email=document.getElementsByName("email")[0].value;
+			var addr=document.getElementsByName("addr")[0].value;
+			
+			var buyway=document.getElementsByName("buyway");
+			var bwvalue="";
+			for(var i=0;i<buyway.length;++i){
+				if(buyway[i].checked==true){
+					bwvalue+=buyway[i].value+" ";
+					break;
+				}
+			}
+			var usepoint=document.getElementById("usepoint").value;
+			var useablepoint=document.getElementById("useablepoint").value;
+			var msg=document.getElementById("msg").value;
+			
+			if(usepoint>useablepoint){
+				alert("사용포인트는 가용포인트보다 클 수 없습니다.");
+				return;
+			}
+			
+			buyxhr=new XMLHttpRequest();
+			buyxhr.onreadystatechange=modiinfoOk;
+			buyxhr.open('post','./buy?cmd=user',true);
+			buyxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+			var param="name="+name+"&email="+email+"&addr="+addr+"b";
+			buyxhr.send(param);
+		}
+		function addbuyOk(){
+			if(buyxhr.readyState==4 && buyxhr.status==200){
+				alert("");
+				location.href="./index";
+			}
+		}
 	</script>
 </head>
 <body>
@@ -151,6 +192,10 @@
 							</p></div></div>
                 	</c:forEach>
                 	<br>
+					<div class="row" id="margindiv">
+					<label class="buypagelabel">total:</label> &nbsp;&nbsp;
+					<h2>${totalprice }원</h2>
+					</div>
 				<nav class="navbar navbar-expand-lg navbar-dark bg-warning mt-4">
 					<div class="container">
 						<a class="navbar-brand" href="#" id="detailcontent">주문자 정보</a>
@@ -179,7 +224,8 @@
 								&nbsp;&nbsp;&nbsp;
 								<div class="form-group">
 				             		<input type="text" placeholder="이름을 입력해주세요" id="margintext" 
-				             		class="form-control" value="${userinfo.fname}${userinfo.lname}"/>
+				             		class="form-control" value="${userinfo.fname}${userinfo.lname}"
+				             		name="name"/>
 				            	</div>
 							</div>
 							<div class="row">
@@ -187,7 +233,8 @@
 								&nbsp;&nbsp;&nbsp;
 								<div class="form-group">
 				             		<input type="text" placeholder="메일주소를 입력해주세요" 
-				             		class="form-control" width="300" value="${userinfo.addr }"/>
+				             		class="form-control" width="300" value="${account.email }"
+				             		name="email"/>
 				            	</div>
 							</div>
 							<div class="row">
@@ -195,7 +242,8 @@
 								&nbsp;&nbsp;&nbsp;
 								<div class="form-group">
 				             		<input type="text" placeholder="주소를 입력해주세요" id="margintext" 
-				             		class="form-control" value="${userinfo.addr }"/>
+				             		class="form-control" value="${userinfo.addr }"
+				             		name="addr"/>
 				            	</div>
 							</div>
 							<br><br><hr>
@@ -222,6 +270,58 @@
 						</div>
 					</div>
 				</nav>
+				
+				<div class="row justify-content-center">
+					<div class="col-lg-12">
+						<!-- Basic elements -->
+						<div class="container">
+						<br>
+							<div class="row">
+								<label class="buypagelabel">결제수단</label>
+								&nbsp;&nbsp;&nbsp;
+								<div class="custom-control custom-radio mb-3">
+					              <input name="buyway" class="custom-control-input" id="customRadio1" 
+					              checked type="radio" value="카드">
+					              <label class="custom-control-label" for="customRadio1"><span>카드</span></label>
+					            </div>
+					            &nbsp;&nbsp;
+					            <div class="custom-control custom-radio mb-3">
+					              <input name="buyway" class="custom-control-input" id="customRadio2" 
+					              type="radio" value="무통장입금">
+					              <label class="custom-control-label" for="customRadio2"><span>무통장입금</span></label>
+					            </div>
+							</div>
+							<br>
+							<div class="row">
+								<label class="buypagelabel">사용포인트</label>
+								&nbsp;&nbsp;&nbsp;
+								<div class="form-group">
+				             		<input type="text" placeholder="사용 포인트 입력" id="usepoint"
+				             		class="form-control" width="300" value="0"/>
+				            	</div>
+				            	&nbsp;&nbsp;&nbsp;
+				            	<label class="buypagelabel">가용포인트</label>
+								&nbsp;&nbsp;&nbsp;
+								<div class="form-group">
+				             		<input type="text" placeholder="" id="useablepoint"
+				             		class="form-control" width="300" value="${account.point }" disabled/>
+				            	</div>
+				            	<span id="pointinfo">포인트를 사용한 결제는 포인트가 적립되지 않습니다!</span>
+							</div>
+							<br>
+								<label class="buypagelabel">배송메시지 입력</label>
+								&nbsp;&nbsp;&nbsp;
+								<div class="form-group">
+				             		<input type="text" placeholder="배송메시지를 13자 이내로 입력해주세요" 
+				             		class="form-control" id="msg"/>
+				            	</div>
+							
+
+							<br><br><hr>
+						</div>
+
+					</div>
+				</div>
 					
 					
 			<hr>
