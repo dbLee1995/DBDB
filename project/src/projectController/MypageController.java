@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import projectDao.AccountDao;
 import projectDao.CartDao;
+import projectDao.ShoppinglistDao;
 import projectDao.UserInfoDao;
 import projectVo.AccountVo;
 import projectVo.CartInfoVo;
+import projectVo.OrdernumInfoVo;
+import projectVo.ShoppinglistVo;
 import projectVo.UserInfoVo;
 
 @WebServlet("/mypage")
@@ -84,6 +87,13 @@ public class MypageController extends HttpServlet{
 	}
 	protected static void shoppinglist(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {
+		
+		ShoppinglistDao sdao=ShoppinglistDao.getInstance();
+		ArrayList<ShoppinglistVo> slist=sdao.selectAll();
+		req.setAttribute("slist", slist);
+		
+		ArrayList<OrdernumInfoVo> olist=sdao.getOrdernumInfo();
+		req.setAttribute("olist", olist);
 		
 		req.getRequestDispatcher("/mypage/shoppinglistpage.jsp").forward(req, resp);
 	}

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import jdbc.JdbcUtil;
 import projectVo.GoodsDetailVo;
+import projectVo.OrdernumInfoVo;
 import projectVo.ShoppinglistVo;
 
 public class ShoppinglistDao {
@@ -90,6 +91,32 @@ public class ShoppinglistDao {
 			}
 			return list;
 		}catch(SQLException se) {
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	public ArrayList<OrdernumInfoVo> getOrdernumInfo(){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select ordernum, count(ordernum) as count from shoppinglist" + 
+					" group by ordernum";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			ArrayList<OrdernumInfoVo> list=new ArrayList<OrdernumInfoVo>();
+			while(rs.next()) {
+				OrdernumInfoVo vo=
+						new OrdernumInfoVo(rs.getInt("ordernum"),
+											rs.getInt("count"));
+				list.add(vo);
+			}
+			return list;
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
 			se.printStackTrace();
 			return null;
 		}finally {

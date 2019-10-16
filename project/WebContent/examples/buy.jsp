@@ -66,6 +66,7 @@
 	<script type="text/javascript">
 		var buyxhr=null;
 		function addbuy(){
+			var name=document.getElementsByName("name")[0].value;
 			var email=document.getElementsByName("email")[0].value;
 			var addr=document.getElementsByName("addr")[0].value;
 			
@@ -91,13 +92,14 @@
 			buyxhr.onreadystatechange=addbuyOk;
 			buyxhr.open('post','./buy?cmd=user',true);
 			buyxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-			var param="email="+email+"&addr="+addr+"&bwvalue="+bwvalue+
-						"&point="+updatepoint+"&msg="+msg+"&id=${account.id}";
+			var param="name="+name+"&email="+email+"&addr="+addr+"&bwvalue="+bwvalue+
+						"&point="+updatepoint+"&msg="+msg+"&id=${account.id}&ordernum=${ordernum}"+
+						"&totalprice=${totalprice}";
 			buyxhr.send(param);
 		}
 		function addbuyOk(){
 			if(buyxhr.readyState==4 && buyxhr.status==200){
-				alert("구매가 완료되었습니다!");
+				alert("구매가 완료되었습니다! \n메인화면으로 돌아갑니다");
 				location.href="./index";
 			}
 		}
@@ -307,7 +309,6 @@
 				             		<input type="text" placeholder="" id="useablepoint"
 				             		class="form-control" width="300" value="${account.point }" disabled/>
 				            	</div>
-				            	<span id="pointinfo">포인트를 사용한 결제는 포인트가 적립되지 않습니다!</span>
 							</div>
 							<br>
 								<label class="buypagelabel">배송메시지 입력</label>

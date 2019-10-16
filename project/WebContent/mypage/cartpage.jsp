@@ -86,7 +86,7 @@
           <li>
             <a href="./mypage?cmd=shoppinglist">
               <i class="now-ui-icons design_app"></i>
-              <p>구매목록</p>
+              <p>구매내역</p>
             </a>
           </li>
           <li class="active ">
