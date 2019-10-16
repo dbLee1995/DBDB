@@ -26,11 +26,10 @@
 						name="gdList" placeholder="상품 종류">
 					<!-- 	<small id="cpPhonesmall" class="form-text text-muted" >*필수 입력</small>  -->
 						<span style="color:red; font-size:12px;" id="gdListCheck"></span>
-				
 				</div>
 				<div class="col-lg-15 text-center">
-					<button type="button" class="btn btn-secondary" onclick="insertSubmit(1)">취소</button>
-					<button type="button" class="btn btn-primary" onclick="insertSubmit(2)" >등록</button>
+					<input type="button" class="btn btn-secondary" onclick="insertSubmit(1)" value="취소">취소
+					<input type="button" class="btn btn-primary" onclick="insertSubmit(2)" value="등록">등록
 				</div>
 			</form>
 		</div>
@@ -75,7 +74,6 @@
 		if(gdListCheck==""){
 			gdListCheck.innerHTML="";
 			check=false;
-			return check;
 		}
 		glxhr=new XMLHttpRequest();
 		glxhr.onreadystatechange=gdlistCallback;
@@ -91,10 +89,9 @@
 			if(json.using==true){
 				gdListCheck.innerHTML="이미 등록된 상품 종류입니다."
 				check = false;
-				return check;
 			}else{
 				gdListCheck.innerHTML="";
-				return check;
+				check = true;
 			}
 		}
 	}
@@ -104,8 +101,6 @@
 			GL.disabled=true;
 			GL.value="";
 			check=false;
-			return check;
-			validate();
 		}else{
 			GL.disabled=false;
 			GL.value="";
@@ -116,26 +111,15 @@
 	
 	function insertSubmit(index){
 		var gdList=document.getElementById("gdList").value;
-		if(index==1){
-			document.gdForm.action="adindex.jsp?page=cpinfo.jsp";
+		if(check==true&&gdList!=""){
+			if(index==1){
+				document.gdForm.action="adindex.jsp?page=cpinfo.jsp";
+				document.gdForm.submit();
+			}
+			if(index==2){
+				document.gdForm.action="goods?cmd=gdInsert&cpListNum="+cpListNum;
+				document.gdForm.submit();
+			}
 		}
-		if(index==2){
-			document.gdForm.action="goods?cmd=gdInsert&cpListNum="+cpListNum;
-		//	alert("성공적으로 등록되었습니다.");
-			alert(check);
-		}
-		document.gdForm.submit();
 	}
-	function validate(){
-		var gdList=document.getElementById("gdList").value;
-		
-		var list=JSON.parse(data)[0];
-		if(gdList==""){
-			return false;
-		}
-		
-		return true;
-	}
-
-
 </script>
