@@ -18,8 +18,8 @@
 					<thead>
 						<tr>
 							<th>회사번호</th>
-							<th>회사명</th>
-							<th>전화번호</th>
+							<th>상품 종류번호</th>
+							<th>상품 종류</th>
 							<th>수정</th>
 							<th>삭제</th>
 						</tr>
@@ -27,8 +27,8 @@
 					<tfoot>
 						<tr>
 							<th>회사번호</th>
-							<th>회사명</th>
-							<th>전화번호</th>
+							<th>상품 종류번호</th>
+							<th>상품 종류</th>
 							<th>수정</th>
 							<th>삭제</th>
 						</tr>
