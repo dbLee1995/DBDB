@@ -91,7 +91,7 @@ public class MypageController extends HttpServlet{
 			HttpServletResponse resp) throws ServletException, IOException {
 		
 		ShoppinglistDao sdao=ShoppinglistDao.getInstance();
-		ArrayList<ShoppinglistVo> slist=sdao.selectAll();
+		ArrayList<ShoppinglistVo> slist=sdao.select(id);
 		req.setAttribute("shoppinglist", slist);
 		
 		ArrayList<OrdernumInfoVo> olist=sdao.getOrdernumInfo();

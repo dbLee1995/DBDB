@@ -126,7 +126,7 @@
 
 	               					<c:forEach var="glist" items="${goodsdetaillist }">
 	               						<c:if test="${slist.gdNum == glist.gdnum }">
-	               							<td>${glist.gdname }</td>
+	               							<td><a href="./detail?gdnum=${slist.gdNum }">${glist.gdname }</a></td>
 	               							<td>${slist.gdCount }</td>
 	               							<td>${slist.gdCount * glist.gdprice }</td>
 	               							<td>${slist.addr }</td>
