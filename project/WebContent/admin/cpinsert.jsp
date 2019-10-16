@@ -6,7 +6,6 @@
 	<div class="card card-login mx-auto mt-5">
 		<div class="card-header">신규 회사 정보 등록</div>
 		<div class="card-body">
-	
 			<form action="company?cmd=cpInsert" method="post" onsubmit="return validate()">
 				<div class="form-group" >
 					<label for="cpName">회사명</label> 
@@ -28,7 +27,7 @@
 				</div>
 				<div class="col-lg-15 text-center">
 					<button type="submit" class="btn btn-primary" disabled="disabled">등록</button>
-					<button type="submit" class="btn btn-primary">다음</button>
+					<button type="submit" class="btn btn-primary" >다음</button>
 				</div>
 			</form>
 		</div>
@@ -67,7 +66,7 @@
 				
 			}else{
 				cpchk.innerHTML="";
-				check=false;
+				check=true;
 				return check;
 	
 			}
