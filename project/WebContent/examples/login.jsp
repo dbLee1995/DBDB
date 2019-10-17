@@ -200,7 +200,7 @@ expanded="false" aria-label="Toggle navigation">
             </div>
             <div class="row mt-3">
               <div class="col-6">
-                <a href="#" class="text-light"><small>Forgot password?
+                <a href="/project/examples/searchpwd.html" class="text-light"><small>Forgot password?
 </small></a>
               </div>
               <div class="col-6 text-right">
