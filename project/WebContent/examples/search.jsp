@@ -28,13 +28,44 @@
 .card {
 	margin-left: 30px;
 }
+#button-addon2{
+	margin-bottom: 10px;
+}
 </style>
 	<script type="text/javascript">
 		function search(){
 			
 			var searchbar=document.getElementById("searchbar").value;
+			var company=document.getElementsByName("company");
+			var list=document.getElementsByName("list");
+			var array=document.getElementsByName("array");
 			
-			location.href="./search?keyword="+searchbar;
+			var companyV="";
+			for(var i=0;i<company.length;++i){
+				if(company[i].checked==true){
+					companyV+=company[i].value+"";
+					break;
+				}
+			}
+			var listV="";
+			for(var i=0;i<list.length;++i){
+				if(list[i].checked==true){
+					listV+=list[i].value+"";
+					break;
+				}
+			}
+			var arrayV="";
+			for(var i=0;i<array.length;++i){
+				if(array[i].checked==true){
+					arrayV+=array[i].value+"";
+					break;
+				}
+			}
+			
+			location.href="./search?keyword="+searchbar+"&company="+companyV+"&list="+listV+"&array="+arrayV;
+		}
+		function searchbtn(){
+			search();
 		}
 	</script>
 </head>
@@ -251,6 +282,9 @@
 						            </div>
 								</div>
 								
+								<button class="btn btn-1 btn-outline-warning" type="button" id="tbtn"
+								onclick="searchbtn()">검색하기</button>
+								
 		                    </div>
 		                
 		                </div>
@@ -260,7 +294,7 @@
 
 					<!-- 검색창 -->
 					<div class="form-group">
-		              <div class="input-group mb-4">
+		              <div class="input-group mb-15">
 		                <div class="input-group-prepend">
 		                  <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
 		                </div>
