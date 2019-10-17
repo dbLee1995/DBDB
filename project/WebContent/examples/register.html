@@ -33,7 +33,6 @@
 </head>
 
 <body>
-
   <header class="header-global">
     <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
       <div class="container">
@@ -252,7 +251,7 @@
   <script src="../assets/js/argon.js?v=1.1.0"></script>
 </body>
 <script>
-	
+	var check=true;
 	function validate(){
 		var id=document.getElementById("inputId4");
 		var pwd=document.getElementById("inputPassword4");
@@ -260,7 +259,9 @@
 		var email=document.getElementById("inputEmail4");
 		var chk=document.getElementById("customCheckRegister");
 	
-		
+		if(check==false){
+			return false;
+		}
 		if((id.value.length<4 || id.value.length>=10)){
 			alert("아이디 4~10자 사이로 입력" );
 			id.focus();
@@ -315,6 +316,7 @@
 				var idusing=JSON.parse(data);
 				if(idusing.idusing==true){
 					idspan.innerHTML="사용 중인 아이디 입니다.";
+					check=false;
 				}else{
 					idspan.innerHTML="사용 가능한 아이디 입니다.";
 				}
