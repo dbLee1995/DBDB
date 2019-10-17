@@ -55,6 +55,12 @@
               <p>구매내역</p>
             </a>
           </li>
+          <li>
+            <a href="./mypage?cmd=trade">
+              <i class="now-ui-icons design_app"></i>
+              <p>교환/반품 신청내역</p>
+            </a>
+          </li>
           <li >
             <a href="./mypage?cmd=cart">
               <i class="now-ui-icons design_app"></i>
@@ -133,14 +139,39 @@
 	               							<td>${slist.addr }</td>
 	               							<td>${slist.msg }</td>
 	               							<td>
-	               								<button class="btn btn-1 btn-primary" type="button" id="btn">신청하기</button>
+	               								<c:choose>
+	               									<c:when test="${slist.state==3 }">
+	               										<button class="btn btn-1 btn-primary" type="button" 
+			               									id="tradebtn" disabled>신청하기</button>
+	               									</c:when>
+	               									<c:otherwise>
+	               										<a href="./mypage?cmd=trade&snum=${slist.snum }&state=7">
+			               								<button class="btn btn-1 btn-primary" type="button" 
+			               									id="tradebtn">신청하기</button>
+			               								</a>
+	               									</c:otherwise>
+	               								</c:choose>
 	               							</td>
 	               							<td>
-	               								<button class="btn btn-1 btn-primary" type="button" id="btn">확정하기</button>
+	               								<c:choose>
+	               									<c:when test="${slist.state==3 }">
+	               										<button class="btn btn-1 btn-primary" type="button" 
+			               									id="fbtn" disabled>확정하기</button>
+	               									</c:when>
+	               									<c:otherwise>
+	               										<a href="./mypage?cmd=updateshoppinglist&snum=${slist.snum }&state=3">
+			               								<button class="btn btn-1 btn-primary" type="button" 
+			               									id="fbtn">확정하기</button>
+			               								</a>
+	               									</c:otherwise>
+	               								</c:choose>
 	               							</td>
 	               							<c:if test="${slist.state==1 }"><td>배송중</td></c:if>
-	               							<c:if test="${slist.state==2 }"><td>교환/반품중</td></c:if>
+	               							<c:if test="${slist.state==2 }"><td>교환중</td></c:if>
 	               							<c:if test="${slist.state==3 }"><td>배송완료</td></c:if>
+	               							<c:if test="${slist.state==4 }"><td>반품중</td></c:if>
+	               							<c:if test="${slist.state==5 }"><td>교환완료</td></c:if>
+	               							<c:if test="${slist.state==6 }"><td>반품완료</td></c:if>
 	               						</c:if>
 	               					</c:forEach>
 	               				</tr>

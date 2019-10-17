@@ -22,41 +22,7 @@
   <link href="./assets/demo/demo.css" rel="stylesheet" />
   
   <script type="text/javascript">
-  	window.onload=function(){
-		getList();
-	}
-  	var listxhr=null;
-	function getList(){
-		listxhr=new XMLHttpRequest();
-		listxhr.onreadystatechange=listOk;
-		listxhr.open('get','mypage?cmd=cart',true);
-		listxhr.send();
-	}
-	function listOk(){
-		if(listxhr.readyState==4 && listxhr.status==200){
-			var data=listxhr.responseText;
-			var list=JSON.parse(data)[0];
-			var revdiv=document.getElementById("revdiv");
-			for(var i=0;i<list.length;++i){
-				var str="<br>"+
-				"<div class='media'>"+
-				"<img src='images/${sumimg }' class='align-self-start mr-3'"+ 
-				"alt='' width='100' height='100'>"+
-				"<div class='media-body'>"+
-				"<h5 class='mt-0'>"+list[i].title+"</h5>"+
-				"<p>"+list[i].id+"("+list[i].regdate+")";
-				for(var j=0;j<list[i].score;++j){
-					str+="★";
-				}
-				str+="<a href='review?cmd=delete&gdnum=${gdnum}&id="+list[i].id+"&rid=${id}&revnum="+list[i].revnum+"'>"+
-					 "삭제</a></p><p>"+list[i].content+"</p></div></div>";
-				
-				var div=document.createElement("div");
-				div.innerHTML=str;
-				revdiv.appendChild(div);
-			}
-		}
-	}
+
   </script>
   
 </head>
@@ -83,19 +49,19 @@
               <p>내 정보</p>
             </a>
           </li>
-          <li>
+          <li >
             <a href="./mypage?cmd=shoppinglist">
               <i class="now-ui-icons design_app"></i>
               <p>구매내역</p>
             </a>
           </li>
-          <li>
+          <li class="active ">
             <a href="./mypage?cmd=trade">
               <i class="now-ui-icons design_app"></i>
               <p>교환/반품 신청내역</p>
             </a>
           </li>
-          <li class="active ">
+          <li >
             <a href="./mypage?cmd=cart">
               <i class="now-ui-icons design_app"></i>
               <p>장바구니</p>
@@ -147,30 +113,64 @@
             <div class="card">
               <div class="card-header">
               	<br>
-                <h5 >내 장바구니</h5>
+                <h5 >구매 내역</h5>
               </div>
+              
               <div class="card-body">
-                <form>
-                	<c:forEach var="clist" items="${cartlist }">
-                		<br>
-						<div class='media'>
-						<img src='images/${clist.gdsumary }' class='align-self-start mr-3'
-						alt='' width='100' height='100'>
-						<div class='media-body'>
-						<h5 class='mt-0'><a href="./detail?gdnum=${clist.gdnum }">${clist.gdname }</a></h5>
-						<p>${clist.count }개  &nbsp; 총 금액: ${clist.count * clist.gdprice }원 &nbsp; (${clist.regdate })
-							<a href="./mypage?cmd=cartdelete&cnum=${clist.cnum }">삭제</a></p></div></div>
-                	</c:forEach>
-                	<hr>
-                	<% String id=(String)session.getAttribute("id"); %>
-                	<a href="./buypage?cmd=cart&id=<%=id%>">
-                	<button class="btn btn-1 btn-primary" type="button" id="buybtn">구매하기</button>
-                	</a>
-                </form>
+	              	<div class="table-responsive">
+	               		<table class="table">
+	               			<thead class=" text-primary">
+		               			<th>주문번호</th><th>상품명</th><th>갯수</th><th>교환/반품 상황</th>
+	               			</thead>
+	               			<tbody>
+	               			
+	               				<c:forEach var="slist" items="${shoppinglist }">
+	               				<c:if test="${slist.state==2 || slist.state==4 || slist.state==5 || slist.state==6 }">
+	               				<tr>
+	               					<td >${slist.orderNum}</td>
+
+	               					<c:forEach var="glist" items="${goodsdetaillist }">
+	               						<c:if test="${slist.gdNum == glist.gdnum }">
+	               							<td><a href="./detail?gdnum=${slist.gdNum }">${glist.gdname }</a></td>
+	               							<td>${slist.gdCount }</td>
+	               							<c:if test="${slist.state==1 }"><td>배송중</td></c:if>
+	               							<c:if test="${slist.state==2 }"><td>교환중</td></c:if>
+	               							<c:if test="${slist.state==3 }"><td>배송완료</td></c:if>
+	               							<c:if test="${slist.state==4 }"><td>반품중</td></c:if>
+	               							<c:if test="${slist.state==5 }"><td>교환완료</td></c:if>
+	               							<c:if test="${slist.state==6 }"><td>반품완료</td></c:if>
+	               						</c:if>
+	               					</c:forEach>
+	               				</tr>
+	               				</c:if>
+	               				</c:forEach>
+	               			</tbody>
+	               		</table>
+	               	</div>
               </div>
             </div>
           </div>
         </div>
+        
+        
+        <div class="row">
+          <div class="col-md-10">
+            <div class="card">
+              <div class="card-header">
+              	<br>
+                <h5 >교환/반품 신청</h5>
+              </div>
+              
+              <div class="card-body">
+	              	<div class="table-responsive">
+
+	               	</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
       </div>
     </div>
   </div>

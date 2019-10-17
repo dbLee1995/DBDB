@@ -1,5 +1,6 @@
 create table shoppinglist
 (
+	snum number(10) primary key,
 	GDNum number(10),
 	id varchar2(20),
 	OrderNum number(10), 

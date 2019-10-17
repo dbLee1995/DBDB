@@ -58,7 +58,7 @@ public class BuyController extends HttpServlet{
 		ShoppinglistDao sdao=ShoppinglistDao.getInstance();
 		for(int i=0;i<cvolist.size();++i) {
 			ShoppinglistVo svo=
-					new ShoppinglistVo(cvolist.get(i).getGdNum(),
+					new ShoppinglistVo(0,cvolist.get(i).getGdNum(),
 							id,ordernum,cvolist.get(i).getCount(),
 							null,name,email,addr,msg,buyway,1);
 			sdao.insert(svo);

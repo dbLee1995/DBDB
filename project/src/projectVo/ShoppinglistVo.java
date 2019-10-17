@@ -3,6 +3,7 @@ package projectVo;
 import java.sql.Date;
 
 public class ShoppinglistVo {
+	private int snum;
 	private int gdNum;
 	private String id;
 	private int orderNum;
@@ -15,9 +16,10 @@ public class ShoppinglistVo {
 	private String buyway;
 	private int state;
 	public ShoppinglistVo() {}
-	public ShoppinglistVo(int gdNum, String id, int orderNum, int gdCount, Date regdate, String name, String phone,
-			String addr, String msg, String buyway, int state) {
+	public ShoppinglistVo(int snum, int gdNum, String id, int orderNum, int gdCount, Date regdate, String name,
+			String phone, String addr, String msg, String buyway, int state) {
 		super();
+		this.snum = snum;
 		this.gdNum = gdNum;
 		this.id = id;
 		this.orderNum = orderNum;
@@ -29,6 +31,12 @@ public class ShoppinglistVo {
 		this.msg = msg;
 		this.buyway = buyway;
 		this.state = state;
+	}
+	public int getSnum() {
+		return snum;
+	}
+	public void setSnum(int snum) {
+		this.snum = snum;
 	}
 	public int getGdNum() {
 		return gdNum;
@@ -96,5 +104,6 @@ public class ShoppinglistVo {
 	public void setState(int state) {
 		this.state = state;
 	}
+
 	
 }

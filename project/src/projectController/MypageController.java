@@ -38,6 +38,10 @@ public class MypageController extends HttpServlet{
 			userinfo(req, resp);
 		}if(cmd!=null && cmd.equals("shoppinglist")) {
 			shoppinglist(req, resp);
+		}if(cmd!=null && cmd.equals("updateshoppinglist")) {
+			updateshoppinglist(req, resp);
+		}if(cmd!=null && cmd.equals("trade")) {
+			trade(req, resp);
 		}if(cmd!=null && cmd.equals("cart")) {
 			cart(req, resp);
 		}if(cmd!=null && cmd.equals("cartdelete")) {
@@ -94,18 +98,45 @@ public class MypageController extends HttpServlet{
 		ArrayList<ShoppinglistVo> slist=sdao.select(id);
 		req.setAttribute("shoppinglist", slist);
 		
-		ArrayList<OrdernumInfoVo> olist=sdao.getOrdernumInfo();
-		req.setAttribute("orderinfolist", olist);
-		req.setAttribute("orderinfolistsize", olist.size());
-		
 		GoodsDetailDao gdao=GoodsDetailDao.getInstance();
 		ArrayList<GoodsDetailVo> glist=gdao.selectAll();
 		req.setAttribute("goodsdetaillist", glist);
 		
 		req.getRequestDispatcher("/mypage/shoppinglistpage.jsp").forward(req, resp);
 	}
+	protected static void updateshoppinglist(HttpServletRequest req, 
+			HttpServletResponse resp) throws ServletException, IOException {
+		
+		int snum=Integer.parseInt(req.getParameter("snum"));
+		int state=Integer.parseInt(req.getParameter("state"));
+		
+		ShoppinglistDao sdao=ShoppinglistDao.getInstance();
+		sdao.update(snum, state);
+		
+		shoppinglist(req, resp);
+	}
+	protected static void trade(HttpServletRequest req, 
+			HttpServletResponse resp) throws ServletException, IOException {
+		
+		ShoppinglistDao sdao=ShoppinglistDao.getInstance();
+		ArrayList<ShoppinglistVo> slist=sdao.select(id);
+		req.setAttribute("shoppinglist", slist);
+		
+		int snum=Integer.parseInt(req.getParameter("snum"));
+		ShoppinglistVo tradeinfo=sdao.select(snum);
+		req.setAttribute("tradeinfo", tradeinfo);
+		
+		GoodsDetailDao gdao=GoodsDetailDao.getInstance();
+		ArrayList<GoodsDetailVo> glist=gdao.selectAll();
+		req.setAttribute("goodsdetaillist", glist);
+		
+		req.getRequestDispatcher("/mypage/tradepage.jsp").forward(req, resp);
+	}
 	protected static void cart(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {
+		
+		String rid=req.getParameter("id");
+		if(id!=null && id.equals("")) {id=rid;}
 		
 		CartDao vdao=CartDao.getInstance();
 		ArrayList<CartInfoVo> clist=vdao.getCartInfo();

@@ -79,6 +79,12 @@
             </a>
           </li>
           <li>
+            <a href="./mypage?cmd=trade">
+              <i class="now-ui-icons design_app"></i>
+              <p>교환/반품 신청내역</p>
+            </a>
+          </li>
+          <li>
             <a href="./mypage?cmd=cart">
               <i class="now-ui-icons design_app"></i>
               <p>장바구니</p>
