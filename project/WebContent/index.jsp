@@ -113,9 +113,9 @@
 						<%
 							}else {
 						%>
-							<li class="nav-item"><a href="./mypage?cmd=cart&id=<%=id %>"
+							<li class="nav-item"><a href="./mypage?cmd=cart&id=${id }"
 							class="nav-link">Cart</a></li>
-							<li class="nav-item"><a href="./mypage?cmd=user&id=<%=id %>"
+							<li class="nav-item"><a href="./mypage?cmd=user&id=${id }"
 							class="nav-link">MyPage</a></li>
 							<li class="nav-item"><a href="./examples/logout.jsp"
 							class="nav-link">Logout</a></li>

@@ -115,6 +115,7 @@
 	               			<thead class=" text-primary">
 	               			<th>주문번호</th><th>상품명</th><th>갯수</th><th>가격</th>
 	               			<th>주소</th><th>배송메시지</th><th>교환/반품</th><th>배송확정</th>
+	               			<th>배송상황</th>
 	               			</thead>
 	               			<tbody>
 	               			
@@ -137,6 +138,9 @@
 	               							<td>
 	               								<button class="btn btn-1 btn-primary" type="button" id="btn">확정하기</button>
 	               							</td>
+	               							<c:if test="${slist.state==1 }"><td>배송중</td></c:if>
+	               							<c:if test="${slist.state==2 }"><td>교환/반품중</td></c:if>
+	               							<c:if test="${slist.state==3 }"><td>배송완료</td></c:if>
 	               						</c:if>
 	               					</c:forEach>
 	               				</tr>

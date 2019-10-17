@@ -21,11 +21,14 @@ public class IndexController extends HttpServlet{
 		
 		req.setCharacterEncoding("utf-8");
 		
+		String id=req.getParameter("id");
+		
 		GoodsDetailDao dao=GoodsDetailDao.getInstance();
 		ArrayList<GoodsDetailVo> pricelist=dao.select("gdprice", 0);
 		ArrayList<GoodsDetailVo> steaklist=dao.select("gdlistnum", 1);
 		ArrayList<GoodsDetailVo> cblist=dao.select("gdlistnum", 4);
 		
+		req.setAttribute("id", id);
 		req.setAttribute("pricelist", pricelist);
 		req.setAttribute("steaklist", steaklist);
 		req.setAttribute("cblist", cblist);
