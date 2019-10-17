@@ -48,6 +48,9 @@ public class GoodsController extends HttpServlet {
 		if(cmd!=null&&cmd.equals("UpdateGdList")) {
 			UpdateGdList(req, resp);
 		}
+		if(cmd!=null&&cmd.equals("cpNumGdSelect")) {
+			cpNumGdSelect(req, resp);
+		}
 	}
 	int cpNum=0;
 	protected void cpList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -156,5 +159,8 @@ public class GoodsController extends HttpServlet {
 			json.put("code", "false");
 		}
 		pw.print(json);
+	}
+	protected void cpNumGdSelect(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/plain;charset=utf-8");
 	}
 }

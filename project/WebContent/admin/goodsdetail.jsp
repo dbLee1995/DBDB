@@ -1,86 +1,88 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-	<div id="content-wrapper">
-		<div class="card-header" style="width:90%;margin-left: auto; margin-right: auto;"><h3>신규 회사 정보 등록</h3></div>
-			<div class="container-fluid">
-				<div class="card-body">
-					<table class="table table-bordered" style="width:90%; margin-left: auto; margin-right: auto">
-						  <tbody>
-						    <tr>
-						      <td >회사선택</td>
-						      <td width="70%">
-							      <select class="custom-select" id="cpSelect" name="cpList" onchange="cpSelect(this.value)" >
-							  		<option selected value="0" >select company</option>
-								  </select>	
-								</td>
-						    </tr>
-						    <tr>
-						      <td >상품 종류 선택</td>
-						      <td width="70%">
-						      	  <select class="custom-select" id="gdSelect" name="gdList" onchange="" >
-							  		<option selected value="0" >select goodsList</option>
-								  </select>	
-						      </td>
-						    </tr>
-						    <tr>
-						      <td>제목</td>
-						      <td width="70%">
-						      	<input type="text" class="form-control" id="gdName"
-								  name="gdName" placeholder="title" > 
-						      </td>
-						    </tr>
-						     <tr>
-						      <td >가격</td>
-						      <td>
-						      	<input type="text" class="form-control" id="gdPrice"
-								  name="gdPrice" placeholder="price"> 
-						      </td>
-						    </tr>
-						     <tr>
-						      <td >섬네일<br>(파일첨부)</td>
-						      <td>
-  							    <textarea class="form-control" id="gdDetail" rows="10" name="gdPrice"></textarea>
-  							    <div class="input-group mb-3">
-								  <div class="input-group-prepend">
-								    <span class="input-group-text" id="introFileSpan">업로드</span>
-								  </div>
-								  <div class="custom-file">
-								    <input type="file" class="custom-file-input" id="introFileAdd" aria-describedby="inputGroupFileAddon01">
-								    <label class="custom-file-label" for="inputGroupFile01">파일선택</label>
-								  </div>
-								</div>
-						      </td>
-						    </tr>
-						    <tr>
-						      <td >상세정보<br>(파일첨부)</td>
-						      <td>
-  							    <textarea class="form-control" id="gdDetail" rows="15" name="gdDetail"></textarea>
-  							    <div class="input-group mb-3">
-								  <div class="input-group-prepend">
-								    <span class="input-group-text" id="detailFileSpan">업로드</span>
-								  </div>
-								  <div class="custom-file">
-								    <input type="file" class="custom-file-input" id="detailFileAdd" aria-describedby="inputGroupFileAddon01">
-								    <label class="custom-file-label" for="inputGroupFile01">파일선택</label>
-								  </div>
-								</div>
-						      </td>
-						    </tr>
-						    <tr>
-						    	<td colspan="2">
-						    		<div class="col-lg-15 text-center">
-										<button type="submit" class="btn btn-secondary" >취소</button>&nbsp;&nbsp;
-										<button type="submit" class="btn btn-outline-primary" >미리보기</button>&nbsp;&nbsp;
-										<button type="submit" class="btn btn-primary" >다음</button>
+	pageEncoding="UTF-8"%>
+<div id="content-wrapper">
+	<div class="card-header"
+		style="width: 90%; margin-left: auto; margin-right: auto;">
+		<h3>신규 회사 정보 등록</h3>
+	</div>
+	<div class="container-fluid">
+		<div class="card-body">
+			<form method="post" name="gdDetailForm">
+				<table class="table table-bordered"
+					style="width: 90%; margin-left: auto; margin-right: auto">
+					<tbody>
+						<tr>
+							<td>회사선택</td>
+							<td width="70%"><select class="custom-select" id="cpSelect"
+								name="cpList" onchange="cpSelectOption(this.value)">
+									<option selected value="0">select company</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td>상품 종류 선택</td>
+							<td width="70%"><select class="custom-select" id="gdSelect"
+								name="gdList" onchange="">
+									<option selected value="0">select goodsList</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td>제목</td>
+							<td width="70%"><input type="text" class="form-control"
+								id="gdName" name="gdName" placeholder="title"></td>
+						</tr>
+						<tr>
+							<td>가격</td>
+							<td><input type="text" class="form-control" id="gdPrice"
+								name="gdPrice" placeholder="price"></td>
+						</tr>
+						<tr>
+							<td>섬네일<br>(파일첨부)
+							</td>
+							<td><textarea class="form-control" id="gdDetail" rows="10"
+									name="gdPrice"></textarea>
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="introFileSpan">업로드</span>
 									</div>
-						    	
-						    	</td>
-						    </tr>
-						  </tbody>
-						</table>
-					</div>
-			</div>
-			</div>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" id="introFileAdd"
+											aria-describedby="inputGroupFileAddon01"> <label
+											class="custom-file-label" for="inputGroupFile01">파일선택</label>
+									</div>
+								</div></td>
+						</tr>
+						<tr>
+							<td>상세정보<br>(파일첨부)
+							</td>
+							<td><textarea class="form-control" id="gdDetail" rows="15"
+									name="gdDetail"></textarea>
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="detailFileSpan">업로드</span>
+									</div>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input"
+											id="detailFileAdd" aria-describedby="inputGroupFileAddon01">
+										<label class="custom-file-label" for="inputGroupFile01">파일선택</label>
+									</div>
+								</div></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<div class="col-lg-15 text-center">
+									<button type="submit" class="btn btn-secondary" onclick="cancelSubmit()">취소</button>
+									<button type="submit" class="btn btn-outline-primary" onclick="previewSubmit()">미리보기</button>
+									<button type="submit" class="btn btn-primary" onclick="insertSubmit()">등록</button>
+								</div>
+
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>
 <script>
 	//에버노트 켜기 전 정렬하기
 	window.onload=companyList;
@@ -88,7 +90,7 @@
 	function companyList(){
 		cpxhr=new XMLHttpRequest();
 		cpxhr.onreadystatechange=cpCallback;
-		cpxhr.open('post', 'goods?',true);//상대경로
+		cpxhr.open('post', 'goods',true);//상대경로
 		cpxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 		var param="cmd=cpList";
 		cpxhr.send(param);
@@ -108,14 +110,14 @@
 	}
 	var selectvalue=null;
 	var glxhr=null;
-	function cpSelect(obj){
+	function cpSelectOption(obj){
 		removegoodsOption();
 		selectvalue = obj;
 		glxhr=new XMLHttpRequest();
 		glxhr.onreadystatechange = goodsListCallback;
-		glxhr.open('post', 'goods?', true);
+		glxhr.open('post', 'goods', true);
 		glxhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		var param="cmd=gdList";//여기서 파라미터값을 넘겨서 셀렉트 구문 사용해야함
+		var param="cmd=UpdateGdList&cpNum="+selectvalue;//여기서 파라미터값을 넘겨서 셀렉트 구문 사용해야함
 		glxhr.send(param);
 	}
 	function goodsListCallback(){
@@ -125,7 +127,7 @@
 			var gdList=JSON.parse(gdData)[0];
 			for(var i=0;i<gdList.length;i++){
 				var gdOpt=document.createElement("option");
-				gdOpt.value=gdList[i].GDList;
+				gdOpt.value=gdList[i].GDList;//나중에 value 값 문제 생기면 확인? value값으로 넘겨야하는데 문제가 생길까?
 				gdOpt.text=gdList[i].GDList;
 				gdSelect.appendChild(gdOpt);
 			}
@@ -139,8 +141,9 @@
                gdSelect.removeChild(gs);
          }
  	}
-	
+	function insertSubmit(){
+		document.gdDetailForm.action="goodsdetail?cmd=gdDetailinsert";
+	}
 
-</script>			
-	
-		
+</script>
+
