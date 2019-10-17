@@ -127,6 +127,15 @@ public class MypageController extends HttpServlet{
 		int tnum=0;
 		String snum=req.getParameter("snum");
 		if(snum!=null && !snum.equals("")) {tnum=Integer.parseInt(snum);}
+		
+		String display="";
+		String getdisplay=req.getParameter("display");
+		if(getdisplay!=null && getdisplay.equals("block")) {
+			display="block";
+		}else {
+			display="none";
+		}
+		req.setAttribute("display", display);
 
 		ShoppinglistVo tradeinfo=sdao.select(tnum);
 		req.setAttribute("tradeinfo", tradeinfo);
@@ -141,10 +150,12 @@ public class MypageController extends HttpServlet{
 			HttpServletResponse resp) throws ServletException, IOException {
 		
 		int snum=Integer.parseInt(req.getParameter("snum"));
-		int state=Integer.parseInt(req.getParameter("state"));
+		String state=req.getParameter("state");
 		
 		ShoppinglistDao sdao=ShoppinglistDao.getInstance();
-		sdao.update(snum, state);
+		
+		if(state!=null && state.equals("trade")) {sdao.update(snum, 2);}
+		if(state!=null && state.equals("return")) {sdao.update(snum, 4);}
 		
 		trade(req, resp);
 	}

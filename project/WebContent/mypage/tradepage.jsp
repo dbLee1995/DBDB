@@ -25,15 +25,22 @@
 	function updatetrade(){
 		
 		var tradestate=document.getElementsByName("trade");
-		var tradestateV="";
+		var v="";
 		for(var i=0;i<tradestate.length;++i){
 			if(tradestate[i].checked==true){
-				tradestateV+=tradestate[i].value+" ";
+				v+=tradestate[i].value+"";
 				break;
 			}
 		}
 		
-		location.href="./mypage?cmd=updatetrade&snum=${tradeinfo.snum }&state="+tradestateV;
+		location.href="./mypage?cmd=updatetrade&snum=${tradeinfo.snum }&state="+v;
+	}
+	window.onload=function(){
+		getdiv();
+	}
+	function getdiv(){
+		var tradediv=document.getElementById("tradediv");
+		tradediv.style.display="${display}";
 	}
   </script>
   
@@ -165,7 +172,7 @@
         </div>
         
         
-        <div class="row">
+        <div class="row" id="tradediv">
           <div class="col-md-10">
             <div class="card">
               <div class="card-header">
@@ -230,12 +237,12 @@
                         <label>교환/반품 선택</label>
 								<div class="custom-control custom-radio mb-2">
 					              <input name="trade" class="custom-control-input" id="customRadio1" 
-					              checked type="radio" value="2">
+					              checked type="radio" value="trade">
 					              <label class="custom-control-label" for="customRadio1"><span>교환</span></label>
 					            </div>
 					            <div class="custom-control custom-radio mb-3">
 					              <input name="trade" class="custom-control-input" id="customRadio2" 
-					              type="radio" value="4">
+					              type="radio" value="return">
 					              <label class="custom-control-label" for="customRadio2"><span>반품</span></label>
 					            </div>
                       </div>
@@ -253,7 +260,7 @@
                   
                   <a href="./mypage?cmd=updatetrade&snum=${tradeinfo.snum }">
 					<button class="btn btn-1 btn-primary" type="button" id="tbtn"
-						onclick="updatetrade()">확정하기</button>
+						onclick="updatetrade()">신청하기</button>
 				  </a>
                   
                	</div>

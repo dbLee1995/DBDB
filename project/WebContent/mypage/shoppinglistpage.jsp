@@ -145,7 +145,7 @@
 			               									id="tradebtn" disabled>신청하기</button>
 	               									</c:when>
 	               									<c:otherwise>
-	               										<a href="./mypage?cmd=trade&snum=${slist.snum }">
+	               										<a href="./mypage?cmd=trade&snum=${slist.snum }&display=block">
 			               								<button class="btn btn-1 btn-primary" type="button" 
 			               									id="tradebtn">신청하기</button>
 			               								</a>
