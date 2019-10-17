@@ -7,7 +7,7 @@
 	</div>
 	<div class="container-fluid">
 		<div class="card-body">
-			<form method="post" name="gdDetailForm">
+			<form method="post" name="gdDetailForm" enctype="multipart/form-data">
 				<table class="table table-bordered"
 					style="width: 90%; margin-left: auto; margin-right: auto">
 					<tbody>
@@ -32,47 +32,40 @@
 						</tr>
 						<tr>
 							<td>가격</td>
-							<td><input type="text" class="form-control" id="gdPrice"
-								name="gdPrice" placeholder="price"></td>
+							<td>
+								<input type="text" class="form-control" id="gdPrice"
+								name="gdPrice" placeholder="price">
+							</td>
+						</tr>
+						<tr>
+							<td>재고</td>
+							<td>
+								<input type="text" class="form-control" id="gdStock"
+								name="gdStock" placeholder="stock">
+							</td>
 						</tr>
 						<tr>
 							<td>섬네일<br>(파일첨부)
 							</td>
 							<td>
-								<div id="introPrivew"></div>
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="introFileSpan">업로드</span>
-									</div>
-									<div class="custom-file">
-										<input type="file" class="custom-file-input" id="introFileAdd" name="introFileAdd"
-											aria-describedby="inputGroupFileAddon01"> 
-										<label class="custom-file-label" for="inputGroupFile01" >파일선택</label>
-									</div>
-								</div></td>
+								<div id="introPrivew"></div><br>
+								<input type="file" id="introFileAdd" name="introFileAdd">
+							</td>
 						</tr>
 						<tr>
 							<td>상세정보<br>(파일첨부)
 							</td>
 							<td>
-								<div id="detailPrivew"></div>
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="detailFileSpan">업로드</span>
-									</div>
-										<div class="custom-file">
-										<input type="file" class="custom-file-input" id="detailFileAdd" name="detailFileAdd" 
-										aria-describedby="inputGroupFileAddon01">
-										<label class="custom-file-label" for="inputGroupFile01">파일선택</label>
-									</div>
-								</div></td>
+								<div id="detailPrivew"></div><br>
+								<input type="file" id="detailFileAdd" name="detailFileAdd" >
+							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
 								<div class="col-lg-15 text-center">
-									<button type="submit" class="btn btn-secondary" onclick="cancelSubmit()">취소</button>
-									<button type="submit" class="btn btn-outline-primary" onclick="previewSubmit()" style="margin-left: 5px; margin-right: 5px;">미리보기</button>
-									<button type="submit" class="btn btn-primary" onclick="insertSubmit()">등록</button>
+									<button type="button" class="btn btn-secondary" onclick="cancelSubmit()">취소</button>
+									<button type="button" class="btn btn-outline-primary" onclick="previewSubmit()" style="margin-left: 5px; margin-right: 5px;">미리보기</button>
+									<button type="button" class="btn btn-primary" onclick="insertSubmit()">등록</button>
 								</div>
 
 							</td>
@@ -128,7 +121,7 @@
 			var gdList = JSON.parse(gdData)[0];
 			for (var i = 0; i < gdList.length; i++) {
 				var gdOpt = document.createElement("option");
-				gdOpt.value = gdList[i].GDList;//나중에 value 값 문제 생기면 확인? value값으로 넘겨야하는데 문제가 생길까?
+				gdOpt.value = gdList[i].GDListNum;//나중에 value 값 문제 생기면 확인? value값으로 넘겨야하는데 문제가 생길까?
 				gdOpt.text = gdList[i].GDList;
 				gdSelect.appendChild(gdOpt);
 			}
@@ -143,38 +136,16 @@
 		}
 	}
 	function insertSubmit() {
-		var cpList=document.getElementById("cpList").value;
-		var gdList=document.getElementById("gdList").value;
-		var gdName=document.getElementById("gdName").value;
-		var gdPrice=document.getElementById("gdPrice").value;
+		//var cpList=document.getElementById("cpList").value;
+	//	var gdList=document.getElementById("gdList").value;
+	//	var gdName=document.getElementById("gdName").value;
+	//	var gdPrice=document.getElementById("gdPrice").value;
+	//	var introFileAdd=document.getElementById("introFileAdd").value;
+	//	var detailFileAdd=document.getElementById("detailFileAdd").value;
 		document.gdDetailForm.action = "goodsdetail?cmd=gdDetailinsert";
+		document.gdDetailForm.submit();
+	//	alert("테스트");
 	}
-	/* 
-	var introFileAdd=document.getElementById("introFileAdd");
-	introFileAdd.onchange=function(){
-		//붙일 구역 변수 생성
-		var introPrivew=document.getElementById("introPrivew");
-		//var upload = document.getElementsByTagName('input')[0];
-		//파일리스트 생성
-		var introFileList=introFileAdd.file[0];
-		
-		//읽기, 파일리더 객체 생성
-		var introFileReader=new FileReader();
-		
-		//로드 , 이미지 객체 생성하기
-		introFileReader.onload=function(e){
-			var preimg=new Image();
-			preimg.src=e.target.result;
-		    if (preimg.width > 560) { 
-		    	preimg.width = 560;
-		      }
-
-			introPrivew.innerHTML="";
-			introPrivew.appendChild(preimg);
-		}
-		introFileReader.readAsDataURL(introFileList);
-	}
-	*/
 	var  introFileAdd = document.getElementById('introFileAdd'),
 		  introPrivew = document.getElementById('introPrivew');
 	introFileAdd.onchange=function(){
@@ -183,28 +154,24 @@
 		  prereader.onload = function (event) {
 		    var preimg = new Image();
 		    preimg.src = event.target.result;
-		    // note: no onload required since we've got the dataurl...I think! :)
 		    introPrivew.innerHTML = '';
 		    introPrivew.appendChild(preimg);
 		  };
 		  prereader.readAsDataURL(prefile);
 
-		  return false;
 	}
 	var  detailFileAdd = document.getElementById('detailFileAdd');
 	var detailPrivew = document.getElementById('detailPrivew');
 	detailFileAdd.onchange=function(){//이벤트 생성
-		  var defile = detailFileAdd.files[0],
-		       dereader = new FileReader();
+
+		  var defile = detailFileAdd.files[0];
+		  var dereader = new FileReader();  
 		  dereader.onload = function (event) {
 		    var deimg = new Image();
-		    deimg.src = event.target.result;
-		    // note: no onload required since we've got the dataurl...I think! :)
+		    deimg.src = event.target.result; //event.targer - 이벤트가 발생된 객체(reader) / .result - blob  등 특수하게 가공된 URL을 출력
 		    detailPrivew.appendChild(deimg);
 		  };
 		  dereader.readAsDataURL(defile);
-	
-		  return false;
 	}
 
 	

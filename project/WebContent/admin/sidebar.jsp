@@ -48,9 +48,7 @@
           <span>클레임 관리</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="">취소관리</a>
-          <a class="dropdown-item" href="">반품관리</a>
-          <a class="dropdown-item" href="">교환관리</a>
+          <a class="dropdown-item" href="">반품/교환관리</a>
         </div>
       </li>
     </ul>
