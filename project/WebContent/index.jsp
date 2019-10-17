@@ -29,6 +29,14 @@
 	margin-left: 30px;
 }
 </style>
+	<script type="text/javascript">
+		function search(){
+			
+			var searchbar=document.getElementById("searchbar").value;
+			
+			location.href="./search?keyword="+searchbar;
+		}
+	</script>
 </head>
 <body>
 	<header class="header-global">
@@ -173,13 +181,14 @@
 				<div class="col-lg-12">
 					
 
-			
+					<!-- 검색창 -->
 					<div class="form-group">
 		              <div class="input-group mb-4">
 		                <div class="input-group-prepend">
 		                  <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
 		                </div>
-		                <input class="form-control" placeholder="Search" type="text">
+		                <input class="form-control" placeholder="Search" type="text" 
+		                	id="searchbar" onkeyup="if(event.keyCode==13) search()">
 		              </div>
 		            </div>
 
@@ -198,7 +207,7 @@
 									alt="sm_chickenbreast">
 								<div class="card-body">
 									<h5 class="card-title">${listvo.gdname }</h5>
-									<a href="./detail?gdnum=${listvo.gdnum }">
+									<a href="./detail?gdnum=${listvo.gdnum }&id=${id}">
 									<button class="btn btn-1 btn-outline-warning" type="button"
 									>자세히보기</button></a>
 								</div>
@@ -207,45 +216,7 @@
 							</c:forEach>
 						</div>
 					</div>
-					<br>
-					<br>
-					<h2 class="mb-5">
-						<span>Basic Elements</span>
-					</h2>
-					<div class="container">
-						<div class="row">
-							<div class="card" style="width: 18rem;">
-								<img src="images/sm_friedrice.jpg" class="card-img-top"
-									alt="sm_friedrice">
-								<!-- 대체속성 -->
-								<div class="card-body">
-									<h5 class="card-title">Card title</h5>
-									<button class="btn btn-1 btn-outline-warning" type="button">자세히
-										보기</button>
-								</div>
-							</div>
-							<div class="card" style="width: 18rem;">
-								<img src="images/sm_lunchbox.jpg" class="card-img-top"
-									alt="sm_lunchbox">
-								<!-- 대체속성 -->
-								<div class="card-body">
-									<h5 class="card-title">Card title</h5>
-									<button class="btn btn-1 btn-outline-warning" type="button">자세히
-										보기</button>
-								</div>
-							</div>
-							<div class="card" style="width: 18rem;">
-								<img src="images/sm_sausage.jpg" class="card-img-top"
-									alt="sm_sausage">
-								<!-- 대체속성 -->
-								<div class="card-body">
-									<h5 class="card-title">Card title</h5>
-									<button class="btn btn-1 btn-outline-warning" type="button">자세히
-										보기</button>
-								</div>
-							</div>
-						</div>
-					</div>
+
 				</div>
 			</div>
 		</div>

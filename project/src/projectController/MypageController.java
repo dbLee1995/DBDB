@@ -131,7 +131,7 @@ public class MypageController extends HttpServlet{
 		String display="";
 		String getdisplay=req.getParameter("display");
 		if(getdisplay!=null && getdisplay.equals("block")) {
-			display="block";
+			display=getdisplay;
 		}else {
 			display="none";
 		}
