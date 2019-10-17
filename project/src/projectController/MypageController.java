@@ -42,6 +42,8 @@ public class MypageController extends HttpServlet{
 			updateshoppinglist(req, resp);
 		}if(cmd!=null && cmd.equals("trade")) {
 			trade(req, resp);
+		}if(cmd!=null && cmd.equals("updatetrade")) {
+			updatetrade(req, resp);
 		}if(cmd!=null && cmd.equals("cart")) {
 			cart(req, resp);
 		}if(cmd!=null && cmd.equals("cartdelete")) {
@@ -122,8 +124,11 @@ public class MypageController extends HttpServlet{
 		ArrayList<ShoppinglistVo> slist=sdao.select(id);
 		req.setAttribute("shoppinglist", slist);
 		
-		int snum=Integer.parseInt(req.getParameter("snum"));
-		ShoppinglistVo tradeinfo=sdao.select(snum);
+		int tnum=0;
+		String snum=req.getParameter("snum");
+		if(snum!=null && !snum.equals("")) {tnum=Integer.parseInt(snum);}
+
+		ShoppinglistVo tradeinfo=sdao.select(tnum);
 		req.setAttribute("tradeinfo", tradeinfo);
 		
 		GoodsDetailDao gdao=GoodsDetailDao.getInstance();
@@ -131,6 +136,17 @@ public class MypageController extends HttpServlet{
 		req.setAttribute("goodsdetaillist", glist);
 		
 		req.getRequestDispatcher("/mypage/tradepage.jsp").forward(req, resp);
+	}
+	protected static void updatetrade(HttpServletRequest req, 
+			HttpServletResponse resp) throws ServletException, IOException {
+		
+		int snum=Integer.parseInt(req.getParameter("snum"));
+		int state=Integer.parseInt(req.getParameter("state"));
+		
+		ShoppinglistDao sdao=ShoppinglistDao.getInstance();
+		sdao.update(snum, state);
+		
+		trade(req, resp);
 	}
 	protected static void cart(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {

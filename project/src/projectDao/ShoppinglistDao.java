@@ -230,7 +230,7 @@ public class ShoppinglistDao {
 			pstmt.setString(5, vo.getMsg());
 			pstmt.setString(6, vo.getBuyway());
 			pstmt.setInt(7, vo.getState());
-			pstmt.setInt(8, vo.getGdNum());
+			pstmt.setInt(8, vo.getSnum());
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();

@@ -22,7 +22,19 @@
   <link href="./assets/demo/demo.css" rel="stylesheet" />
   
   <script type="text/javascript">
-
+	function updatetrade(){
+		
+		var tradestate=document.getElementsByName("trade");
+		var tradestateV="";
+		for(var i=0;i<tradestate.length;++i){
+			if(tradestate[i].checked==true){
+				tradestateV+=tradestate[i].value+" ";
+				break;
+			}
+		}
+		
+		location.href="./mypage?cmd=updatetrade&snum=${tradeinfo.snum }&state="+tradestateV;
+	}
   </script>
   
 </head>
@@ -113,7 +125,7 @@
             <div class="card">
               <div class="card-header">
               	<br>
-                <h5 >구매 내역</h5>
+                <h5 >교환/반품 신청내역</h5>
               </div>
               
               <div class="card-body">
@@ -162,9 +174,89 @@
               </div>
               
               <div class="card-body">
-	              	<div class="table-responsive">
-
-	               	</div>
+              	<div class="table-responsive">
+					<div class="row">
+                    <div class="col-md-5 pr-1">
+                      <div class="form-group">
+                        <label>아이디</label>
+                        <input type="text" class="form-control" placeholder=id value="${tradeinfo.id }" disabled >
+                      </div>
+                    </div>
+                    <div class="col-md-5 pl-1">
+                      <div class="form-group">
+                        <label>이름</label>
+                        <input type="text" class="form-control" placeholder=id value="${tradeinfo.name }" disabled >
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                 	 <div class="col-md-5 pr-1">
+                      <div class="form-group">
+                        <label>구매일자</label>
+                        <input type="text" class="form-control" placeholder=id value="${tradeinfo.regdate }" disabled >
+                      </div>
+                    </div>
+                    <div class="col-md-5 pl-1">
+                      <div class="form-group">
+                        <label>주문번호</label>
+                        <input type="text" class="form-control" placeholder=id value="${tradeinfo.gdNum }" disabled >
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-md-5 pr-1">
+                      <div class="form-group">
+                        <label>상품명</label>
+                        <c:forEach var="glist" items="${goodsdetaillist}">
+                        	<c:if test="${glist.gdnum == tradeinfo.gdNum }">
+                        	<input type="text" class="form-control" placeholder=id value="${glist.gdname }" disabled >
+                        	</c:if>
+                        </c:forEach>
+                      </div>
+                    </div>
+                    <div class="col-md-5 pl-1">
+                      <div class="form-group">
+                        <label>수량</label>
+                        <input type="text" class="form-control" placeholder=id value="${tradeinfo.gdCount }" disabled >
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-md-5 pr-1">
+                      <div class="form-group">
+                        <label>교환/반품 선택</label>
+								<div class="custom-control custom-radio mb-2">
+					              <input name="trade" class="custom-control-input" id="customRadio1" 
+					              checked type="radio" value="2">
+					              <label class="custom-control-label" for="customRadio1"><span>교환</span></label>
+					            </div>
+					            <div class="custom-control custom-radio mb-3">
+					              <input name="trade" class="custom-control-input" id="customRadio2" 
+					              type="radio" value="4">
+					              <label class="custom-control-label" for="customRadio2"><span>반품</span></label>
+					            </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-md-10 pr-2">
+                      <div class="form-group">
+                        <label>교환/반품 사유</label>
+							<input type="text" class="form-control" placeholder="사유를 입력해주세요" >
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <a href="./mypage?cmd=updatetrade&snum=${tradeinfo.snum }">
+					<button class="btn btn-1 btn-primary" type="button" id="tbtn"
+						onclick="updatetrade()">확정하기</button>
+				  </a>
+                  
+               	</div>
               </div>
             </div>
           </div>
