@@ -121,7 +121,7 @@
 			var gdList = JSON.parse(gdData)[0];
 			for (var i = 0; i < gdList.length; i++) {
 				var gdOpt = document.createElement("option");
-				gdOpt.value = gdList[i].GDListNum;//나중에 value 값 문제 생기면 확인? value값으로 넘겨야하는데 문제가 생길까?
+				gdOpt.value = gdList[i].GDListNum;
 				gdOpt.text = gdList[i].GDList;
 				gdSelect.appendChild(gdOpt);
 			}
@@ -135,17 +135,7 @@
 			gdSelect.removeChild(gs);
 		}
 	}
-	function insertSubmit() {
-		//var cpList=document.getElementById("cpList").value;
-	//	var gdList=document.getElementById("gdList").value;
-	//	var gdName=document.getElementById("gdName").value;
-	//	var gdPrice=document.getElementById("gdPrice").value;
-	//	var introFileAdd=document.getElementById("introFileAdd").value;
-	//	var detailFileAdd=document.getElementById("detailFileAdd").value;
-		document.gdDetailForm.action = "goodsdetail?cmd=gdDetailinsert";
-		document.gdDetailForm.submit();
-	//	alert("테스트");
-	}
+
 	var  introFileAdd = document.getElementById('introFileAdd'),
 		  introPrivew = document.getElementById('introPrivew');
 	introFileAdd.onchange=function(){
@@ -163,15 +153,35 @@
 	var  detailFileAdd = document.getElementById('detailFileAdd');
 	var detailPrivew = document.getElementById('detailPrivew');
 	detailFileAdd.onchange=function(){//이벤트 생성
-
 		  var defile = detailFileAdd.files[0];
 		  var dereader = new FileReader();  
 		  dereader.onload = function (event) {
 		    var deimg = new Image();
+		    
 		    deimg.src = event.target.result; //event.targer - 이벤트가 발생된 객체(reader) / .result - blob  등 특수하게 가공된 URL을 출력
 		    detailPrivew.appendChild(deimg);
 		  };
 		  dereader.readAsDataURL(defile);
+	}
+	function insertSubmit() {
+	
+		document.gdDetailForm.action = "goodsdetail?cmd=gdDetailinsert";
+		document.gdDetailForm.submit();
+	}
+	function previewSubmit(){
+		document.gdDetailForm.encoding="application/x-www-form-urlencoded"; 
+		var url="goodspreview.jsp";
+		var title="goodspreview";
+		window.open("",title,"width=800, height=900");
+		
+		document.gdDetailForm.target=title;
+		document.gdDetailForm.action=url;
+		//document.getDetailForm.
+		document.gdDetailForm.method="post";
+		document.gdDetailForm.submit();
+		
+		//document.gdDetailForm.action="goodsdetail?cmd=gdDetailPreview";
+		//
 	}
 
 	
