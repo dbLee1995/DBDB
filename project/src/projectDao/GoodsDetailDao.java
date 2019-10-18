@@ -54,38 +54,82 @@ public class GoodsDetailDao {
 			con=JdbcUtil.getConn();
 			
 			if(array==3) {
-				String sqlMS=""; 
+				String sqlMS="select s.gdnum, count(s.gdnum)" + 
+						" from shoppinglist s" + 
+						" group by s.gdnum" + 
+						" order by count(s.gdnum) desc"; 
+				pstmtMS=con.prepareStatement(sqlMS);
+				rs=pstmtMS.executeQuery();
+				ArrayList<Integer> MSlist=new ArrayList<Integer>();
+				while(rs.next()) {
+					MSlist.add(rs.getInt("gdnum"));
+				}
+				ArrayList<GoodsDetailVo> MSvolist=new ArrayList<GoodsDetailVo>();
+				for(int i=0;i<MSlist.size();++i) {
+					MSvolist.add(select("gdnum", MSlist.get(i)).get(0));
+				}
+				return MSvolist;
 			}else if(array==4) {
-				String sqlHA=""; 
+				String sqlHA="select r.gdnum, count(r.gdnum), avg(r.score)" + 
+						" from review r" + 
+						" group by r.gdnum" + 
+						" order by avg(r.score) desc";
+				pstmtHA=con.prepareStatement(sqlHA);
+				rs=pstmtHA.executeQuery();
+				ArrayList<Integer> HAlist=new ArrayList<Integer>();
+				while(rs.next()) {
+					HAlist.add(rs.getInt("gdnum"));
+				}
+				ArrayList<GoodsDetailVo> HAvolist=new ArrayList<GoodsDetailVo>();
+				for(int i=0;i<HAlist.size();++i) {
+					HAvolist.add(select("gdnum", HAlist.get(i)).get(0));
+				}
+				return HAvolist;
+			}else {
+			
+				String sql="select * from" + 
+						" (" + 
+						" select mb.*, rownum rnum from" + 
+						" (" + 
+						"    select gd.*, cpnum, gdlist" + 
+						"    from goodsdetail gd, goods g"+
+						"    where gd.gdlistnum=g.gdlistnum ";
+				if(com!=0) {sql+=" and g.cpnum="+com;}
+				if(list!=null && !list.equals("0")) {
+					sql+=" and g.gdlist="+list;}
+				if(keyword!=null && !keyword.equals("")) {
+					sql+=" and gd.gdname like '%"+keyword+"%'";}
+				if(array==0) {sql+=" order by gd.gdnum desc";}
+				else if(array==1) {sql+=" order by gd.gdprice";}
+				else if(array==2) {sql+=" order by gd.gdprice desc";}
+				sql+= " ) mb" + 
+					  " ) where rnum>=? and rnum<=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, startnum);
+				pstmt.setInt(2, endnum);
+				rs=pstmt.executeQuery();
+				ArrayList<GoodsDetailVo> volist=new ArrayList<GoodsDetailVo>();
+				while(rs.next()) {
+					GoodsDetailVo vo=
+							new GoodsDetailVo(rs.getInt("gdlistnum"),
+											rs.getInt("gdnum"),
+											rs.getString("gdname"),
+											rs.getInt("gdprice"),
+											rs.getInt("gdstock"),
+											rs.getString("gddetail"),
+											rs.getString("gdsumary"));
+					volist.add(vo);
+				}
+				return volist;
 			}
-			
-			String sql="select * from" + 
-					" (" + 
-					" select mb.*, rownum rnum from" + 
-					" (" + 
-					"    select gd.*, cpnum, gdlist" + 
-					"    from goodsdetail gd, goods g"+
-					"    where gd.gdlistnum=g.gdlistnum ";
-			if(com!=0) {sql+=" and g.cpnum="+com;}
-			if(list!=null && !list.equals("0")) {
-				sql+=" and g.gdlist="+list;}
-			if(keyword!=null && !keyword.equals("")) {
-				sql+=" and gd.gdname like '%"+keyword+"%'";}
-			if(array==0) {sql+=" order by gd.gdnum desc";}
-			else if(array==1) {sql+=" order by gd.gdprice";}
-			else if(array==2) {sql+=" order by gd.gdprice desc";}
-					
-			sql+= " ) mb" + 
-				  " ) where rnum>=? and rnum<=?";
-			
-			
-			return null;
 		}catch(SQLException se) {
 			System.out.println(se.getMessage());
 			se.printStackTrace();
 			return null;	
 		}finally {
 			JdbcUtil.close(con, pstmt, rs);
+			JdbcUtil.close(pstmtMS);
+			JdbcUtil.close(pstmtHA);
 		}
 	}
 	public int insert(GoodsDetailVo vo) {
