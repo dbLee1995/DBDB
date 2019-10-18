@@ -94,7 +94,8 @@ public class GoodsDetailController extends HttpServlet{
 	}
 	protected void gdDetailinsert(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	   //  String saveDirectory = req.getContextPath()+"/WebContent/images";
-	     String saveDirectory = "C:\\Users\\JHTA\\git\\DBDB\\project\\WebContent\\images";
+	     String saveDirectory = "C:\\Users\\JHTA\\Desktop\\DBDB\\project\\WebContent\\images";
+	     
 	     System.out.println(saveDirectory);
 	     MultipartRequest mr=new MultipartRequest(
 	                             req,//request 객체

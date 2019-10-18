@@ -28,13 +28,16 @@
 .card {
 	margin-left: 30px;
 }
+.marginclass{
+	margin-left: 150px;
+}
 </style>
 	<script type="text/javascript">
 		function search(){
 			
 			var searchbar=document.getElementById("searchbar").value;
 			
-			location.href="./search?keyword="+searchbar;
+			location.href="./search?keyword="+searchbar+"&id=${id}";
 		}
 	</script>
 </head>
@@ -207,6 +210,7 @@
 									alt="sm_chickenbreast">
 								<div class="card-body">
 									<h5 class="card-title">${listvo.gdname }</h5>
+									<h5 class="marginclass">${listvo.gdprice }원</h5>
 									<a href="./detail?gdnum=${listvo.gdnum }&id=${id}">
 									<button class="btn btn-1 btn-outline-warning" type="button"
 									>자세히보기</button></a>

@@ -10,7 +10,7 @@
 <%
 	//세션영역 무효화하기
 	session.invalidate();
-	response.sendRedirect(request.getContextPath() + "/index.jsp");
+	response.sendRedirect(request.getContextPath() + "/index");
 %>
 </body>
 </html>

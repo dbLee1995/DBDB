@@ -305,23 +305,78 @@
 
 					
 					<!-- Basic elements -->
+					
+					
+					<div class="container">
+						<div class="row">
+							<% int n=0; %>
+							<c:forEach var="gdlist" items="${gdvolist }">
+							<%if(n<10){ %>
+							<div class="card" style="width: 18rem;">
+								<img src="images/${gdlist.gdsumary }" class="card-img-top"
+									alt="sm_chickenbreast">
+								<div class="card-body">
+									<h5 class="card-title">${gdlist.gdname }</h5>
+									<a href="./detail?gdnum=${gdlist.gdnum }&id=${id}">
+									<button class="btn btn-1 btn-outline-warning" type="button"
+									>자세히보기</button></a>
+								</div>
+							</div>
+							<%++n;} %>
+							</c:forEach>
+						</div>
+					</div>
 
 
 					
 					<nav aria-label="Page navigation example">
 					  <ul class="pagination">
 					    <li class="page-item">
-					      <a class="page-link" href="#" aria-label="Previous">
-					        <span aria-hidden="true">&laquo;</span>
-					      </a>
+					    	<c:choose>
+					    		<c:when test="${pageNum>1 }">
+									<a class="page-link" 
+										href="./search?id=${id }&pageNum=${pageNum-1}&company=${company}&list=${list}&array=${array}&keyword=${keyword}" 
+											aria-label="Previous">
+										<span aria-hidden="true">&laquo;</span>
+									</a>
+								</c:when>
+								<c:otherwise>
+									<a class="page-link" aria-label="Previous">
+										<span aria-hidden="true">&laquo;</span>
+									</a>
+								</c:otherwise>
+					      	</c:choose>
 					    </li>
-					    <li class="page-item"><a class="page-link" href="#">1</a></li>
-					    <li class="page-item"><a class="page-link" href="#">2</a></li>
-					    <li class="page-item"><a class="page-link" href="#">3</a></li>
+					    <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+					    	<c:choose>
+					    		<c:when test="${pageNum==i }">
+					    			<li class="page-item active" aria-current="page">
+								    	<a class="page-link" 
+								    		href="./search?id=${id }&pageNum=${i}&company=${company}&list=${list}&array=${array}&keyword=${keyword}">${i } <span class="sr-only">(current)</span></a>
+								    </li>
+					    		</c:when>
+					    		<c:otherwise>
+					    			<li class="page-item"><a class="page-link" 
+					    				href="./search?id=${id }&pageNum=${i}&company=${company}&list=${list}&array=${array}&keyword=${keyword}">${i }</a></li>
+					    		</c:otherwise>
+					    		
+					    	</c:choose>
+					    </c:forEach>
 					    <li class="page-item">
-					      <a class="page-link" href="#" aria-label="Next">
-					        <span aria-hidden="true">&raquo;</span>
-					      </a>
+					    	<c:choose>
+					    		<c:when test="${endPageNum>pageNum }">
+									<a class="page-link" 
+										href="./search?id=${id }&pageNum=${pageNum+1}&company=${company}&list=${list}&array=${array}&keyword=${keyword}" 
+											aria-label="Next">
+										<span aria-hidden="true">&raquo;</span>
+									</a>
+								</c:when>
+								<c:otherwise>
+									<a class="page-link" aria-label="Next">
+										<span aria-hidden="true">&raquo;</span>
+									</a>
+								</c:otherwise>
+							</c:choose>
 					    </li>
 					  </ul>
 					</nav>

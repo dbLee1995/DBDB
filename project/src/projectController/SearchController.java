@@ -19,6 +19,8 @@ public class SearchController extends HttpServlet{
 			HttpServletResponse resp) 
 					throws ServletException, IOException {
 		
+		String id=req.getParameter("id");
+		
 		String keyword=req.getParameter("keyword");
 		
 		String companyS=req.getParameter("company");
@@ -26,7 +28,11 @@ public class SearchController extends HttpServlet{
 		if(companyS!=null && !companyS.equals("")) {
 			company=Integer.parseInt(companyS);
 		}
-		String list=req.getParameter("list");
+		String list="0";
+		String listS=req.getParameter("list");
+		if(listS!=null && !listS.equals("")) {
+			list=listS;
+		}
 		String arrayS=req.getParameter("array");
 		int array=0;
 		if(arrayS!=null && !arrayS.equals("")) {
@@ -48,6 +54,8 @@ public class SearchController extends HttpServlet{
 		int startPageNum=(pageNum-1)/10*10+1;
 		int endPageNum=startPageNum+9;
 		if(endPageNum>pageCount) endPageNum=pageCount;
+		
+		req.setAttribute("id", id);
 		
 		req.setAttribute("keyword", keyword);
 		req.setAttribute("company", company);
