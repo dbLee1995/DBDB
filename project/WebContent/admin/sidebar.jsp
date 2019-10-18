@@ -38,18 +38,7 @@
           <span>주문 관리</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="">신규주문</a>
-          <a class="dropdown-item" href="">발송처리</a><!-- 넣을지? -->
-          <a class="dropdown-item" href="">배송중/배송완료</a><!-- 넣을지?2 -->
+          <a class="dropdown-item" href="">배송 관리</a>
+           <a class="dropdown-item" href="">반품/교환관리</a>
         </div>
-      </li>
-            <!-- 사이드바 클레임 관리 -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span>클레임 관리</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="">반품/교환관리</a>
-        </div>
-      </li>
     </ul>

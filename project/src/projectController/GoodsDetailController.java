@@ -1,12 +1,17 @@
 package projectController;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -34,16 +39,54 @@ public class GoodsDetailController extends HttpServlet{
 		if(cmd!=null&&cmd.equals("gdDetailList")) {
 			gdDetailList(req, resp);
 		}
+		if(cmd!=null&&cmd.equals("gdDetailDelete")) {
+			gdDetailDelete(req, resp);
+		}
+	}
+	protected void gdDetailDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		resp.setContentType("text/plain;charset=utf-8");
+		int gdNum=Integer.parseInt(req.getParameter("gdNum"));
+		GoodsDetailDao dao=GoodsDetailDao.getInstance();
+		int n=dao.delete(gdNum);
+		if(n>0) {
+			resp.sendRedirect(req.getContextPath()+"/admin/adindex.jsp?page=goodsdetailinfo.jsp");
+		}
 		
 	}
 	protected void gdDetailList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		resp.setContentType("text/plain;charset=utf-8");
-		int cpNum=Integer.parseInt(req.getParameter("cpNum"));
+	//	int cpNum=Integer.parseInt(req.getParameter("cpNum"));
 		GoodsDao gdao=GoodsDao.getInstance();
-		GoodsVo gvo=gdao.select(cpNum);
-		int gdListNum=gvo.getGDListNum();
+	//	GoodsVo gvo=gdao.select(cpNum);
+	//	int gdListNum=gvo.getGDListNum();
+	//	String gdListCol=gdListNum+"";
 		
 		GoodsDetailDao gddao=GoodsDetailDao.getInstance();
+		//ArrayList<GoodsDetailVo> list=gddao.select(gdListCol, gdListNum);
+		ArrayList<GoodsDetailVo> list=gddao.selectAll();
+		JSONArray arr=new JSONArray();
+//		JSONObject cpjson=new JSONObject();
+		PrintWriter pw=resp.getWriter();
+//		cpjson.put("cpNum", cpNum);
+/*		for(int i=0;i<list.size();i++) {
+			GoodsDetailVo gdvo=list.get(i);
+			JSONObject json=new JSONObject();
+			json.put("gdListNum", gdvo.getGdlistnum());
+			json.put("gdNum", gdvo.getGdnum());
+			json.put("gdName", gdvo.getGdnum());
+			json.put("gdPrice", gdvo.getGdprice());
+			json.put("gdStock", gdvo.getGdstock());
+			json.put("gdDetail",gdvo.getGddetail());
+			json.put("gdSumary", gdvo.getGdsumary());
+	//		json.put("cpNum", cpNum);
+			arr.put(json);	
+		}
+		*/
+	//	arr.put(list);
+	//	arr.put(json);
+		arr.put(list);
+		pw.print(arr);
+		
 		
 		
 		
