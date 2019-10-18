@@ -42,19 +42,8 @@ public class SearchController extends HttpServlet{
 		int startRow=endRow-9;
 		
 		GoodsDetailDao gdao=GoodsDetailDao.getInstance();
-		ArrayList<GoodsDetailVo> gdvolist=null;
+		ArrayList<GoodsDetailVo> gdvolist=gdao.search(company, list, array, keyword, startRow, endRow);
 		
-		if(arrayS!=null && arrayS.equals("0")) { // 최신순
-			
-		}if(arrayS!=null && arrayS.equals("1")) { // 낮은가격순
-			
-		}if(arrayS!=null && arrayS.equals("2")) { // 높은가격순
-			
-		}if(arrayS!=null && arrayS.equals("3")) { // 최다판매량
-			
-		}if(arrayS!=null && arrayS.equals("4")) { // 평점높은순
-			
-		}
 		
 		req.getRequestDispatcher("/examples/search.jsp").forward(req, resp);
 	}

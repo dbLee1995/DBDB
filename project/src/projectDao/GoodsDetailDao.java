@@ -49,10 +49,8 @@ public class GoodsDetailDao {
 		PreparedStatement pstmtMS=null;
 		PreparedStatement pstmtHA=null;
 		ResultSet rs=null;
-		
 		try {
 			con=JdbcUtil.getConn();
-			
 			if(array==3) {
 				String sqlMS="select s.gdnum, count(s.gdnum)" + 
 						" from shoppinglist s" + 
