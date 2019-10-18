@@ -40,10 +40,68 @@ public class GoodsDetailDao {
 	public int getCount(int com,String list,int array,String keyword,
 							int startnum,int endnum) {
 		
-		return 0;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		PreparedStatement pstmtMS=null;
+		PreparedStatement pstmtHA=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getConn();
+			if(array==3) {
+				String sqlMS="select NVL(count(s.gdnum),0)" + 
+						" from shoppinglist s" + 
+						" group by s.gdnum" + 
+						" order by count(s.gdnum) desc"; 
+				pstmtMS=con.prepareStatement(sqlMS);
+				rs=pstmtMS.executeQuery();
+				if(rs.next()) {
+					return rs.getInt(1);
+				}
+				return 0;
+			}else if(array==4) {
+				String sqlHA="select NVL(count(r.gdnum),0)" + 
+						" from review r" + 
+						" group by r.gdnum" + 
+						" order by avg(r.score) desc";
+				pstmtHA=con.prepareStatement(sqlHA);
+				rs=pstmtHA.executeQuery();
+				if(rs.next()) {
+					return rs.getInt(1);
+				}
+				return 0;
+			}else {
+			
+				String sql="select NVL(count(*),0)" + 
+						" from goodsdetail gd, goods g"+
+						" where gd.gdlistnum=g.gdlistnum ";
+				if(com!=0) {sql+=" and g.cpnum="+com;}
+				if(list!=null && !list.equals("0")) {
+					sql+=" and g.gdlist="+list;}
+				if(keyword!=null && !keyword.equals("")) {
+					sql+=" and gd.gdname like '%"+keyword+"%'";}
+				if(array==0) {sql+=" order by gd.gdnum desc";}
+				else if(array==1) {sql+=" order by gd.gdprice";}
+				else if(array==2) {sql+=" order by gd.gdprice desc";}
+				pstmt=con.prepareStatement(sql);
+				rs=pstmt.executeQuery();
+				if(rs.next()) {
+					return rs.getInt(1);
+				}
+				return 0;
+			}
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			se.printStackTrace();
+			return -1;	
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+			JdbcUtil.close(pstmtMS);
+			JdbcUtil.close(pstmtHA);
+		}
 	}
 	public ArrayList<GoodsDetailVo> search(int com,String list,int array,
 							String keyword,int startnum,int endnum) {
+		
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		PreparedStatement pstmtMS=null;
