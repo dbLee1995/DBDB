@@ -9,7 +9,6 @@ public class ShoppinglistVo {
 	private int orderNum;
 	private int gdCount;
 	private Date regdate;
-
 	private String name;
 	private String phone;
 	private String addr;

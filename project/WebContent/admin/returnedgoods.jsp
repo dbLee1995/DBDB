@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div id="content-wrapper">
 	<div class="card-header" style="margin-left: auto; margin-right: auto;">
-			<h3>배송 관리</h3>
+			<h3>반품 관리</h3>
 		</div>
 	<div class="container-fluid">
 		<form method="post" name="goodsDetailForm"> 
@@ -16,7 +16,7 @@
 				<td>이름</td>
 				<td>주소</td>
 				<td >배송메세지</td>
-				<td colspan="2">배송 상태</td>
+				<td colspan="2">반품 상태</td>
 			</tr>
 		</thead>
 		 <tbody id="tablebody">
@@ -34,7 +34,7 @@ function getDeliveryList() {
 	lxhr.onreadystatechange = listcallback;
 	lxhr.open('post', 'delivery', true);
 	lxhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	var param = "cmd=gdDeliveryList";
+	var param = "cmd=returnStateList";
 	lxhr.send(param);
 }
 var snum=null;
@@ -69,22 +69,19 @@ function listcallback() {
 				msgCell.innerHTML = list[i].msg;
 			}
 			state=list[i].state;
-			if(state==1){
-				stateCell.innerHTML = "배송중";
-				stateChangeCell.innerHTML = "<button type='button' class='btn btn-primary' onclick='stateChange("+list[i].snum+")' >배송중</button>";
+			if(state==4){
+				stateCell.innerHTML = "반품 처리 중";
+				stateChangeCell.innerHTML = "<button type='button' class='btn btn-primary' onclick='stateChange("+list[i].snum+")' >반품 처리중</button>";
 			}else{
-				stateCell.innerHTML = "배송완료";
-				stateChangeCell.innerHTML = "<button type='button' class='btn btn-secondary'disabled>배송완료</button>";
+				stateCell.innerHTML = "반품완료";
+				stateChangeCell.innerHTML = "<button type='button' class='btn btn-secondary'disabled>반품 완료</button>";
 			}
 		}
 	}
 }
-	function stateChange(num){
-		document.goodsDetailForm.action="delivery?cmd=stateChange&snum="+num+"&state="+state;
-		document.goodsDetailForm.submit();
-	}
 
-
-	
-	
+function stateChange(num){
+	document.goodsDetailForm.action="delivery?cmd=stateChange&snum="+num+"&state="+state;
+	document.goodsDetailForm.submit();
+}
 </script>
