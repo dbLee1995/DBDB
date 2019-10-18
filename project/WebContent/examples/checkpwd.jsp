@@ -107,7 +107,7 @@
                 <div class="col-12"><span style="color:gray; font-size:12px">회원님의 아이디:</span></div>
                   
                     <div class="input-group input-group-alternative mb-3">                  
-                      <input class="form-control" id="checkId4" placeholder="ID" type="text"  readonly="readonly" value="<%=id %>">
+                      <input class="form-control" name="checkId4" placeholder="ID" type="text"  readonly="readonly" value="<%=id %>">
                       <div class="col-12">
                     </div>
                   </div>
@@ -116,13 +116,13 @@
                   
                     <div class="input-group input-group-alternative mb-3">
                       
-                      <input class="form-control" placeholder="Email" type="email"  readonly="readonly" id="checkEmail4" value=<%=email %>>
+                      <input class="form-control" placeholder="Email" type="email"  readonly="readonly" id="checkEmail4" value="<%=email %>">
                     </div>
                   </div>
                   <div class="col-12"><span style="color:gray; font-size:12px">회원님의 비밀번호:</span></div>
                   <div class="form-group">
                     <div class="input-group input-group-alternative">
-                      <input class="form-control" placeholder="Password" type="text" id="checkPassword4"  readonly="readonly" value="<%=pwd %>">
+                      <input class="form-control" placeholder="Password" type="text" name="checkPassword4"  readonly="readonly" value="<%=pwd %>">
                     </div>
                   </div>
                   <div class="text-center">

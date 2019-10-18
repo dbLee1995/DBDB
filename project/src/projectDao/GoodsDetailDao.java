@@ -84,6 +84,7 @@ public class GoodsDetailDao {
 		}
 	}
 	public int insert(GoodsDetailVo vo) {
+		System.out.println("aaaaaaaaa");
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
@@ -97,7 +98,9 @@ public class GoodsDetailDao {
 			pstmt.setInt(5, vo.getGdstock());
 			pstmt.setString(6, vo.getGddetail());
 			pstmt.setString(7, vo.getGdsumary());
-			return pstmt.executeUpdate();
+		 int n= pstmt.executeUpdate();
+		 System.out.println(n);
+		 return n;
 		}catch(SQLException se) {
 			se.printStackTrace();
 			return -1;

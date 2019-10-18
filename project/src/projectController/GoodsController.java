@@ -162,5 +162,6 @@ public class GoodsController extends HttpServlet {
 	}
 	protected void cpNumGdSelect(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/plain;charset=utf-8");
+		
 	}
 }
