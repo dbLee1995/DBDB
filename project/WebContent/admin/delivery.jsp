@@ -15,8 +15,8 @@
 				<td>아이디</td>
 				<td>이름</td>
 				<td>주소</td>
-				<td>배송메세지</td>
-				<td><div id="deliveryState">배송 상태</div></td>
+				<td >배송메세지</td>
+				<td colspan="2">배송 상태</td>
 			</tr>
 		</thead>
 		 <tbody id="tablebody">
@@ -37,6 +37,8 @@ function getDeliveryList() {
 	var param = "cmd=gdDeliveryList";
 	lxhr.send(param);
 }
+var snum=null;
+var state=null;
 function listcallback() {
 	if (lxhr.readyState == 4 && lxhr.status == 200) {
 		var data = lxhr.responseText;
@@ -50,7 +52,7 @@ function listcallback() {
 			var idCell = row.insertCell(3);
 			var nameCell = row.insertCell(4);
 			var addrCell = row.insertCell(5);
-			var magCell = row.insertCell(6);
+			var msgCell = row.insertCell(6);
 			var stateCell=row.insertCell(7);
 			var stateChangeCell=row.insertCell(8);
 			orderNumCell.innerHTML = list[i].ordernum;
@@ -59,20 +61,26 @@ function listcallback() {
 			idCell.innerHTML = list[i].id;
 			nameCell.innerHTML = list[i].name;
 			addrCell.innerHTML = list[i].addr;
-			magCell.innerHTML = list[i].msg;
-			var state=list[i].state;
+			snum=list[i].snum
+			var msg=list[i].msg;
+			if(msg==null){
+				msgCell.innerHTML = "";
+			}else{
+				msgCell.innerHTML = list[i].msg;
+			}
+			state=list[i].state;
 			if(state==1){
 				stateCell.innerHTML = "배송중";
-				stateChangeCell.innerHTML = "<button type='button' class='btn btn-primary' onclick='stateChange("+list[i].state+")'>배송완료</button>";
+				stateChangeCell.innerHTML = "<button type='button' class='btn btn-primary' onclick='stateChange("+list[i].snum+")' >배송중</button>";
 			}else{
 				stateCell.innerHTML = "배송완료";
-				stateChangeCell.innerHTML = "<button type='button' class='btn btn-secondary'>배송완료</button>";
+				stateChangeCell.innerHTML = "<button type='button' class='btn btn-secondary'disabled>배송완료</button>";
 			}
 		}
 	}
 }
 	function stateChange(num){
-		document.goodsDetailForm.action="goodsdetail?cmd=gdDetailDelete&gdNum="+num;
+		document.goodsDetailForm.action="delivery?cmd=stateChange&snum="+num;
 		document.goodsDetailForm.submit();
 		
 	}

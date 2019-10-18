@@ -24,6 +24,9 @@ public class DeliveryController extends HttpServlet {
 		if(cmd!=null&&cmd.equals("gdDeliveryList")) {
 			gdDeliveryList(req, resp);
 		}
+		if(cmd!=null&&cmd.equals("stateChange")) {
+			stateChange(req, resp);
+		}
 	}
 	protected void gdDeliveryList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		resp.setContentType("text/plain;charset=utf-8");
@@ -32,7 +35,7 @@ public class DeliveryController extends HttpServlet {
 		JSONArray arr=new JSONArray();
 		for(int i=0;i<list.size();i++) {
 			ShoppinglistVo svo=list.get(i);
-			if(svo.getState()==1 || svo.getState()==2) {
+			if(svo.getState()==1 || svo.getState()==3) {
 				JSONObject json=new JSONObject();
 				json.put("ordernum", svo.getOrderNum());
 				json.put("gdname", svo.getName());
@@ -42,11 +45,23 @@ public class DeliveryController extends HttpServlet {
 				json.put("addr", svo.getAddr());
 				json.put("msg", svo.getMsg());
 				json.put("state", svo.getState());
+				json.put("snum", svo.getSnum());
 				arr.put(json);
 			}
 		}
 		PrintWriter pw=resp.getWriter();
 		pw.print(arr);
+	}
+	protected void stateChange(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		resp.setContentType("text/plain;charset=utf-8");
+		int state=3;
+		int snum=Integer.parseInt(req.getParameter("snum"));
+		ShoppinglistDao sdao=ShoppinglistDao.getInstance();
+		int n=sdao.update(snum, state);
+		if(n>0) {
+			resp.sendRedirect(req.getContextPath()+"/admin/adindex.jsp?page=delivery.jsp");
+		}
+		
 		
 	}
 }
