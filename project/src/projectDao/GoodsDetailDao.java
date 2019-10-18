@@ -167,7 +167,7 @@ public class GoodsDetailDao {
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select * from goodsdetail order by gdlistnum";
+			String sql="select * from goodsdetail order by gdlistnum, gdnum";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			ArrayList<GoodsDetailVo> list=new ArrayList<GoodsDetailVo>();
