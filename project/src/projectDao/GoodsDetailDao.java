@@ -44,13 +44,17 @@ public class GoodsDetailDao {
 	}
 	public ArrayList<GoodsDetailVo> search(int com,String list,int array,
 							String keyword,int startnum,int endnum) {
-		// com, list는 0이 아니면 이름으로 바로 비교 
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		PreparedStatement pstmtMS=null;
 		PreparedStatement pstmtHA=null;
 		ResultSet rs=null;
 		
+		if(array==3) {
+			
+		}else if(array==4) {
+			
+		}
 		
 		try {
 			con=JdbcUtil.getConn();
