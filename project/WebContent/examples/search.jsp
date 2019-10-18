@@ -189,19 +189,19 @@
 		                      		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		                      		<div class="custom-control custom-radio mb-3">
 						              <input name="company" class="custom-control-input" id="companyall" 
-						              checked type="radio" value="전체">
+						              checked type="radio" value="0">
 						              <label class="custom-control-label" for="companyall"><span>전체</span></label>
 						            </div>
 						            &nbsp;&nbsp;
 									<div class="custom-control custom-radio mb-3">
 						              <input name="company" class="custom-control-input" id="company1" 
-						               type="radio" value="맛있닭">
+						               type="radio" value="1">
 						              <label class="custom-control-label" for="company1"><span>맛있닭</span></label>
 						            </div>
 						            &nbsp;&nbsp;
 						            <div class="custom-control custom-radio mb-3">
 						              <input name="company" class="custom-control-input" id="company2" 
-						              type="radio" value="푸드원">
+						              type="radio" value="2">
 						              <label class="custom-control-label" for="company2"><span>푸드원</span></label>
 						            </div>
 								</div>
@@ -212,7 +212,7 @@
 		                      		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		                      		<div class="custom-control custom-radio mb-3">
 						              <input name="list" class="custom-control-input" id="listall" 
-						              checked type="radio" value="전체">
+						              checked type="radio" value="0">
 						              <label class="custom-control-label" for="listall"><span>전체</span></label>
 						            </div>
 						            &nbsp;&nbsp;
@@ -253,31 +253,31 @@
 		                      		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		                      		<div class="custom-control custom-radio mb-3">
 						              <input name="array" class="custom-control-input" id="arraynew" 
-						              checked type="radio" value="최신순">
+						              checked type="radio" value="0">
 						              <label class="custom-control-label" for="arraynew"><span>최신순</span></label>
 						            </div>
 						            &nbsp;&nbsp;
 									<div class="custom-control custom-radio mb-3">
 						              <input name="array" class="custom-control-input" id="array1" 
-						               type="radio" value="낮은가격순">
+						               type="radio" value="1">
 						              <label class="custom-control-label" for="array1"><span>낮은가격순</span></label>
 						            </div>
 						            &nbsp;&nbsp;
 						            <div class="custom-control custom-radio mb-3">
 						              <input name="array" class="custom-control-input" id="array2" 
-						              type="radio" value="높은가격순">
+						              type="radio" value="2">
 						              <label class="custom-control-label" for="array2"><span>높은가격순</span></label>
 						            </div>
 						            &nbsp;&nbsp;
 									<div class="custom-control custom-radio mb-3">
 						              <input name="array" class="custom-control-input" id="array3" 
-						               type="radio" value="최다판매량">
+						               type="radio" value="3">
 						              <label class="custom-control-label" for="array3"><span>최다판매량</span></label>
 						            </div>
 						            &nbsp;&nbsp;
 						            <div class="custom-control custom-radio mb-3">
 						              <input name="array" class="custom-control-input" id="array4" 
-						              type="radio" value="평점높은순">
+						              type="radio" value="4">
 						              <label class="custom-control-label" for="array4"><span>평점높은순</span></label>
 						            </div>
 								</div>

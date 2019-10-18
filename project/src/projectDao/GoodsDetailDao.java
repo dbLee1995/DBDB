@@ -37,6 +37,52 @@ public class GoodsDetailDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	public int getCount(int com,String list,int array,String keyword,
+							int startnum,int endnum) {
+		
+		return 0;
+	}
+	public ArrayList<GoodsDetailVo> search(int com,String list,int array,
+							String keyword,int startnum,int endnum) {
+		// com, list는 0이 아니면 이름으로 바로 비교 
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		PreparedStatement pstmtMS=null;
+		PreparedStatement pstmtHA=null;
+		ResultSet rs=null;
+		
+		
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select * from" + 
+					" (" + 
+					" select mb.*, rownum rnum from" + 
+					" (" + 
+					"    select gd.*, cpnum, gdlist" + 
+					"    from goodsdetail gd, goods g"+
+					"    where gd.gdlistnum=g.gdlistnum ";
+			if(com!=0) {sql+=" and g.cpnum="+com;}
+			if(list!=null && !list.equals("0")) {
+				sql+=" and g.gdlist="+list;}
+			if(keyword!=null && !keyword.equals("")) {
+				sql+=" and gd.gdname like '%"+keyword+"%'";}
+			if(array==0) {sql+=" order by gd.gdnum desc";}
+			else if(array==1) {sql+=" order by gd.gdprice";}
+			else if(array==2) {sql+=" order by gd.gdprice desc";}
+					
+			sql+= " ) mb" + 
+				  " ) where rnum>=? and rnum<=?";
+			
+			
+			return null;
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			se.printStackTrace();
+			return null;	
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 	public int insert(GoodsDetailVo vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -113,7 +159,7 @@ public class GoodsDetailDao {
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select * from goodsdetail";
+			String sql="select * from goodsdetail order by gdlistnum";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			ArrayList<GoodsDetailVo> list=new ArrayList<GoodsDetailVo>();

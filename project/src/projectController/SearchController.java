@@ -21,9 +21,17 @@ public class SearchController extends HttpServlet{
 		
 		String keyword=req.getParameter("keyword");
 		
-		String company=req.getParameter("company");
+		String companyS=req.getParameter("company");
+		int company=0;
+		if(companyS!=null && !companyS.equals("")) {
+			company=Integer.parseInt(companyS);
+		}
 		String list=req.getParameter("list");
-		String array=req.getParameter("array");
+		String arrayS=req.getParameter("array");
+		int array=0;
+		if(arrayS!=null && !arrayS.equals("")) {
+			array=Integer.parseInt(arrayS);
+		}
 		
 		String spageNum=req.getParameter("pageNum");
 		int pageNum=1;
@@ -36,6 +44,17 @@ public class SearchController extends HttpServlet{
 		GoodsDetailDao gdao=GoodsDetailDao.getInstance();
 		ArrayList<GoodsDetailVo> gdvolist=null;
 		
+		if(arrayS!=null && arrayS.equals("0")) { // 최신순
+			
+		}if(arrayS!=null && arrayS.equals("1")) { // 낮은가격순
+			
+		}if(arrayS!=null && arrayS.equals("2")) { // 높은가격순
+			
+		}if(arrayS!=null && arrayS.equals("3")) { // 최다판매량
+			
+		}if(arrayS!=null && arrayS.equals("4")) { // 평점높은순
+			
+		}
 		
 		req.getRequestDispatcher("/examples/search.jsp").forward(req, resp);
 	}
