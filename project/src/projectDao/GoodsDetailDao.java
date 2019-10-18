@@ -50,13 +50,13 @@ public class GoodsDetailDao {
 		PreparedStatement pstmtHA=null;
 		ResultSet rs=null;
 		
-		if(array==3) {
-			
-		}else if(array==4) {
-			
-		}
-		
 		try {
+			if(array==3) {
+				
+			}else if(array==4) {
+				
+			}
+			
 			con=JdbcUtil.getConn();
 			String sql="select * from" + 
 					" (" + 
