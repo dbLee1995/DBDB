@@ -21,19 +21,26 @@
 
 <body>
 <%
-   Cookie[] cooks=request.getCookies();
-   boolean check=false;
-   String id="";
-   if(cooks!=null){
-      for(Cookie cook:cooks){
-      String name=cook.getName();
-      String value=cook.getValue();
-      if(name.equals("id")){
-         id=value;
-         check=true;
-         }
+Cookie[] cooks=request.getCookies();
+boolean check=false;
+String id="";
+String pwd="";
+if(cooks!=null){
+   for(Cookie cook:cooks){
+   String name=cook.getName();
+   String value=cook.getValue();
+   if(name.equals("id")){
+      id=value;
+      check=true;
       }
    }
+}
+String searchid=request.getParameter("checkId4");
+String searchpwd=request.getParameter("checkPassword4");
+if(searchid!=null){
+	   id=searchid;
+	   pwd=searchpwd;
+}
 %>
   <header class="header-global">
     <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
@@ -170,7 +177,7 @@ expanded="false" aria-label="Toggle navigation">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Password" type="password" name="pwd">
+                      <input class="form-control" placeholder="Password" type="password" name="pwd" value="<%=pwd%>">
                     </div>
                   </div>
                   <div class="custom-control custom-control-alternative custom-checkbox">
