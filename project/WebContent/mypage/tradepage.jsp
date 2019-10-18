@@ -258,10 +258,10 @@
                     </div>
                   </div>
                   
-                  <a href="./mypage?cmd=updatetrade&snum=${tradeinfo.snum }">
+                  
 					<button class="btn btn-1 btn-primary" type="button" id="tbtn"
 						onclick="updatetrade()">신청하기</button>
-				  </a>
+				 
                   
                	</div>
               </div>
