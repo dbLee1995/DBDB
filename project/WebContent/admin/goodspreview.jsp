@@ -149,17 +149,19 @@
 	String gdName = request.getParameter("gdName");
 	int gdPrice=Integer.parseInt(request.getParameter("gdPrice"));
 	String intro=request.getParameter("introFileAdd");
-	String detail=request.getParameter("detailFileAdd")	;
+	String setprefile=request.getParameter("setprefile");
+	String detail=request.getParameter("detailFileAdd");
+	String setdefile=request.getParameter("setdefile");
 	
 
 %>
 <script>
 	
 	
-	var  introFile ='<%=intro %>'
+	var  introFile ='<%=intro %>';
 	var  introPrivew = document.getElementById('introPrivew');
 	window.onload=function(){
-	  var prefile =  "C:\\Users\\JHTA\\Desktop\\project\\WebContent\\images\\"+introFile;
+	
 	  var prereader = new FileReader();
 	  prereader.onload = function (event) {
 	    var preimg = new Image();
@@ -167,7 +169,7 @@
 	    introPrivew.innerHTML = '';
 	    introPrivew.appendChild(preimg);
 	  };
-	  prereader.readAsDataURL(prefile);
+	  prereader.readAsDataURL('<%=setprefile%>');
 
 }
 

@@ -127,6 +127,7 @@
 			}
 		}
 	}
+
 	function removegoodsOption() {
 		var gdSelect = document.getElementById("gdSelect");
 		var childs = gdSelect.childNodes;
@@ -138,23 +139,30 @@
 
 	var  introFileAdd = document.getElementById('introFileAdd'),
 		  introPrivew = document.getElementById('introPrivew');
+	var setprefile = null;
 	introFileAdd.onchange=function(){
+	
 		  var prefile = introFileAdd.files[0],
 		      prereader = new FileReader();
+		 // setprefile=prefile;
 		  prereader.onload = function (event) {
 		    var preimg = new Image();
 		    preimg.src = event.target.result;
 		    introPrivew.innerHTML = '';
 		    introPrivew.appendChild(preimg);
 		  };
-		  prereader.readAsDataURL(prefile);
+		 prereader.readAsDataURL(prefile);
+		// setprefile= prereader.readAsDataURL(prefile);
+		 
 
 	}
 	var  detailFileAdd = document.getElementById('detailFileAdd');
 	var detailPrivew = document.getElementById('detailPrivew');
+	var setdefile=null;
 	detailFileAdd.onchange=function(){//이벤트 생성
 		  var defile = detailFileAdd.files[0];
 		  var dereader = new FileReader();  
+		  setdefile=defile;
 		  dereader.onload = function (event) {
 		    var deimg = new Image();
 		    
@@ -170,14 +178,15 @@
 	}
 	function previewSubmit(){
 		document.gdDetailForm.encoding="application/x-www-form-urlencoded"; 
-		var url="goodspreview.jsp";
+		var url="goodspreview.jsp?&setprefile="+setprefile;
 		var title="goodspreview";
 		window.open("",title,"width=800, height=900");
 		
 		document.gdDetailForm.target=title;
 		document.gdDetailForm.action=url;
 		//document.getDetailForm.
-		document.gdDetailForm.method="post";
+	
+		alert(document.gdDetailForm.method);
 		document.gdDetailForm.submit();
 		
 		//document.gdDetailForm.action="goodsdetail?cmd=gdDetailPreview";

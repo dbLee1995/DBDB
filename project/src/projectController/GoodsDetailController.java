@@ -12,9 +12,11 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import projectDao.CompanyDao;
+import projectDao.GoodsDao;
 import projectDao.GoodsDetailDao;
 import projectVo.CompanyVo;
 import projectVo.GoodsDetailVo;
+import projectVo.GoodsVo;
 @WebServlet("/admin/goodsdetail")
 public class GoodsDetailController extends HttpServlet{
 	
@@ -29,10 +31,26 @@ public class GoodsDetailController extends HttpServlet{
 		if(cmd!=null&&cmd.equals("gdDetailPreview")) {
 			gdDetailPreview(req, resp);
 		}
+		if(cmd!=null&&cmd.equals("gdDetailList")) {
+			gdDetailList(req, resp);
+		}
+		
+	}
+	protected void gdDetailList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		resp.setContentType("text/plain;charset=utf-8");
+		int cpNum=Integer.parseInt(req.getParameter("cpNum"));
+		GoodsDao gdao=GoodsDao.getInstance();
+		GoodsVo gvo=gdao.select(cpNum);
+		int gdListNum=gvo.getGDListNum();
+		
+		GoodsDetailDao gddao=GoodsDetailDao.getInstance();
+		
+		
+		
 		
 	}
 	protected void gdDetailinsert(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	     String saveDirectory = "C:\\Users\\JHTA\\Desktop\\project\\WebContent\\images";
+	     String saveDirectory = "C:/Users/JHTA/Desktop/project/WebContent/images";
 	     MultipartRequest mr=new MultipartRequest(
 	                             req,//request 객체
 	                             saveDirectory, //업로드할 디렉토리 경로
