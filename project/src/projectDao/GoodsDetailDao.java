@@ -51,13 +51,14 @@ public class GoodsDetailDao {
 		ResultSet rs=null;
 		
 		try {
+			con=JdbcUtil.getConn();
+			
 			if(array==3) {
-				
+				String sqlMS=""; 
 			}else if(array==4) {
-				
+				String sqlHA=""; 
 			}
 			
-			con=JdbcUtil.getConn();
 			String sql="select * from" + 
 					" (" + 
 					" select mb.*, rownum rnum from" + 
