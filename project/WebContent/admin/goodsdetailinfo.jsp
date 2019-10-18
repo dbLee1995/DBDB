@@ -7,7 +7,7 @@
 	</div>
 	<div class="container-fluid">
 	<form method="post" name="goodsDetailForm"> 
-		<table class="table" style="width: 90%; margin-left: auto; margin-right: auto">
+		<table class="table " style="width: 90%; margin-left: auto; margin-right: auto">
 		<thead>
 			<tr>	
 				<td>상품 종류 번호</td>

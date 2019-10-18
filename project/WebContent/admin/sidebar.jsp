@@ -38,7 +38,7 @@
           <span>주문 관리</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="">배송 관리</a>
+          <a class="dropdown-item" href="adindex.jsp?page=delivery.jsp">배송 관리</a>
            <a class="dropdown-item" href="">반품/교환관리</a>
         </div>
     </ul>

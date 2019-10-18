@@ -9,12 +9,14 @@ public class ShoppinglistVo {
 	private int orderNum;
 	private int gdCount;
 	private Date regdate;
+
 	private String name;
 	private String phone;
 	private String addr;
 	private String msg;
 	private String buyway;
 	private int state;
+	private String gdname;
 	public ShoppinglistVo() {}
 	public ShoppinglistVo(int snum, int gdNum, String id, int orderNum, int gdCount, Date regdate, String name,
 			String phone, String addr, String msg, String buyway, int state) {
@@ -31,6 +33,23 @@ public class ShoppinglistVo {
 		this.msg = msg;
 		this.buyway = buyway;
 		this.state = state;
+	}
+	public ShoppinglistVo(int snum, int gdNum, String id, int orderNum, int gdCount, Date regdate, String name,
+			String phone, String addr, String msg, String buyway, int state, String gdname) {
+		super();
+		this.snum = snum;
+		this.gdNum = gdNum;
+		this.id = id;
+		this.orderNum = orderNum;
+		this.gdCount = gdCount;
+		this.regdate = regdate;
+		this.name = name;
+		this.phone = phone;
+		this.addr = addr;
+		this.msg = msg;
+		this.buyway = buyway;
+		this.state = state;
+		this.gdname = gdname;
 	}
 	public int getSnum() {
 		return snum;
@@ -103,6 +122,12 @@ public class ShoppinglistVo {
 	}
 	public void setState(int state) {
 		this.state = state;
+	}
+	public String getGdname() {
+		return gdname;
+	}
+	public void setGdname(String gdname) {
+		this.gdname = gdname;
 	}
 
 	
