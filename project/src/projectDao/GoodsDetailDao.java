@@ -76,7 +76,7 @@ public class GoodsDetailDao {
 						" where gd.gdlistnum=g.gdlistnum ";
 				if(com!=0) {sql+=" and g.cpnum="+com;}
 				if(list!=null && !list.equals("0")) {
-					sql+=" and g.gdlist="+list;}
+					sql+=" and g.gdlist='"+list+"'";}
 				if(keyword!=null && !keyword.equals("")) {
 					sql+=" and gd.gdname like '%"+keyword+"%'";}
 				if(array==0) {sql+=" order by gd.gdnum desc";}
@@ -152,7 +152,7 @@ public class GoodsDetailDao {
 						"    where gd.gdlistnum=g.gdlistnum ";
 				if(com!=0) {sql+=" and g.cpnum="+com;}
 				if(list!=null && !list.equals("0")) {
-					sql+=" and g.gdlist="+list;}
+					sql+=" and g.gdlist='"+list+"'";}
 				if(keyword!=null && !keyword.equals("")) {
 					sql+=" and gd.gdname like '%"+keyword+"%'";}
 				if(array==0) {sql+=" order by gd.gdnum desc";}

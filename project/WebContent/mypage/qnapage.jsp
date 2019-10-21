@@ -271,12 +271,9 @@
                     </div> <!-- end front panel -->
                     <div class="back">
                         <div class="header">
-                            <h5 class="motto">[${vo.category }] &nbsp; ${vo.title }</h5>
+                            <h5 class="motto">[${vo.category }] &nbsp; ${vo.title } &nbsp; (처리일자:${vo.answerdate })</h5>
                         </div>
-                        
-                        
                             <div class="main">
-                            	<p class="text-center">${vo.answerdate }</p>
                                 <p class="text-center">${vo.answer }</p>
                             </div>
                         <div class="footer">

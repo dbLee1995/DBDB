@@ -189,19 +189,19 @@
 		                      		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		                      		<div class="custom-control custom-radio mb-3">
 						              <input name="company" class="custom-control-input" id="companyall" 
-						              checked type="radio" value="0">
+						               type="radio" value="0" <c:if test="${company==0 }">checked</c:if>>
 						              <label class="custom-control-label" for="companyall"><span>전체</span></label>
 						            </div>
 						            &nbsp;&nbsp;
 									<div class="custom-control custom-radio mb-3">
 						              <input name="company" class="custom-control-input" id="company1" 
-						               type="radio" value="1">
+						               type="radio" value="1" <c:if test="${company==1 }">checked</c:if>>
 						              <label class="custom-control-label" for="company1"><span>맛있닭</span></label>
 						            </div>
 						            &nbsp;&nbsp;
 						            <div class="custom-control custom-radio mb-3">
 						              <input name="company" class="custom-control-input" id="company2" 
-						              type="radio" value="2">
+						              type="radio" value="2" <c:if test="${company==2 }">checked</c:if>>
 						              <label class="custom-control-label" for="company2"><span>푸드원</span></label>
 						            </div>
 								</div>
@@ -212,37 +212,37 @@
 		                      		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		                      		<div class="custom-control custom-radio mb-3">
 						              <input name="list" class="custom-control-input" id="listall" 
-						              checked type="radio" value="0">
+						               type="radio" value="0" <c:if test="${list=='0' }">checked</c:if>>
 						              <label class="custom-control-label" for="listall"><span>전체</span></label>
 						            </div>
 						            &nbsp;&nbsp;
 									<div class="custom-control custom-radio mb-3">
 						              <input name="list" class="custom-control-input" id="list1" 
-						               type="radio" value="닭가슴살">
+						               type="radio" value="닭가슴살" <c:if test="${list=='닭가슴살' }">checked</c:if>>
 						              <label class="custom-control-label" for="list1"><span>닭가슴살</span></label>
 						            </div>
 						            &nbsp;&nbsp;
 						            <div class="custom-control custom-radio mb-3">
 						              <input name="list" class="custom-control-input" id="list2" 
-						              type="radio" value="도시락">
+						              type="radio" value="도시락" <c:if test="${list=='도시락' }">checked</c:if>>
 						              <label class="custom-control-label" for="list2"><span>도시락</span></label>
 						            </div>
 						            &nbsp;&nbsp;
 									<div class="custom-control custom-radio mb-3">
 						              <input name="list" class="custom-control-input" id="list3" 
-						               type="radio" value="볶음밥">
+						               type="radio" value="볶음밥" <c:if test="${list=='볶음밥' }">checked</c:if>>
 						              <label class="custom-control-label" for="list3"><span>볶음밥</span></label>
 						            </div>
 						            &nbsp;&nbsp;
 						            <div class="custom-control custom-radio mb-3">
 						              <input name="list" class="custom-control-input" id="list4" 
-						              type="radio" value="소세지">
+						              type="radio" value="소세지" <c:if test="${list=='소세지' }">checked</c:if>>
 						              <label class="custom-control-label" for="list4"><span>소세지</span></label>
 						            </div>
 						            &nbsp;&nbsp;
 									<div class="custom-control custom-radio mb-3">
 						              <input name="list" class="custom-control-input" id="list5" 
-						               type="radio" value="피자">
+						               type="radio" value="피자" <c:if test="${list=='피자' }">checked</c:if>>
 						              <label class="custom-control-label" for="list5"><span>피자</span></label>
 						            </div>
 								</div>
@@ -253,31 +253,31 @@
 		                      		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		                      		<div class="custom-control custom-radio mb-3">
 						              <input name="array" class="custom-control-input" id="arraynew" 
-						              checked type="radio" value="0">
+						               type="radio" value="0" <c:if test="${array==0 }">checked</c:if>>
 						              <label class="custom-control-label" for="arraynew"><span>최신순</span></label>
 						            </div>
 						            &nbsp;&nbsp;
 									<div class="custom-control custom-radio mb-3">
 						              <input name="array" class="custom-control-input" id="array1" 
-						               type="radio" value="1">
+						               type="radio" value="1" <c:if test="${array==1 }">checked</c:if>>
 						              <label class="custom-control-label" for="array1"><span>낮은가격순</span></label>
 						            </div>
 						            &nbsp;&nbsp;
 						            <div class="custom-control custom-radio mb-3">
 						              <input name="array" class="custom-control-input" id="array2" 
-						              type="radio" value="2">
+						              type="radio" value="2" <c:if test="${array==2 }">checked</c:if>>
 						              <label class="custom-control-label" for="array2"><span>높은가격순</span></label>
 						            </div>
 						            &nbsp;&nbsp;
 									<div class="custom-control custom-radio mb-3">
 						              <input name="array" class="custom-control-input" id="array3" 
-						               type="radio" value="3">
+						               type="radio" value="3" <c:if test="${array==3 }">checked</c:if>>
 						              <label class="custom-control-label" for="array3"><span>최다판매량</span></label>
 						            </div>
 						            &nbsp;&nbsp;
 						            <div class="custom-control custom-radio mb-3">
 						              <input name="array" class="custom-control-input" id="array4" 
-						              type="radio" value="4">
+						              type="radio" value="4" <c:if test="${array==4 }">checked</c:if>>
 						              <label class="custom-control-label" for="array4"><span>평점높은순</span></label>
 						            </div>
 								</div>

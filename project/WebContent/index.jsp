@@ -79,37 +79,20 @@
 						<li class="nav-item dropdown"><a href="#" class="nav-link"
 							data-toggle="dropdown" role="button"> <i
 								class="ni ni-collection d-lg-none"></i> <span
-								class="nav-link-inner--text">category</span>
+								class="nav-link-inner--text">카테고리</span>
 						</a>
 							<div class="dropdown-menu">
-								<a href="./examples/landing.html" class="dropdown-item">Landing</a>
-								<a href="./examples/profile.html" class="dropdown-item">Profile</a>
-								<a href="./examples/login.jsp" class="dropdown-item">Login</a>
-								<a href="./examples/register.html" class="dropdown-item">Register</a>
+								<a href="./search?id=${id }&list=닭가슴살" class="dropdown-item">닭가슴살</a>
+								<a href="./search?id=${id }&list=도시락" class="dropdown-item">도시락</a>
+								<a href="./search?id=${id }&list=볶음밥" class="dropdown-item">볶음밥</a>
+								<a href="./search?id=${id }&list=소세지" class="dropdown-item">소세지</a>
+								<a href="./search?id=${id }&list=피자" class="dropdown-item">피자</a>
 							</div></li>
 					</ul>
 					<ul class="navbar-nav align-items-lg-center ml-lg-auto">
 						<li class="nav-item"><a class="nav-link nav-link-icon"
-							href="https://www.facebook.com/creativetim" target="_blank"
-							data-toggle="tooltip" title="Like us on Facebook"> <i
-								class="fa fa-facebook-square"></i> <span
-								class="nav-link-inner--text d-lg-none">Facebook</span>
-						</a></li>
-						<li class="nav-item"><a class="nav-link nav-link-icon"
-							href="https://www.instagram.com/creativetimofficial"
-							target="_blank" data-toggle="tooltip"
-							title="Follow us on Instagram"> <i class="fa fa-instagram"></i>
-								<span class="nav-link-inner--text d-lg-none">Instagram</span>
-						</a></li>
-						<li class="nav-item"><a class="nav-link nav-link-icon"
-							href="https://twitter.com/creativetim" target="_blank"
-							data-toggle="tooltip" title="Follow us on Twitter"> <i
-								class="fa fa-twitter-square"></i> <span
-								class="nav-link-inner--text d-lg-none">Twitter</span>
-						</a></li>
-						<li class="nav-item"><a class="nav-link nav-link-icon"
-							href="https://github.com/creativetimofficial/argon-design-system"
-							target="_blank" data-toggle="tooltip" title="Star us on Github">
+							href=""
+							target="_blank" data-toggle="tooltip" title="웅앵웅깃허브">
 								<i class="fa fa-github"></i> <span
 								class="nav-link-inner--text d-lg-none">Github</span>
 						</a></li>
@@ -118,18 +101,18 @@
 							if(id==null) {
 						%>
 							<li class="nav-item"><a href="./examples/login.jsp"
-							class="nav-link">Login</a></li>
+							class="nav-link">로그인</a></li>
 							<li class="nav-item"><a href="./examples/register.html"
-							class="nav-link">Register</a></li>
+							class="nav-link">회원가입</a></li>
 						<%
 							}else {
 						%>
 							<li class="nav-item"><a href="./mypage?cmd=cart&id=${id }"
-							class="nav-link">Cart</a></li>
+							class="nav-link">장바구니</a></li>
 							<li class="nav-item"><a href="./mypage?cmd=user&id=${id }"
-							class="nav-link">MyPage</a></li>
+							class="nav-link">마이페이지</a></li>
 							<li class="nav-item"><a href="./examples/logout.jsp"
-							class="nav-link">Logout</a></li>
+							class="nav-link">로그아웃</a></li>
 						<%
 							}
 						%>

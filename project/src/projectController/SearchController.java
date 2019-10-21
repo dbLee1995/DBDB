@@ -21,8 +21,11 @@ public class SearchController extends HttpServlet{
 		
 		String id=req.getParameter("id");
 		
-		String keyword=req.getParameter("keyword");
-		
+		String keywordS=req.getParameter("keyword");
+		String keyword="";
+		if(keywordS!=null && !keywordS.equals("")) {
+			keyword=keywordS;
+		}
 		String companyS=req.getParameter("company");
 		int company=0;
 		if(companyS!=null && !companyS.equals("")) {
