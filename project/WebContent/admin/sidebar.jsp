@@ -42,4 +42,13 @@
           <a class="dropdown-item" href="adindex.jsp?page=goodschange.jsp">교환 관리</a>
           <a class="dropdown-item" href="adindex.jsp?page=returnedgoods.jsp">반품 관리</a>
         </div>
+        <!-- 사이드바 문의관리 -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span>문의 관리</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+          <a class="dropdown-item" href="adindex.jsp?page=uncompletedqna.jsp">미답변 문의 확인</a>
+          <a class="dropdown-item" href="adindex.jsp?page=goodschange.jsp">답변 완료 문의</a>
+        </div>
     </ul>
