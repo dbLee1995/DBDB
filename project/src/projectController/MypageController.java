@@ -210,7 +210,7 @@ public class MypageController extends HttpServlet{
 		String content=req.getParameter("content");
 		String qnaselect=req.getParameter("qnaselect");
 		
-		QnaVo qvo=new QnaVo(id, qnaselect, title, content, null, null, null, 1);
+		QnaVo qvo=new QnaVo(0, id, qnaselect, title, content, null, null, null, 1);
 		int n=QnaDao.getInstance().insert(qvo);
 		
 		qna(req, resp);

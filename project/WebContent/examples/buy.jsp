@@ -103,6 +103,37 @@
 				location.href="./index";
 			}
 		}
+		var buyguestxhr=null;
+		function addbuyguest(){
+			var name=document.getElementsByName("name")[0].value;
+			var email=document.getElementsByName("email")[0].value;
+			var addr=document.getElementsByName("addr")[0].value;
+			
+			var buyway=document.getElementsByName("buyway");
+			var bwvalue="";
+			for(var i=0;i<buyway.length;++i){
+				if(buyway[i].checked==true){
+					bwvalue+=buyway[i].value+" ";
+					break;
+				}
+			}
+			var msg=document.getElementById("msg").value;
+			
+			buyguestxhr=new XMLHttpRequest();
+			buyguestxhr.onreadystatechange=addbuyguestOk;
+			buyguestxhr.open('post','./buy?cmd=guest',true);
+			buyguestxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+			var param="name="+name+"&email="+email+"&addr="+addr+"&bwvalue="+bwvalue+
+						"&point=0&msg="+msg+"&id=${id}&ordernum=${ordernum}&gdnum=${gvo.gdnum }"+
+						"&totalprice=${totalprice}&count=${count}";
+			buyguestxhr.send(param);
+		}
+		function addbuyguestOk(){
+			if(buyguestxhr.readyState==4 && buyguestxhr.status==200){
+				alert("구매가 완료되었습니다! \n주문번호:[${ordernum}]\n주문번호를 잘 확인해주세요!");
+				location.href="./index";
+			}
+		}
 	</script>
 </head>
 <body>
@@ -186,11 +217,7 @@
 				<br>
 				<c:choose>
 					<c:when test="${id!='guest' }">
-					</c:when>
-					<c:otherwise>
-					</c:otherwise>
-				</c:choose>
-				<c:forEach var="clist" items="${cartlist }">
+						<c:forEach var="clist" items="${cartlist }">
                 		<br>
 						<div class='media'>
 						<img src='images/${clist.gdsumary }' class='align-self-start mr-3'
@@ -198,8 +225,20 @@
 						<div class='media-body'>
 						<h5 class='mt-0'><a href="./detail?gdnum=${clist.gdnum }">${clist.gdname }</a></h5>
 						<p>${clist.count }개  &nbsp; 총 금액: ${clist.count * clist.gdprice }원 &nbsp;
-							</p></div></div>
-                	</c:forEach>
+						</p></div></div>
+                		</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<br>
+						<div class='media'>
+						<img src='images/${gvo.gdsumary }' class='align-self-start mr-3'
+						alt='' width='100' height='100'>
+						<div class='media-body'>
+						<h5 class='mt-0'><a href="./detail?gdnum=${gvo.gdnum }">${gvo.gdname }</a></h5>
+						<p>${count }개  &nbsp; 총 금액: ${totalprice}원 &nbsp;
+						</p></div></div>
+					</c:otherwise>
+				</c:choose>
                 	<br>
 					<div class="row" id="margindiv">
 					<label class="buypagelabel">total:</label> &nbsp;&nbsp;
@@ -233,8 +272,11 @@
 								&nbsp;&nbsp;&nbsp;
 								<div class="form-group">
 				             		<input type="text" placeholder="이름을 입력해주세요" id="margintext" 
-				             		class="form-control" value="${userinfo.fname}${userinfo.lname}"
-				             		name="name" disabled/>
+				             		class="form-control" 
+				             		<c:choose><c:when test="${id!='guest' }">
+									value="${userinfo.fname}${userinfo.lname}" disabled</c:when>
+									<c:otherwise>value=""</c:otherwise></c:choose>
+				             		name="name" />
 				            	</div>
 							</div>
 							<div class="row">
@@ -242,7 +284,10 @@
 								&nbsp;&nbsp;&nbsp;
 								<div class="form-group">
 				             		<input type="text" placeholder="메일주소를 입력해주세요" 
-				             		class="form-control" width="300" value="${account.email }"
+				             		class="form-control" width="300" 
+				             		<c:choose><c:when test="${id!='guest' }">
+									value="${account.email }"</c:when>
+									<c:otherwise>value=""</c:otherwise></c:choose>
 				             		name="email"/>
 				            	</div>
 							</div>
@@ -251,7 +296,10 @@
 								&nbsp;&nbsp;&nbsp;
 								<div class="form-group">
 				             		<input type="text" placeholder="주소를 입력해주세요" id="margintext" 
-				             		class="form-control" value="${userinfo.addr }"
+				             		class="form-control" 
+				             		<c:choose><c:when test="${id!='guest' }">
+									value="${userinfo.addr }"</c:when>
+									<c:otherwise>value=""</c:otherwise></c:choose>
 				             		name="addr"/>
 				            	</div>
 							</div>
@@ -301,21 +349,48 @@
 					            </div>
 							</div>
 							<br>
-							<div class="row">
-								<label class="buypagelabel">사용포인트</label>
-								&nbsp;&nbsp;&nbsp;
-								<div class="form-group">
-				             		<input type="text" placeholder="사용 포인트 입력" id="usepoint"
-				             		class="form-control" width="300" value="0"/>
-				            	</div>
-				            	&nbsp;&nbsp;&nbsp;
-				            	<label class="buypagelabel">가용포인트</label>
-								&nbsp;&nbsp;&nbsp;
-								<div class="form-group">
-				             		<input type="text" placeholder="" id="useablepoint"
-				             		class="form-control" width="300" value="${account.point }" disabled/>
-				            	</div>
-							</div>
+							
+							<c:choose>
+								<c:when test="${id!='guest' }">
+									<div class="row">
+										<label class="buypagelabel">사용포인트</label>
+										&nbsp;&nbsp;&nbsp;
+										<div class="form-group">
+						             		<input type="text" placeholder="사용 포인트 입력" id="usepoint"
+						             		class="form-control" width="300" value="0"/>
+						            	</div>
+						            	&nbsp;&nbsp;&nbsp;
+						            	<label class="buypagelabel">가용포인트</label>
+										&nbsp;&nbsp;&nbsp;
+										<div class="form-group">
+						             		<input type="text" placeholder="" id="useablepoint"
+						             		class="form-control" width="300" value="${account.point }" disabled/>
+						            	</div>
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div class="row">
+										<label class="buypagelabel">주문번호</label>
+										&nbsp;&nbsp;&nbsp;
+										<div class="form-group">
+						             		<input type="text" placeholder="주문번호" id="ordernum"
+						             		class="form-control" width="300" value="${ordernum }" disabled/>
+						            	</div>
+						            	&nbsp;&nbsp;&nbsp;
+						            	<label class="buypagelabel">비밀번호</label>
+										&nbsp;&nbsp;&nbsp;
+										<div class="form-group">
+						             		<input type="text" placeholder="비밀번호를 입력해주세요" id="useablepoint"
+						             		class="form-control" width="300" value=""/>
+						            	</div>
+									</div>
+								</c:otherwise>
+							</c:choose>
+							
+							
+							
+							
+							
 							<br>
 								<label class="buypagelabel">배송메시지 입력</label>
 								&nbsp;&nbsp;&nbsp;
@@ -334,8 +409,9 @@
 					
 			<hr>
 			<form>
-				<button class="btn btn-1 btn-outline-warning" type="button"
-					id="buybtn" onclick="addbuy()">구매하기</button>
+				<button class="btn btn-1 btn-outline-warning" type="button"id="buybtn" 
+					<c:choose><c:when test="${id!='guest' }">onclick="addbuy()"</c:when>
+					<c:otherwise>onclick="addbuyguest()"</c:otherwise></c:choose>>구매하기</button>
 			</form>
 
 			

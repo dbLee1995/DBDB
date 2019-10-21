@@ -62,7 +62,7 @@
 				}
 			}
 			
-			location.href="./search?keyword="+searchbar+"&company="+companyV+"&list="+listV+"&array="+arrayV;
+			location.href="./search?id=${id}&keyword="+searchbar+"&company="+companyV+"&list="+listV+"&array="+arrayV;
 		}
 		function searchbtn(){
 			search();

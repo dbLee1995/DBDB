@@ -69,5 +69,22 @@ public class BuyController extends HttpServlet{
 			HttpServletResponse resp) 
 					throws ServletException, IOException {
 		
+		int gdnum=Integer.parseInt(req.getParameter("gdnum"));
+		String id=req.getParameter("id");
+		String name=req.getParameter("name");
+		String email=req.getParameter("email");
+		String addr=req.getParameter("addr");
+		String buyway=req.getParameter("bwvalue");
+		int count=Integer.parseInt(req.getParameter("count"));
+		int totalprice=Integer.parseInt(req.getParameter("totalprice"));
+		int ordernum=Integer.parseInt(req.getParameter("ordernum"));
+		String msg=req.getParameter("msg");
+		
+		ShoppinglistVo svo=new ShoppinglistVo(0, gdnum, 
+				id, ordernum, count, null, 
+				name, email, addr, msg, buyway, 1);
+		int n=ShoppinglistDao.getInstance().insert(svo);
+		
+		req.setAttribute("ordernum", ordernum);
 	}
 }

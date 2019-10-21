@@ -27,19 +27,20 @@ public class BuyPageController extends HttpServlet{
 					throws ServletException, IOException {
 		
 		req.setCharacterEncoding("utf-8");
+		
 		String cmd=req.getParameter("cmd");
 		
-		if(cmd!=null && cmd.equals("guestdetail")) {
-			guestdetail(req, resp);
-		}if(cmd!=null && cmd.equals("userdetail")) {
-			userdetail(req, resp);
+		if(cmd!=null && cmd.equals("guest")) {
+			guest(req, resp);
 		}if(cmd!=null && cmd.equals("cart")) {
 			cart(req, resp);
 		}
 	}
-	protected void guestdetail(HttpServletRequest req, 
+	protected void guest(HttpServletRequest req, 
 			HttpServletResponse resp) 
 					throws ServletException, IOException {
+		
+		System.out.println("guestpage");
 		
 		String id=req.getParameter("id");
 		int gdnum=Integer.parseInt(req.getParameter("gdnum"));
@@ -49,17 +50,14 @@ public class BuyPageController extends HttpServlet{
 		
 		GoodsDetailVo gvo=GoodsDetailDao.getInstance().select("gdnum", gdnum).get(0);
 		req.setAttribute("gvo", gvo);
+		req.setAttribute("count", count);
 		req.setAttribute("totalprice", count*gvo.getGdprice());
 		
 		int ordernum=ShoppinglistDao.getMaxNum()+1;
 		req.setAttribute("ordernum", ordernum);
+		System.out.println("guestdetail");
 		
 		req.getRequestDispatcher("/examples/buy.jsp").forward(req, resp);
-	}
-	protected void userdetail(HttpServletRequest req, 
-			HttpServletResponse resp) 
-					throws ServletException, IOException {
-		
 	}
 	protected void cart(HttpServletRequest req, 
 			HttpServletResponse resp) 
