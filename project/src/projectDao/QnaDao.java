@@ -72,7 +72,9 @@ public class QnaDao {
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select * from qna";
+			String sql="select to_char(regdate,'YYYY/MM/DD HH:MI:SS')qdate,qna.* " + 
+						  " from qna qna " + 
+					      " order by regdate";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			ArrayList<QnaVo> list=new ArrayList<QnaVo>();
