@@ -71,7 +71,7 @@ function listcallback() {
 			state=list[i].state;
 			if(state==1){
 				stateCell.innerHTML = "배송중";
-				stateChangeCell.innerHTML = "<button type='button' class='btn btn-primary' onclick='stateChange("+list[i].snum+")' >배송중</button>";
+				stateChangeCell.innerHTML = "<button type='button' class='btn btn-primary' onclick='stateChange("+snum+")' >배송중</button>";
 			}else{
 				stateCell.innerHTML = "배송완료";
 				stateChangeCell.innerHTML = "<button type='button' class='btn btn-secondary'disabled>배송완료</button>";
@@ -80,7 +80,7 @@ function listcallback() {
 	}
 }
 	function stateChange(num){
-		document.goodsDetailForm.action="delivery?cmd=stateChange&snum="+num+"&state="+state;
+		document.goodsDetailForm.action="delivery?cmd=stateChange&snum="+num+"&state="+1;
 		document.goodsDetailForm.submit();
 	}
 

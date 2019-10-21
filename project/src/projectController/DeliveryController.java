@@ -60,11 +60,27 @@ public class DeliveryController extends HttpServlet {
 	}
 	protected void stateChange(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		resp.setContentType("text/plain;charset=utf-8");
-		//스위치나 if문으로 한번에 가능할듯
 		int state=Integer.parseInt(req.getParameter("state"));
 		int snum=Integer.parseInt(req.getParameter("snum"));
 		ShoppinglistDao sdao=ShoppinglistDao.getInstance();
-		switch (state) {
+		System.out.println("state:"+state);
+		System.out.println("snum:"+snum);
+/*		int n=0;
+		if(state==1) {
+			n=sdao.update(snum, 3);
+			System.out.println("1:"+state);
+			if(n>0) resp.sendRedirect(req.getContextPath() + "/admin/adindex.jsp?page=delivery.jsp");
+		}else if(state==2) {
+			n=sdao.update(snum, 5);
+			System.out.println("2:"+state);
+			if(n>0) resp.sendRedirect(req.getContextPath() + "/admin/adindex.jsp?page=goodschange.jsp");
+		}else if(state==4) {
+			n=sdao.update(snum, 6);
+			System.out.println("3:"+state);
+			if(n>0) resp.sendRedirect(req.getContextPath() + "/admin/adindex.jsp?page=returnedgoods.jsp");
+		}*/
+		
+	switch (state) {
 		case 1:
 			int n = sdao.update(snum, 3);
 			if (n > 0) {
@@ -77,6 +93,7 @@ public class DeliveryController extends HttpServlet {
 				resp.sendRedirect(req.getContextPath() + "/admin/adindex.jsp?page=goodschange.jsp");
 			}
 			break;
+		case 3: System.out.println("test");break;//state 3으로 넘어오는지 확인용
 		case 4:
 			int j = sdao.update(snum, 6);
 			System.out.println(j);
@@ -84,7 +101,7 @@ public class DeliveryController extends HttpServlet {
 				resp.sendRedirect(req.getContextPath() + "/admin/adindex.jsp?page=returnedgoods.jsp");
 			}
 			break;
-		}
+		} 
 	}
 	protected void changeStateList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		resp.setContentType("text/plain;charset=utf-8");
