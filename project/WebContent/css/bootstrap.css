@@ -62,6 +62,19 @@ a:hover {
   outline-width: 0;
 }
 
+a:hover,
+a:focus {
+  color: #2a6496;
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+
 abbr[title] {
   border-bottom: none;
   text-decoration: underline;
