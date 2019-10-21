@@ -15,19 +15,42 @@ public class QnaDao {
 	public static QnaDao getInstance() {
 		return dao;
 	}
+	public int getMaxNum() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select NVL(max(qnum),0) as maxnum from qna";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				int num=rs.getInt("maxnum");
+				return num;
+			}else {
+				return 0;
+			}
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 	public int insert(QnaVo vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="insert into qna values(?,?,?,?,sysdate,?,sysdate,?)";
+			String sql="insert into qna values(?,?,?,?,?,sysdate,?,sysdate,?)";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, vo.getId());
-			pstmt.setString(2, vo.getCategory());
-			pstmt.setString(3, vo.getTitle());
-			pstmt.setString(4, vo.getContent());
-			pstmt.setString(5, vo.getAnswer());
-			pstmt.setInt(6, vo.getAnswerstate());
+			pstmt.setInt(0,getMaxNum()+1);
+			pstmt.setString(2, vo.getId());
+			pstmt.setString(3, vo.getCategory());
+			pstmt.setString(4, vo.getTitle());
+			pstmt.setString(5, vo.getContent());
+			pstmt.setString(6, vo.getAnswer());
+			pstmt.setInt(7, vo.getAnswerstate());
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
@@ -48,7 +71,9 @@ public class QnaDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				QnaVo vo=
-						new QnaVo(rs.getString("id"),
+						new QnaVo(
+								rs.getInt("qnum"),
+								rs.getString("id"),
 								rs.getString("category"),
 								rs.getString("title"),
 								rs.getString("content"),
@@ -80,7 +105,9 @@ public class QnaDao {
 			ArrayList<QnaVo> list=new ArrayList<QnaVo>();
 			while(rs.next()) {
 				QnaVo vo=
-						new QnaVo(rs.getString("id"),
+						new QnaVo(
+								rs.getInt("qnum"),
+								rs.getString("id"),
 								rs.getString("category"),
 								rs.getString("title"),
 								rs.getString("content"),

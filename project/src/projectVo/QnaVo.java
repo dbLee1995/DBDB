@@ -3,6 +3,7 @@ package projectVo;
 import java.sql.Date;
 
 public class QnaVo {
+	private int qnum;
 	private String id;
 	private String category;
 	private String title;
@@ -12,9 +13,11 @@ public class QnaVo {
 	private Date answerdate;
 	private int answerstate;
 	public QnaVo() {}
-	public QnaVo(String id, String category, String title, String content, Date regdate, String answer, Date answerdate,
-			int answerstate) {
+	
+	public QnaVo(int qnum, String id, String category, String title, String content, Date regdate, String answer,
+			Date answerdate, int answerstate) {
 		super();
+		this.qnum = qnum;
 		this.id = id;
 		this.category = category;
 		this.title = title;
@@ -24,6 +27,14 @@ public class QnaVo {
 		this.answerdate = answerdate;
 		this.answerstate = answerstate;
 	}
+	public int getQnum() {
+		return qnum;
+	}
+
+	public void setQnum(int qnum) {
+		this.qnum = qnum;
+	}
+
 	public String getId() {
 		return id;
 	}
