@@ -36,6 +36,8 @@ public class DetailController extends HttpServlet{
 		
 		String id=req.getParameter("id");
 		
+		System.out.println(id);
+		
 		req.setAttribute("id", id);
 		req.setAttribute("gdnum", gdnum);
 		req.setAttribute("sumimg", vo.getGdsumary());

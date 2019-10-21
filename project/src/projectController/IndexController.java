@@ -21,7 +21,11 @@ public class IndexController extends HttpServlet{
 		
 		req.setCharacterEncoding("utf-8");
 		
-		String id=req.getParameter("id");
+		String id="";
+		String rid=req.getParameter("id");
+		if(rid!=null && rid.equals("")) {id="guest";}
+		else if(rid==null) {id="guest";}
+		else {id=rid;}
 		
 		GoodsDetailDao dao=GoodsDetailDao.getInstance();
 		ArrayList<GoodsDetailVo> pricelist=dao.select("gdprice", 0);

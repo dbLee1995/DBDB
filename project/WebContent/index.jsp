@@ -100,6 +100,8 @@
 							String id=(String)session.getAttribute("id");
 							if(id==null) {
 						%>
+							<li class="nav-item"><a href=""
+							class="nav-link">주문조회</a></li>
 							<li class="nav-item"><a href="./examples/login.jsp"
 							class="nav-link">로그인</a></li>
 							<li class="nav-item"><a href="./examples/register.html"

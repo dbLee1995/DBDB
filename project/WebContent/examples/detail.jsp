@@ -137,6 +137,12 @@
 				alert("장바구니에 추가되었습니다!");
 			}
 		}
+		function addbuy(){
+		}
+		function goLogin(){
+			alert("로그인이 필요한 기능입니다.\n로그인 화면으로 넘어갑니다.");
+			location.href="./examples/login.jsp";
+		}
 	</script>
 </head>
 <body>
@@ -244,10 +250,12 @@
 											<span id="result"></span>
 										</h2>
 										<br> <br> <br>
+										<c:if test="${id!='guest' }">
 										<button class="btn btn-1 btn-warning" type="button" id="btn"
 											onclick="addCart()">장바구니에 담기</button>
+										</c:if>
 										<button class="btn btn-1 btn-outline-warning" type="button"
-											id="btn">바로 결제하기</button>
+											id="btn" onclick="addbuy()">바로 결제하기</button>
 									</form>
 								</div>
 							</div>
@@ -330,7 +338,10 @@
 						rows="3"></textarea>
 				</div>
 				<button class="btn btn-1 btn-outline-warning" type="button"
-					id="btnreview" onclick="addReview()">리뷰 등록하기</button>
+					id="btnreview"
+					<c:choose><c:when test="${id!='guest' }">onclick="addReview()"</c:when>
+					<c:otherwise>onclick="goLogin()"</c:otherwise></c:choose> 
+					>리뷰 등록하기</button>
 			</form>
 
 			
