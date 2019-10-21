@@ -38,6 +38,10 @@ public class MypageController extends HttpServlet{
 			user(req, resp);
 		}if(cmd!=null && cmd.equals("userinfo")) {
 			userinfo(req, resp);
+		}if(cmd!=null && cmd.equals("editpwd")) {
+			editpwd(req,resp);
+		}if(cmd!=null && cmd.equals("editpwdinfo")) {
+			editpwdinfo(req,resp);
 		}if(cmd!=null && cmd.equals("shoppinglist")) {
 			shoppinglist(req, resp);
 		}if(cmd!=null && cmd.equals("updateshoppinglist")) {
@@ -92,6 +96,37 @@ public class MypageController extends HttpServlet{
 		UserInfoVo uvoUpdate=new UserInfoVo(id, fname, lname, addr);
 		udao.update(uvoUpdate);
 		
+		user(req, resp);
+	}
+	protected static void editpwd(HttpServletRequest req, 
+			HttpServletResponse resp) throws ServletException, IOException {
+		String nid=req.getParameter("id");
+		if(id!=null && id.equals("")) {id=nid;}
+		
+		AccountDao adao=AccountDao.getInstance();
+		AccountVo avo=adao.select(id);
+		
+		UserInfoDao udao=UserInfoDao.getInstance();
+		UserInfoVo uvo=udao.select(id);
+		
+		req.setAttribute("id", id);
+		req.setAttribute("email", avo.getEmail());
+		req.setAttribute("pwd", avo.getPwd());
+		req.getRequestDispatcher("/mypage/editpwdpage.jsp").forward(req, resp);
+	}
+	protected static void editpwdinfo(HttpServletRequest req, 
+			HttpServletResponse resp) throws ServletException, IOException {
+		String id=req.getParameter("id");
+		String email=req.getParameter("email");
+		String pwd=req.getParameter("pwd");
+		
+		
+		AccountDao adao=AccountDao.getInstance();
+		AccountVo avo=adao.select(id);
+		AccountVo avoUpdate=new AccountVo(id, pwd, email, avo.getPoint());
+		adao.update(avoUpdate);
+		
+
 		user(req, resp);
 	}
 	protected static void shoppinglist(HttpServletRequest req, 

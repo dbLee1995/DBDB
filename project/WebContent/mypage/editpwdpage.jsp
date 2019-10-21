@@ -21,28 +21,36 @@
   <link href="./assets/demo/demo.css" rel="stylesheet" />
   
   	<script type="text/javascript">
-  		function movepwd(){
-  			location.href="./mypage?cmd=editpwd";
-  		}
+  		var pwdxhr=null;
   		
-  		var infoxhr=null;
-  		function modiinfo(){
+  		function modipwd(){
+  			var pwd=document.getElementById("pwd").value;
   			var email=document.getElementById("email").value;
-  			var fname=document.getElementById("fname").value;
-  			var lname=document.getElementById("lname").value;
-  			var addr=document.getElementById("addr").value;
-  			infoxhr=new XMLHttpRequest();
-  			infoxhr.onreadystatechange=modiinfoOk;
-  			infoxhr.open('post','./mypage?cmd=userinfo',true);
-  			infoxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-			var param="id=${id}&email="+email+"&fname="+fname+"&lname="+lname+"&addr="+addr;
-			infoxhr.send(param);
+  			var npwd=document.getElementById("npwd").value;
+  			
+  			if(pwd.length<4){
+  				alert("비밀번호 4자이상 입력");
+  				return ;
+  			}
+  			if(pwd!==npwd){
+  				alert("비밀번호 확인");
+  				return;
+  			}
+  			pwdxhr=new XMLHttpRequest();
+  			pwdxhr.onreadystatechange=modipwdOk;
+  			pwdxhr.open('post','./mypage?cmd=editpwdinfo', true);
+  			pwdxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+  			var param="id=${id}&email=${email}&pwd="+pwd ;
+  			pwdxhr.send(param);
+  			
   		}
-		function modiinfoOk(){	
-			if(infoxhr.readyState==4 && infoxhr.status==200){
-				alert("정보가 수정되었습니다!");
-			}
-		}
+  		function modipwdOk(){
+  			if(pwdxhr.readyState==4 && pwdxhr.status==200){
+				alert("비밀번호가 수정되었습니다!");
+			location.href="./mypage?cmd=user";
+  		}
+  	}
+  	
   	</script>
   
 </head>
@@ -135,7 +143,7 @@
                 <h5>내 정보</h5>
               </div>
               <div class="card-body">
-                <form>
+                <form >
                   <div class="row">
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
@@ -146,34 +154,28 @@
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" placeholder="Email" id="email" value="${email }">
+                        <input type="email" class="form-control" placeholder="Email" id="email" value="${email }" disabled>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" class="form-control" placeholder="Company" id="fname" value="${fname }">
-                      </div>
-                    </div>
-                    <div class="col-md-6 pl-1">
-                      <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text" class="form-control" placeholder="Last Name" id="lname" value="${lname }">
+                        <label>비밀번호</label>
+                        <input type="password" class="form-control" placeholder="비밀번호" id="pwd" value="${pwd }">
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Address</label>
-                        <input type="text" class="form-control" placeholder="Home Address" id="addr" value="${addr }">
-                      </div>
-                    </div>
-                  </div>
-                  <button class="btn btn-1 btn-primary" type="button" id="pwdbtn" onclick="movepwd()">비밀번호 변경하기</button>
-                  <button class="btn btn-1 btn-primary" type="button" id="infobtn" onclick="modiinfo()">수정하기</button>
+                 <div class="row">
+                 	 <div class="col-md-6 pl-1">
+                     	 <div class="form-group">
+                       	 <label>비밀번호 확인</label>
+                      	  <input type="password" class="form-control" placeholder="비밀번호 확인" name="npwd" id="npwd" value="${npwd }">
+                      	</div>
+                    </div>	 
+                 </div>
+                  <button class="btn btn-1 btn-primary" type="button" id="pwdbtn" onclick="modipwd()">비밀번호 변경하기</button>
+         
                 </form>
               </div>
             </div>
