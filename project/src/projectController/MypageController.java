@@ -212,7 +212,6 @@ public class MypageController extends HttpServlet{
 		
 		QnaVo qvo=new QnaVo(id, qnaselect, title, content, null, null, null, 1);
 		int n=QnaDao.getInstance().insert(qvo);
-		System.out.println(n);
 		
 		qna(req, resp);
 	}

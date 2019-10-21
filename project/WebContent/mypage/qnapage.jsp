@@ -58,6 +58,16 @@
 	  location.href="./mypage?cmd=updateqna&id=${id}&title="+title+"&content="+content+"&qnaselect="+qnaselect;
   }
   </script>
+  <style type="text/css">
+  	#qnacard{
+  	}
+  	#qnacardd{
+  	}
+  	.footer{
+  	}
+  	#qnacontent{
+  	}
+  </style>
   
 </head>
 
@@ -231,43 +241,58 @@
               </div>
               <div class="card-body">
 
+			<c:forEach var="vo" items="${volist }">
+			
 
              <div class="card-container manual-flip" id="qnacard">
-                <div class="card">
+                <div class="card" id="qnacardd">
                     <div class="front">
-                        <div class="content">
+                        <div class="content" id="qnacontent">
                             <div class="main">
-                                <h3 class="name">Andrew Mike</h3>
-                                <p class="profession">Web Developer</p>
-                                <p class="text-center">"Lamborghini Mercy <br>Your chick she so thirsty <br>I'm in that two seat Lambo"</p>
+                                <h3 class="name">[${vo.category }] &nbsp; ${vo.title }</h3>
+                                <p class="profession">${vo.id }(${vo.regdate })</p>
+                                <p class="text-center">${vo.content }</p>
                             </div>
                             <div class="footer">
-                                <button class="btn btn-simple" onclick="rotateCard(this)">
-                                    <i class="fa fa-mail-forward"></i> 답변보기
-                                </button>
+                            	<c:if test="${vo.answerstate==1 }">
+	                                	답변 대기중.. 
+                                </c:if>
+                                <c:if test="${vo.answerstate==2 }">
+	                               		처리중..
+                                </c:if>
+                                <c:if test="${vo.answerstate==3 }">
+	                                <button class="btn btn-simple" onclick="rotateCard(this)">
+	                                    <i class="fa fa-mail-forward"></i> 답변보기
+	                                </button>
+                                </c:if>
+                                
                             </div>
                         </div>
                     </div> <!-- end front panel -->
                     <div class="back">
                         <div class="header">
-                            <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
+                            <h5 class="motto">[${vo.category }] &nbsp; ${vo.title }</h5>
                         </div>
-                        <div class="content">
+                        
+                        
                             <div class="main">
-                                <h4 class="text-center">Job Description</h4>
-                                <p class="text-center">Web design, Adobe Photoshop, HTML5, CSS3, Corel and many others...</p>
+                            	<p class="text-center">${vo.answerdate }</p>
+                                <p class="text-center">${vo.answer }</p>
                             </div>
                         <div class="footer">
                             <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
                                 <i class="fa fa-reply"></i> 질문보기
                             </button>
                         </div>
-                    </div> <!-- end back panel -->
                 </div> <!-- end card -->
             </div> <!-- end card-container -->
   
-    
+  				
+
               </div>
+              
+              </c:forEach>
+              
             </div>
           </div>
         </div>
