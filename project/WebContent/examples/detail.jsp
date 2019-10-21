@@ -138,6 +138,9 @@
 			}
 		}
 		function addbuy(){
+			var count=document.getElementById("multicount");
+			
+			location.herf="./buypage?cmd=guestdetail&id=${id}&gdnum=${gdnum}&count=${count}";
 		}
 		function goLogin(){
 			alert("로그인이 필요한 기능입니다.\n로그인 화면으로 넘어갑니다.");
@@ -254,8 +257,10 @@
 										<button class="btn btn-1 btn-warning" type="button" id="btn"
 											onclick="addCart()">장바구니에 담기</button>
 										</c:if>
-										<button class="btn btn-1 btn-outline-warning" type="button"
-											id="btn" onclick="addbuy()">바로 결제하기</button>
+										<button class="btn btn-1 btn-outline-warning" type="button" id="btn" 
+											<c:choose><c:when test="${id!='guest' }">
+											onclick="location.href='./buypage?cmd=cart&id=${id }'"</c:when>
+											<c:otherwise>onclick="addbuy()"</c:otherwise></c:choose> >바로 결제하기</button>
 									</form>
 								</div>
 							</div>
@@ -337,8 +342,7 @@
 					<textarea class="form-control" id="content"
 						rows="3"></textarea>
 				</div>
-				<button class="btn btn-1 btn-outline-warning" type="button"
-					id="btnreview"
+				<button class="btn btn-1 btn-outline-warning" type="button" id="btnreview"
 					<c:choose><c:when test="${id!='guest' }">onclick="addReview()"</c:when>
 					<c:otherwise>onclick="goLogin()"</c:otherwise></c:choose> 
 					>리뷰 등록하기</button>

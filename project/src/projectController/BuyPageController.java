@@ -39,6 +39,13 @@ public class BuyPageController extends HttpServlet{
 			HttpServletResponse resp) 
 					throws ServletException, IOException {
 		
+		String id=req.getParameter("id");
+		int gdnum=Integer.parseInt(req.getParameter("gdnum"));
+		int count=Integer.parseInt(req.getParameter("count"));
+		
+		req.setAttribute("id", id);
+		
+		req.getRequestDispatcher("/examples/buy.jsp").forward(req, resp);
 	}
 	protected void userdetail(HttpServletRequest req, 
 			HttpServletResponse resp) 
