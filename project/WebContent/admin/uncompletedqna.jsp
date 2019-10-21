@@ -59,19 +59,19 @@ function listcallback() {
 			contentCell.innerHTML = list[i].content;
 			regdateCell.innerHTML = list[i].regdate;
 			var qnum=list[i].qnum;
+			var state=list[i].answerstate;
 			
 			if(list[i].answerstate==1){
-				answerstateCell.innerHTML = "<button type='button' class='btn btn-primary' onclick='stateChange("+qnum+")' >미답변</button>";
+				answerstateCell.innerHTML = "<button type='button' class='btn btn-primary' onclick='stateChange("+qnum+","+state+")' >미답변</button>";
 			}else{
-				answerstateCell.innerHTML="<button type='button' class='btn btn-warning' onclick='stateChange("+qnum+")' >답변중</button>";
+				answerstateCell.innerHTML="<button type='button' class='btn btn-warning' onclick='stateChange("+qnum+","+state+")' >답변중</button>";
 			}
 		}
 	}
 }
-function stateChange(num){
-	document.qnaForm.action="qna?cmd=stateChange&qnum="+num+"&state=1";
+function stateChange(num,state){
+	document.qnaForm.action="qna?cmd=stateChange&qnum="+num+"&state="+state;
 	document.qnaForm.submit();
-	
 }
 
 </script>	

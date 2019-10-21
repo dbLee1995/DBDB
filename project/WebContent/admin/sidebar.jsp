@@ -49,6 +49,6 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <a class="dropdown-item" href="adindex.jsp?page=uncompletedqna.jsp">미답변 문의 확인</a>
-          <a class="dropdown-item" href="adindex.jsp?page=goodschange.jsp">답변 완료 문의</a>
+          <a class="dropdown-item" href="adindex.jsp?page=completedqna.jsp">답변 완료 문의</a>
         </div>
     </ul>
