@@ -1,6 +1,7 @@
 package projectController;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -20,6 +21,9 @@ public class IndexController extends HttpServlet{
 					throws ServletException, IOException {
 		
 		req.setCharacterEncoding("utf-8");
+		
+		DecimalFormat df = new DecimalFormat("###,###.####");
+		req.setAttribute("df", df);
 		
 		String id="";
 		String rid=req.getParameter("id");

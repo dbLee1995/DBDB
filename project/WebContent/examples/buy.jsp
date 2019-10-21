@@ -184,6 +184,12 @@
 		id="section-components">
 		<div class="container">
 				<br>
+				<c:choose>
+					<c:when test="${id!='guest' }">
+					</c:when>
+					<c:otherwise>
+					</c:otherwise>
+				</c:choose>
 				<c:forEach var="clist" items="${cartlist }">
                 		<br>
 						<div class='media'>

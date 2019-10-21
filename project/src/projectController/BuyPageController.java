@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import projectDao.AccountDao;
 import projectDao.CartDao;
+import projectDao.GoodsDetailDao;
 import projectDao.ShoppinglistDao;
 import projectDao.UserInfoDao;
 import projectVo.AccountVo;
 import projectVo.CartInfoVo;
+import projectVo.GoodsDetailVo;
 import projectVo.UserInfoVo;
 
 @WebServlet("/buypage")
@@ -44,6 +46,13 @@ public class BuyPageController extends HttpServlet{
 		int count=Integer.parseInt(req.getParameter("count"));
 		
 		req.setAttribute("id", id);
+		
+		GoodsDetailVo gvo=GoodsDetailDao.getInstance().select("gdnum", gdnum).get(0);
+		req.setAttribute("gvo", gvo);
+		req.setAttribute("totalprice", count*gvo.getGdprice());
+		
+		int ordernum=ShoppinglistDao.getMaxNum()+1;
+		req.setAttribute("ordernum", ordernum);
 		
 		req.getRequestDispatcher("/examples/buy.jsp").forward(req, resp);
 	}

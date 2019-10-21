@@ -237,7 +237,7 @@
 									alt="sm_chickenbreast">
 								<div class="card-body">
 									<h5 class="card-title">${listvo.gdname }</h5>
-									<h5 class="marginclass">${listvo.gdprice }원</h5>
+									<h5 class="marginclass">${df.format(listvo.gdprice) }원</h5>
 									<a href="./detail?gdnum=${listvo.gdnum }&id=${id}">
 									<button class="btn btn-1 btn-outline-warning" type="button"
 									>자세히보기</button></a>
