@@ -12,12 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 import projectDao.AccountDao;
 import projectDao.CartDao;
 import projectDao.GoodsDetailDao;
+import projectDao.QnaDao;
 import projectDao.ShoppinglistDao;
 import projectDao.UserInfoDao;
 import projectVo.AccountVo;
 import projectVo.CartInfoVo;
 import projectVo.GoodsDetailVo;
 import projectVo.OrdernumInfoVo;
+import projectVo.QnaVo;
 import projectVo.ShoppinglistVo;
 import projectVo.UserInfoVo;
 
@@ -52,6 +54,8 @@ public class MypageController extends HttpServlet{
 			point(req, resp);
 		}if(cmd!=null && cmd.equals("qna")) {
 			qna(req, resp);
+		}if(cmd!=null && cmd.equals("updateqna")) {
+			qnaupdate(req, resp);
 		}
 	}
 	protected static void user(HttpServletRequest req, 
@@ -60,16 +64,13 @@ public class MypageController extends HttpServlet{
 		String rid=req.getParameter("id");
 		if(id!=null && id.equals("")) {id=rid;}
 		
-		AccountDao adao=AccountDao.getInstance();
-		AccountVo avo=adao.select(id);
-		
-		UserInfoDao udao=UserInfoDao.getInstance();
-		UserInfoVo uvo=udao.select(id);
+		AccountVo avo=AccountDao.getInstance().select(id);
+		UserInfoVo uvo=UserInfoDao.getInstance().select(id);
 		
 		req.setAttribute("id", id);
 		req.setAttribute("email", avo.getEmail());
-		req.setAttribute("fname", uvo.getFname());
-		req.setAttribute("lname", uvo.getLname());
+		req.setAttribute("fname", uvo.getLname());
+		req.setAttribute("lname", uvo.getFname());
 		req.setAttribute("addr", uvo.getAddr());
 		req.getRequestDispatcher("/mypage/userpage.jsp").forward(req, resp);
 	}
@@ -96,12 +97,10 @@ public class MypageController extends HttpServlet{
 	protected static void shoppinglist(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {
 		
-		ShoppinglistDao sdao=ShoppinglistDao.getInstance();
-		ArrayList<ShoppinglistVo> slist=sdao.select(id);
+		ArrayList<ShoppinglistVo> slist=ShoppinglistDao.getInstance().select(id);
 		req.setAttribute("shoppinglist", slist);
 		
-		GoodsDetailDao gdao=GoodsDetailDao.getInstance();
-		ArrayList<GoodsDetailVo> glist=gdao.selectAll();
+		ArrayList<GoodsDetailVo> glist=GoodsDetailDao.getInstance().selectAll();
 		req.setAttribute("goodsdetaillist", glist);
 		
 		req.getRequestDispatcher("/mypage/shoppinglistpage.jsp").forward(req, resp);
@@ -112,8 +111,7 @@ public class MypageController extends HttpServlet{
 		int snum=Integer.parseInt(req.getParameter("snum"));
 		int state=Integer.parseInt(req.getParameter("state"));
 		
-		ShoppinglistDao sdao=ShoppinglistDao.getInstance();
-		sdao.update(snum, state);
+		ShoppinglistDao.getInstance().update(snum, state);
 		
 		shoppinglist(req, resp);
 	}
@@ -165,8 +163,7 @@ public class MypageController extends HttpServlet{
 		String rid=req.getParameter("id");
 		if(id!=null && id.equals("")) {id=rid;}
 		
-		CartDao vdao=CartDao.getInstance();
-		ArrayList<CartInfoVo> clist=vdao.getCartInfo();
+		ArrayList<CartInfoVo> clist=CartDao.getInstance().getCartInfo();
 		
 		req.setAttribute("cartlist", clist);
 		req.getRequestDispatcher("/mypage/cartpage.jsp").forward(req, resp);
@@ -189,6 +186,34 @@ public class MypageController extends HttpServlet{
 	protected static void qna(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {
 		
+		String rid=req.getParameter("id");
+		if(id!=null && id.equals("")) {id=rid;}
+		
+		UserInfoVo uvo=UserInfoDao.getInstance().select(id);
+		
+		req.setAttribute("id", id);
+		req.setAttribute("name", uvo.getFname()+uvo.getLname());
+		
+		ArrayList<QnaVo> qvolist=QnaDao.getInstance().selectAll();
+		
+		req.setAttribute("volist", qvolist);
+		
 		req.getRequestDispatcher("/mypage/qnapage.jsp").forward(req, resp);
+	}
+	protected static void qnaupdate(HttpServletRequest req, 
+			HttpServletResponse resp) throws ServletException, IOException {
+		
+		String rid=req.getParameter("id");
+		if(id!=null && id.equals("")) {id=rid;}
+		
+		String title=req.getParameter("title");
+		String content=req.getParameter("content");
+		String qnaselect=req.getParameter("qnaselect");
+		
+		QnaVo qvo=new QnaVo(id, qnaselect, title, content, null, null, null, 1);
+		int n=QnaDao.getInstance().insert(qvo);
+		System.out.println(n);
+		
+		qna(req, resp);
 	}
 }

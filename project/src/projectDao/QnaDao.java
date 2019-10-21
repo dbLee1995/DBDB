@@ -20,7 +20,7 @@ public class QnaDao {
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="insert into goodsdetail values(?,?,?,?,sysdate,?,sysdate,?)";
+			String sql="insert into qna values(?,?,?,?,sysdate,?,sysdate,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getCategory());
