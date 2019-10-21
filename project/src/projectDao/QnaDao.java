@@ -141,4 +141,21 @@ public class QnaDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
+	public int update(int qnum, int state) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="update qna set state=? where qnum=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, state);
+			pstmt.setInt(2, qnum);
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
 }
