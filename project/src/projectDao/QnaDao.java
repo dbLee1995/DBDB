@@ -91,6 +91,38 @@ public class QnaDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	public QnaVo select(int qnum) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select * from qna where qnum=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, qnum);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				QnaVo vo=
+						new QnaVo(
+								rs.getInt("qnum"),
+								rs.getString("id"),
+								rs.getString("category"),
+								rs.getString("title"),
+								rs.getString("content"),
+								rs.getDate("regdate"),
+								rs.getString("answer"),
+								rs.getDate("answerdate"),
+								rs.getInt("answerstate"));
+				return vo;
+			}
+			return null;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 	public ArrayList<QnaVo> selectAll(){
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -146,7 +178,7 @@ public class QnaDao {
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="update qna set state=? where qnum=?";
+			String sql="update qna set answerstate=? where qnum=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, state);
 			pstmt.setInt(2, qnum);
