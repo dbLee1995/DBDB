@@ -47,7 +47,8 @@
 			  var modal = $(this)
 			  modal.find('.modal-title').text('New message to ' + recipient)
 			  modal.find('.modal-body input').val(recipient)
-			})
+		})
+		
 	</script>
 </head>
 <body>
@@ -113,26 +114,7 @@
 							class="nav-link" class="btn btn-primary" data-toggle="modal" 
 							data-target="#exampleModal" data-whatever="@getbootstrap">주문조회</a></li>
 							
-							
-							<li class="nav-item"><a href="./examples/login.jsp"
-							class="nav-link">로그인</a></li>
-							<li class="nav-item"><a href="./examples/register.html"
-							class="nav-link">회원가입</a></li>
-						<%
-							}else {
-						%>
-							<li class="nav-item"><a href="./mypage?cmd=cart&id=${id }"
-							class="nav-link">장바구니</a></li>
-							<li class="nav-item"><a href="./mypage?cmd=user&id=${id }"
-							class="nav-link">마이페이지</a></li>
-							<li class="nav-item"><a href="./examples/logout.jsp"
-							class="nav-link">로그아웃</a></li>
-							<li class="nav-item"><a href=""
-							class="nav-link">문의하기</a></li>
-						<%
-							}
-						%>
-						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						  <div class="modal-dialog" role="document">
 						    <div class="modal-content">
 						      <div class="modal-header">
@@ -162,6 +144,26 @@
 						    </div>
 						  </div>
 						</div>
+							
+							
+							<li class="nav-item"><a href="./examples/login.jsp"
+							class="nav-link">로그인</a></li>
+							<li class="nav-item"><a href="./examples/register.html"
+							class="nav-link">회원가입</a></li>
+						<%
+							}else {
+						%>
+							<li class="nav-item"><a href="./mypage?cmd=cart&id=${id }"
+							class="nav-link">장바구니</a></li>
+							<li class="nav-item"><a href="./mypage?cmd=user&id=${id }"
+							class="nav-link">마이페이지</a></li>
+							<li class="nav-item"><a href="./examples/logout.jsp"
+							class="nav-link">로그아웃</a></li>
+						<%
+							}
+						%>
+						
+						
 					</ul>
 				</div>
 			</div>

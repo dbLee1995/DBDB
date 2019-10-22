@@ -28,41 +28,6 @@
   <script src="js/jquery-1.10.2.js" type="text/javascript"></script>
   <script src="js/bootstrap.min.js" type="text/javascript"></script>
   
-  <script type="text/javascript">
-  $().ready(function(){
-      $('[rel="tooltip"]').tooltip();
-
-      $('a.scroll-down').click(function(e){
-          e.preventDefault();
-          scroll_target = $(this).data('href');
-           $('html, body').animate({
-               scrollTop: $(scroll_target).offset().top - 60
-           }, 1000);
-      });
-
-  });
-
-  function rotateCard(btn){
-      var $card = $(btn).closest('.card-container');
-      console.log($card);
-      if($card.hasClass('hover')){
-          $card.removeClass('hover');
-      } else {
-          $card.addClass('hover');
-      }
-  }
-
-  </script>
-  <style type="text/css">
-  	#qnacard{
-  	}
-  	#qnacardd{
-  	}
-  	.footer{
-  	}
-  	#qnacontent{
-  	}
-  </style>
   
 </head>
 
@@ -243,63 +208,63 @@
 
 			<c:forEach var="vo" items="${volist }">
 			
-
-             <div class="card-container manual-flip" id="qnacard">
-                <div class="card" id="qnacardd">
-                    <div class="front">
-                        <div class="content" id="qnacontent">
-                            <div class="main">
-                                <h3 class="name">[${vo.category }] &nbsp; ${vo.title }</h3>
-                                <p class="profession">${vo.id }(${vo.regdate })</p>
-                                <p class="text-center">${vo.content }</p>
-                            </div>
-                            <div class="footer">
-                            	<c:if test="${vo.answerstate==1 }">
-	                                	답변 대기중.. 
-                                </c:if>
-                                <c:if test="${vo.answerstate==2 }">
-	                               		처리중..
-                                </c:if>
-                                <c:if test="${vo.answerstate==3 }">
-	                                <button class="btn btn-simple" onclick="rotateCard(this)">
-	                                    <i class="fa fa-mail-forward"></i> 답변보기
-	                                </button>
-                                </c:if>
-                                
-                            </div>
-                        </div>
-                    </div> <!-- end front panel -->
-                    <div class="back">
-                        <div class="header">
-                            <h5 class="motto">[${vo.category }] &nbsp; ${vo.title } &nbsp; (처리일자:${vo.answerdate })</h5>
-                        </div>
-                            <div class="main">
-                                <p class="text-center">${vo.answer }</p>
-                            </div>
-                        <div class="footer">
-                            <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
-                                <i class="fa fa-reply"></i> 질문보기
-                            </button>
-                        </div>
-                </div> <!-- end card -->
-            </div> <!-- end card-container -->
-  
-  				
-
-              </div>
               
-              </c:forEach>
+              
+              
+            </c:forEach>
+              
+              <div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Collapsible Group Item #1
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Collapsible Group Item #2
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Collapsible Group Item #3
+        </button>
+      </h2>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div>
               
             </div>
           </div>
         </div>
       </div>
         
-        
-        
-        
-        
-        
+  
         
       </div>
     </div>
