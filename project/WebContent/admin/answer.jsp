@@ -11,19 +11,19 @@
 		<input type="hidden" value="${qvo.answerstate }" name="answerstate">
 		<table class="table table-bordered" style="margin-left: auto; margin-right: auto">
 			<tr>
-				<td>아이디</td>
+				<th>아이디</th>
 				<td>${qvo.id }</td>
-				<td>작성일</td>
+				<th>작성일</th>
 				<td>${qvo.regdate }</td>
 				
 			</tr>
 			<tr>
-				<td colspan="2" >카테고리</td>
+				<th colspan="2" >카테고리</th>
 				<td colspan="2">${qvo.category }</td>
 			
 			</tr>
 			<tr>
-				<td colspan="2">제목</td>
+				<th colspan="2">제목</th>
 				<td colspan="2">${qvo.title }</td>
 		
 			</tr>

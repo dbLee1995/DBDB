@@ -145,34 +145,46 @@
 	</script>
 <%
 	request.setCharacterEncoding("UTF-8");
-	String cpName=request.getParameter("");
+//	String cpName=request.getParameter(""); 이미지 받으면 생산자 오버로딩해서 구하기
 	String gdName = request.getParameter("gdName");
 	int gdPrice=Integer.parseInt(request.getParameter("gdPrice"));
 	String intro=request.getParameter("introFileAdd");
-	String setprefile=request.getParameter("setprefile");
-	String detail=request.getParameter("detailFileAdd");
-	String setdefile=request.getParameter("setdefile");
-	
 
 %>
 <script>
-	
-	
-	var  introFile ='<%=intro %>';
-	var  introPrivew = document.getElementById('introPrivew');
-	window.onload=function(){
-	
-	  var prereader = new FileReader();
-	  prereader.onload = function (event) {
-	    var preimg = new Image();
-	    preimg.src = event.target.result;
-	    introPrivew.innerHTML = '';
-	    introPrivew.appendChild(preimg);
-	  };
-	  prereader.readAsDataURL('<%=setprefile%>');
+	window.onload=function(){ //체인지가 아닌 창 오픈하자마자 불러오기 때문에 onchange 함수를 사용하면 못들어감
+		var  introPrivew = document.getElementById('introPrivew');
+		var introFileAdd=opener.document.getElementById("introFileAdd");
+			  var prefile = introFileAdd.files[0];
+			  var   prereader = new FileReader();
+			  prereader.onload = function (event) {
+			    var preimg = new Image();
+			    preimg.style="width:100%; height:100%";
+			    preimg.src = event.target.result;
+			    introPrivew.innerHTML = '';
+			    introPrivew.appendChild(preimg);
+			  };
+			  prereader.readAsDataURL(prefile);
+			  
+		var detailPrivew=document.getElementById("detailPrivew");
+		var detailFileAdd=opener.document.getElementById("detailFileAdd");
+		  var defile = detailFileAdd.files[0];
+		  var dereader = new FileReader();  
+		  dereader.onload = function (event) {
+		    var deimg = new Image();
+		    deimg.style="width:100%; height:100%";
+		    deimg.src = event.target.result; 
+		    detailPrivew.innerHTML = '';
+		    detailPrivew.appendChild(deimg);
+		  };
+		  dereader.readAsDataURL(defile);
+	}
 
-}
-
+	function multi(price){
+		var count=document.getElementById("multicount");
+		var span=document.getElementById("result");
+		span.innerHTML=count.value * price +"원";
+	}
 </script>
 
 </head>
@@ -189,8 +201,7 @@
 							<h2 class="mb-2">[${compname}]</h2>
 							<div class="row">
 								<div id="header">
-									<img src="images/<%=intro %>" alt="sm_chickenbreast"
-										width="400" height="400">
+									<div id="introPrivew"></div>
 								</div>
 								<div id="header">
 									<form action="">
@@ -201,15 +212,14 @@
 										<h6 id="count">구매수량 입력</h6>
 										<input type="text" placeholder="숫자만 입력해주세요"
 											class="form-control" name="count"
-											onkeyup="multi(${listvo.gdprice })" id="multicount">
+											onkeyup="multi(<%=gdPrice %>)" id="multicount">
 										<hr>
 										<h6>총 금액</h6>
 										<h2 class="count">
 											<span id="result"></span>
 										</h2>
 										<br> <br> <br>
-										<button class="btn btn-1 btn-warning" type="button" id="btn"
-											onclick="addCart()">장바구니에 담기</button>
+										<button class="btn btn-1 btn-warning" type="button" id="btn">장바구니에 담기</button>
 										<button class="btn btn-1 btn-outline-warning" type="button"
 											id="btn">바로 결제하기</button>
 									</form>
@@ -229,21 +239,13 @@
 							<div class="navbar-collapse-header">
 								<div class="row">
 									<div class="col-6 collapse-brand">
-										<a href="../index.html"> <img alt="image"
-											src="../assets/img/brand/blue.png">
-										</a>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</nav>
-				<div id="introPrivew" style="width:100%;
-					height:100%"></div><br>
-				<%--   <img alt="gddetail" src="images/<%=detail %> }" width="100%"
-					height="100%">
-			--%>
-			<hr>
+				<div id="detailPrivew"></div><br>
 			<br> <br>
 	
 
