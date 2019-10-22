@@ -87,7 +87,7 @@ public class GoodsController extends HttpServlet {
 		GoodsVo vo=new GoodsVo(cpListNum, 0, gdList);
 		int n=gdao.insert(vo);
 		if(n>0) {
-			resp.sendRedirect(req.getContextPath()+"/admin/adindex.jsp?page=cpgoods.jsp");
+			resp.sendRedirect(req.getContextPath()+"/admin/adindex.jsp?page=goodsdetail.jsp");
 		}
 	}
 	protected void gdList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
