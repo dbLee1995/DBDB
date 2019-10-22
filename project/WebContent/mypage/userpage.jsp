@@ -22,10 +22,7 @@
   
   	<script type="text/javascript">
   		function movepwd(){
-  			location.href="./mypage?cmd=editpwd";
-  		}
-  		
-  		var infoxhr=null;
+  ll;
   		function modiinfo(){
   			var email=document.getElementById("email").value;
   			var fname=document.getElementById("fname").value;
