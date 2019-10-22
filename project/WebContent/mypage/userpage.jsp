@@ -34,7 +34,7 @@
   			for(var i=0;i<email.length;i++){
   				var ech=email.charAt(i);
   				if(!(ech=='.') && !(ech=='@')){
-  					alert("올바른 이메일 형식으로 입력하시오");
+  					alert("올바른 이메일 형식으로 입력하시오11");
   					return false;
   				}
   			}  		
