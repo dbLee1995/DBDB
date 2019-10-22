@@ -77,7 +77,7 @@
 			<!-- navbar navbar-expand-lg navbar-dark bg-warning mt-4 -->
 			<!-- navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom -->
 			<div class="container">
-				<a class="navbar-brand mr-lg-5" href="./index"> <img
+				<a class="navbar-brand mr-lg-5" href="./index?id=${id }"> <img
 					alt="image" src="./assets/img/brand/white.png">
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -107,13 +107,14 @@
 						<li class="nav-item dropdown"><a href="#" class="nav-link"
 							data-toggle="dropdown" role="button"> <i
 								class="ni ni-collection d-lg-none"></i> <span
-								class="nav-link-inner--text">category</span>
+								class="nav-link-inner--text">카테고리</span>
 						</a>
 							<div class="dropdown-menu">
-								<a href="./examples/landing.html" class="dropdown-item">Landing</a>
-								<a href="./examples/profile.html" class="dropdown-item">Profile</a>
-								<a href="./examples/login.jsp" class="dropdown-item">Login</a>
-								<a href="./examples/register.html" class="dropdown-item">Register</a>
+								<a href="./search?id=${id }&list=닭가슴살" class="dropdown-item">닭가슴살</a>
+								<a href="./search?id=${id }&list=도시락" class="dropdown-item">도시락</a>
+								<a href="./search?id=${id }&list=볶음밥" class="dropdown-item">볶음밥</a>
+								<a href="./search?id=${id }&list=소세지" class="dropdown-item">소세지</a>
+								<a href="./search?id=${id }&list=피자" class="dropdown-item">피자</a>
 							</div></li>
 					</ul>
 					<ul class="navbar-nav align-items-lg-center ml-lg-auto">
@@ -146,18 +147,18 @@
 							if(id==null) {
 						%>
 							<li class="nav-item"><a href="./examples/login.jsp"
-							class="nav-link">Login</a></li>
+							class="nav-link">로그인</a></li>
 							<li class="nav-item"><a href="./examples/register.html"
-							class="nav-link">Register</a></li>
+							class="nav-link">회원가입</a></li>
 						<%
 							}else {
 						%>
 							<li class="nav-item"><a href="./mypage?cmd=cart&id=${id }"
-							class="nav-link">Cart</a></li>
+							class="nav-link">장바구니</a></li>
 							<li class="nav-item"><a href="./mypage?cmd=user&id=${id }"
-							class="nav-link">MyPage</a></li>
+							class="nav-link">마이페이지</a></li>
 							<li class="nav-item"><a href="./examples/logout.jsp"
-							class="nav-link">Logout</a></li>
+							class="nav-link">로그아웃</a></li>
 						<%
 							}
 						%>

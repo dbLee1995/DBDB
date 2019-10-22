@@ -237,14 +237,14 @@
 				    <div id="${vo.id}${vo.category}${vo.qnum}" class="collapse" aria-labelledby="${vo.category}${vo.qnum }" 
 				    		data-parent="#accordionExample">
 				      <div class="card-body">
-						<p>${vo.id }(${vo.regdate })</p>
-						<p>Q : ${vo.content }</p>
+						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${vo.id }(${vo.regdate })</p>
+						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q : ${vo.content }</p>
 						<br>
-						<c:if test="${vo.answerstate==1 }"><p>대기중</p></c:if>
-						<c:if test="${vo.answerstate==2 }"><p>처리중</p></c:if>
+						<c:if test="${vo.answerstate==1 }"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;대기중</p></c:if>
+						<c:if test="${vo.answerstate==2 }"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;처리중</p></c:if>
 						<c:if test="${vo.answerstate==3 }">
-						<p> A : ${vo.answer }</p>
-						<p>(처리일자:${vo.answerdate })</p></c:if>
+						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A : ${vo.answer }</p>
+						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(처리일자:${vo.answerdate })</p></c:if>
 				      </div>
 				    </div>
 				  </div>
