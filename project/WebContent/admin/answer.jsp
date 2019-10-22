@@ -40,7 +40,7 @@
    		 </div>
    		    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample" >
 		      <div class="card-body" id="answerdiv">
-		         답변 :  <textarea rows="5" cols="170" id="answer" name="answer" style="margin-left: auto; margin-right: auto" value="${qvo.answer }"></textarea>
+		         답변 :  <textarea rows="5" cols="170" id="answer" name="answer" style="margin-left: auto; margin-right: auto" >${qvo.answer }</textarea>
 		         
 		      </div>
 		    </div>
