@@ -135,7 +135,7 @@
 	               						<c:if test="${slist.gdNum == glist.gdnum }">
 	               							<td><a href="./detail?gdnum=${slist.gdNum }">${glist.gdname }</a></td>
 	               							<td>${slist.gdCount }</td>
-	               							<td>${slist.gdCount * glist.gdprice }</td>
+	               							<td>${df.format(slist.gdCount * glist.gdprice) }</td>
 	               							<td>${slist.addr }</td>
 	               							<td>${slist.msg }</td>
 	               							<td>

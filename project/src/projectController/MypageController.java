@@ -1,6 +1,7 @@
 package projectController;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -138,6 +139,9 @@ public class MypageController extends HttpServlet{
 		ArrayList<GoodsDetailVo> glist=GoodsDetailDao.getInstance().selectAll();
 		req.setAttribute("goodsdetaillist", glist);
 		
+		DecimalFormat df = new DecimalFormat("###,###.####");
+		req.setAttribute("df", df);
+		
 		req.setAttribute("id", id);
 		
 		req.getRequestDispatcher("/mypage/shoppinglistpage.jsp").forward(req, resp);
@@ -203,6 +207,9 @@ public class MypageController extends HttpServlet{
 		if(id!=null && id.equals("")) {id=rid;}
 		
 		ArrayList<CartInfoVo> clist=CartDao.getInstance().getCartInfo();
+		
+		DecimalFormat df = new DecimalFormat("###,###.####");
+		req.setAttribute("df", df);
 		
 		req.setAttribute("id", id);
 		req.setAttribute("cartlist", clist);

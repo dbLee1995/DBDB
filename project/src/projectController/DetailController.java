@@ -1,6 +1,7 @@
 package projectController;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -33,6 +34,9 @@ public class DetailController extends HttpServlet{
 		GoodsVo goodsvo=goodsdao.select(vo.getGdlistnum());
 		CompanyDao comdao=CompanyDao.getInstance();
 		CompanyVo comvo=comdao.select(goodsvo.getCPNum());
+		
+		DecimalFormat df = new DecimalFormat("###,###.####");
+		req.setAttribute("df", df);
 		
 		String id=req.getParameter("id");
 		

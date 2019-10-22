@@ -1,6 +1,7 @@
 package projectController;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -46,6 +47,9 @@ public class BuyController extends HttpServlet{
 		int ordernum=Integer.parseInt(req.getParameter("ordernum"));
 		String msg=req.getParameter("msg");
 		
+		DecimalFormat df = new DecimalFormat("###,###.####");
+		req.setAttribute("df", df);
+		
 		double fpoint=totalprice*0.1;
 		AccountDao adao=AccountDao.getInstance();
 		AccountVo avo=adao.select(id);
@@ -79,6 +83,9 @@ public class BuyController extends HttpServlet{
 		int totalprice=Integer.parseInt(req.getParameter("totalprice"));
 		int ordernum=Integer.parseInt(req.getParameter("ordernum"));
 		String msg=req.getParameter("msg");
+		
+		DecimalFormat df = new DecimalFormat("###,###.####");
+		req.setAttribute("df", df);
 		
 		ShoppinglistVo svo=new ShoppinglistVo(0, gdnum, 
 				id, ordernum, count, null, 

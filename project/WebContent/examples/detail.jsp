@@ -241,7 +241,7 @@
 									<form action="">
 										<h3 class="mb-2">
 											<span>${listvo.gdname }</span><br> <span>&nbsp;&nbsp;&nbsp;:
-												${listvo.gdprice }원</span>
+												${df.format(listvo.gdprice) }원</span>
 										</h3>
 										<h6 id="count">구매수량 입력</h6>
 										<input type="text" placeholder="숫자만 입력해주세요"
