@@ -50,102 +50,9 @@
 	font-size: 1.2em;
 }
 </style>
-<script type="text/javascript">
-/*		var xhr=null;
-		function multi(price){
-			var count=document.getElementById("multicount");
-			var span=document.getElementById("result");
-			span.innerHTML=count.value * price +"원";
-		}
-		window.onload=function(){
-			getList();
-		}
-		var listxhr=null;
-		function getList(){
-			listxhr=new XMLHttpRequest();
-			listxhr.onreadystatechange=listOk;
-			listxhr.open('get','review?cmd=list&gdnum=${gdnum}',true);
-			listxhr.send();
-		}
-		function listOk(){
-			if(listxhr.readyState==4 && listxhr.status==200){
-				var data=listxhr.responseText;
-				var list=JSON.parse(data)[0];
-				var revdiv=document.getElementById("revdiv");
-				for(var i=0;i<list.length;++i){
-					var str="<br>"+
-					"<div class='media'>"+
-					"<img src='images/${sumimg }' class='align-self-start mr-3'"+ 
-					"alt='' width='100' height='100'>"+
-					"<div class='media-body'>"+
-					"<h5 class='mt-0'>"+list[i].title+"</h5>"+
-					"<p>"+list[i].id+"("+list[i].regdate+")";
-					for(var j=0;j<list[i].score;++j){
-						str+="★";
-					}
-					str+="<a href='review?cmd=delete&gdnum=${gdnum}&id="+list[i].id+"&rid=${id}&revnum="+list[i].revnum+"'>"+
-						 "삭제</a></p><p>"+list[i].content+"</p></div></div>";
-					
-					var div=document.createElement("div");
-					div.innerHTML=str;
-					revdiv.appendChild(div);
-				}
-			}
-		}
-		var addxhr=null;
-		function addReview(){
-			var title=document.getElementById("title").value;
-			var score=document.getElementById("score").value;
-			var content=document.getElementById("content").value;
-			addxhr=new XMLHttpRequest();
-			addxhr.onreadystatechange=addReviewOk;
-			addxhr.open('post','review?cmd=insert',true);
-			addxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-			var param="gdnum=${gdnum}&id=${id}&title="+title+"&score="+score+"&content="+content;
-			addxhr.send(param);
-		}
-		function addReviewOk(){
-			if(addxhr.readyState==4 && addxhr.status==200){
-				var data=addxhr.responseText;
-				var insert=JSON.parse(data);
-				removerevAll();
-				getList();
-			}
-		}
-		function removerevAll(){
-			var revdiv=document.getElementById("revdiv");
-			var child=revdiv.childNodes;
-			for(var i=child.length-1;i>=0;--i){
-				var rev=child.item(i);
-				revdiv.removeChild(rev);
-			}
-		}
-		var cartxhr=null;
-		function addCart(){
-			var count=document.getElementById("multicount").value;
-			cartxhr=new XMLHttpRequest();
-			cartxhr.onreadystatechange=addCartOk;
-			cartxhr.open('post','cart?cmd=insert',true);
-			cartxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-			var param="count="+count+"&gdnum=${gdnum}";
-			cartxhr.send(param);
-		}
-		function addCartOk(){
-			if(cartxhr.readyState==4 && cartxhr.status==200){
-				var data=cartxhr.responseText;
-				var insert=JSON.parse(data);
-				alert("장바구니에 추가되었습니다!");
-			}
-		}
-		*/
-	
-		
-		
-		
-	</script>
+
 <%
 	request.setCharacterEncoding("UTF-8");
-//	String cpName=request.getParameter(""); 이미지 받으면 생산자 오버로딩해서 구하기
 	String gdName = request.getParameter("gdName");
 	int gdPrice=Integer.parseInt(request.getParameter("gdPrice"));
 	String intro=request.getParameter("introFileAdd");
@@ -154,7 +61,7 @@
 <script>
 	window.onload=function(){ //체인지가 아닌 창 오픈하자마자 불러오기 때문에 onchange 함수를 사용하면 못들어감
 		var  introPrivew = document.getElementById('introPrivew');
-		var introFileAdd=opener.document.getElementById("introFileAdd");
+		var introFileAdd=opener.document.getElementById("introFileAdd"); //opener로 부모 객체 참조
 			  var prefile = introFileAdd.files[0];
 			  var   prereader = new FileReader();
 			  prereader.onload = function (event) {
