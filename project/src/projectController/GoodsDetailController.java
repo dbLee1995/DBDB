@@ -42,6 +42,9 @@ public class GoodsDetailController extends HttpServlet{
 		if(cmd!=null&&cmd.equals("gdDetailDelete")) {
 			gdDetailDelete(req, resp);
 		}
+		if(cmd!=null&&cmd.equals("gdPageCount")) {
+			gdPageCount(req, resp);
+		}
 	}
 	protected void gdDetailDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		resp.setContentType("text/plain;charset=utf-8");
@@ -53,20 +56,24 @@ public class GoodsDetailController extends HttpServlet{
 		}
 		
 	}
+	protected void gdPageCount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		resp.setContentType("text/plain;charset=utf-8");
+		GoodsDetailDao gdao=GoodsDetailDao.getInstance();
+		JSONObject json=new JSONObject();
+		//전체 페이지 갯수
+		int pagecount=(int)Math.ceil(gdao.getCount(0, null, 0, null, 0, 0)/10.0);
+		json.put("pagecount",pagecount );
+		PrintWriter pw=resp.getWriter();
+		pw.print(json);
+	}
 	protected void gdDetailList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		resp.setContentType("text/plain;charset=utf-8");
 	//	int cpNum=Integer.parseInt(req.getParameter("cpNum"));
-		GoodsDao gdao=GoodsDao.getInstance();
-	//	GoodsVo gvo=gdao.select(cpNum);
-	//	int gdListNum=gvo.getGDListNum();
-	//	String gdListCol=gdListNum+"";
-		
-		GoodsDetailDao gddao=GoodsDetailDao.getInstance();
+		//	GoodsVo gvo=gdao.select(cpNum);
+		//	int gdListNum=gvo.getGDListNum();
+		//	String gdListCol=gdListNum+"";
 		//ArrayList<GoodsDetailVo> list=gddao.select(gdListCol, gdListNum);
-		ArrayList<GoodsDetailVo> list=gddao.selectAll();
-		JSONArray arr=new JSONArray();
 //		JSONObject cpjson=new JSONObject();
-		PrintWriter pw=resp.getWriter();
 //		cpjson.put("cpNum", cpNum);
 /*		for(int i=0;i<list.size();i++) {
 			GoodsDetailVo gdvo=list.get(i);
@@ -84,19 +91,34 @@ public class GoodsDetailController extends HttpServlet{
 		*/
 	//	arr.put(list);
 	//	arr.put(json);
+		//	ArrayList<GoodsDetailVo> list=gddao.selectAll();
+//		arr.put(list);
+	/*	String spagenum=req.getParameter("pagenum");
+		int pagenum=1;
+		if(spagenum!=null) {
+			pagenum=Integer.parseInt("spagenum");
+			System.out.println(pagenum);
+		}
+		*/
+		
+		//
+	
+		int pagenum=Integer.parseInt(req.getParameter("pagenum"));
+		GoodsDetailDao gdao=GoodsDetailDao.getInstance();
+		int startrow=(pagenum-1)*10+1;
+		int endrow=startrow+9;
+		ArrayList<GoodsDetailVo> list=gdao.search(0, null, 0, null, startrow, endrow);
+		JSONArray arr=new JSONArray();
 		arr.put(list);
+		PrintWriter pw=resp.getWriter();
 		pw.print(arr);
-		
-		
-		
-		
+
 		
 	}
 	protected void gdDetailinsert(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	   //  String saveDirectory = req.getContextPath()+"/WebContent/images";
 	     String saveDirectory = "C:\\Users\\JHTA\\Desktop\\DBDB\\project\\WebContent\\images";
 	     
-	     System.out.println(saveDirectory);
 	     MultipartRequest mr=new MultipartRequest(
 	                             req,//request 객체
 	                             saveDirectory, //업로드할 디렉토리 경로
