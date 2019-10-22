@@ -28,6 +28,17 @@
   <script src="js/jquery-1.10.2.js" type="text/javascript"></script>
   <script src="js/bootstrap.min.js" type="text/javascript"></script>
   
+  <script type="text/javascript">
+  	function addqna(){
+  		var qnaselect=document.getElementById("qnaselect").value;
+  		var title=document.getElementById("title").value;
+  		var content=document.getElementById("content").value;
+  		
+  		location.href="./mypage?cmd=updateqna&id=${id}&name=${name}&title="+
+  				title+"&content="+content+"&qnaselect="+qnaselect;
+  	}
+  </script>
+  
   
 </head>
 
@@ -127,7 +138,7 @@
                 <h5 >문의작성</h5>
               </div>
               
-              <form action="./mypage?cmd=updateqna" method="post">
+            
               <div class="card-body">
               	<div class="table-responsive">
 					<div class="row">
@@ -150,7 +161,7 @@
                   	<div class="col-md-5 pl-1">
                   	<div class="form-group">
                   	<label>문의종류</label>
-                  	<select class="form-control" name="qnaselect">
+                  	<select class="form-control" id="qnaselect">
 				      <option>구매관련</option>
 				      <option>상품관련</option>
 				      <option>배송관련</option>
@@ -164,7 +175,7 @@
                       <div class="form-group">
                         <label>제목</label>
 							<input type="text" class="form-control" placeholder="제목을 입력해주세요" 
-								name="title">
+								id="title">
                       </div>
                     </div>
                   </div>
@@ -173,18 +184,17 @@
                       <div class="form-group">
                         <label>문의내용</label>
 							<input type="text" class="form-control" placeholder="내용을 입력해주세요" 
-								name="content">
+								id="content">
                       </div>
                     </div>
                   </div>
 
-					<input class="btn btn-1 btn-outline-warning" type="submit" 
-						id="tbtn" value="작성하기">
+					<button class="btn btn-1 btn-outline-warning" type="button" id="tbtn"
+								onclick="addqna()">작성하기</button>
 				 
                   
                	</div>
               </div>
-              </form>
               
             </div>
           </div>
@@ -206,58 +216,43 @@
               </div>
               <div class="card-body">
 
-			<c:forEach var="vo" items="${volist }">
-			
-              
-              
-              
-            </c:forEach>
-              
+          
               <div class="accordion" id="accordionExample">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h2 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Collapsible Group Item #1
-        </button>
-      </h2>
-    </div>
-
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h2 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Collapsible Group Item #2
-        </button>
-      </h2>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h2 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Collapsible Group Item #3
-        </button>
-      </h2>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-</div>
+              <c:forEach var="vo" items="${volist }">
+              
+				  <div class="card">
+				    <div class="card-header" id="${vo.category}${vo.qnum }">
+				      <h2 class="mb-0">
+				        <button class="btn btn-link" type="button" data-toggle="collapse" 
+				        			data-target="#${vo.id}${vo.category}${vo.qnum}" aria-expanded="true" 
+				        			aria-controls="${vo.id}${vo.category}${vo.qnum}">
+				          [${vo.category }] &nbsp; ${vo.title } &nbsp;
+				            <c:if test="${vo.answerstate==1 }">(대기중)</c:if>
+							<c:if test="${vo.answerstate==2 }">(처리중)</c:if>
+							<c:if test="${vo.answerstate==3 }">(답변완료)</c:if>
+				        </button>
+				      </h2>
+				    </div>
+				
+				    <div id="${vo.id}${vo.category}${vo.qnum}" class="collapse" aria-labelledby="${vo.category}${vo.qnum }" 
+				    		data-parent="#accordionExample">
+				      <div class="card-body">
+						<p>${vo.id }(${vo.regdate })</p>
+						<p>Q : ${vo.content }</p>
+						<br>
+						<c:if test="${vo.answerstate==1 }"><p>대기중</p></c:if>
+						<c:if test="${vo.answerstate==2 }"><p>처리중</p></c:if>
+						<c:if test="${vo.answerstate==3 }">
+						<p> A : ${vo.answer }</p>
+						<p>(처리일자:${vo.answerdate })</p></c:if>
+				      </div>
+				    </div>
+				  </div>
+				  
+			</c:forEach>
+			</div>
+			
+			
               
             </div>
           </div>

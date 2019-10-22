@@ -44,7 +44,7 @@ public class QnaDao {
 			con=JdbcUtil.getConn();
 			String sql="insert into qna values(?,?,?,?,?,sysdate,?,sysdate,?)";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(0,getMaxNum()+1);
+			pstmt.setInt(1, getMaxNum()+1);
 			pstmt.setString(2, vo.getId());
 			pstmt.setString(3, vo.getCategory());
 			pstmt.setString(4, vo.getTitle());
