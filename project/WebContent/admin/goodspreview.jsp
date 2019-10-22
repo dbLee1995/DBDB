@@ -198,7 +198,6 @@
 						<!-- Basic elements -->
 						<div class="container">
 						<input type="hidden">
-							<h2 class="mb-2">[${compname}]</h2>
 							<div class="row">
 								<div id="header">
 									<div id="introPrivew"></div>
