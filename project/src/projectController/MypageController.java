@@ -36,29 +36,29 @@ public class MypageController extends HttpServlet{
 		
 		if(cmd!=null && cmd.equals("user")) {
 			user(req, resp);
-		}if(cmd!=null && cmd.equals("userinfo")) {
+		}else if(cmd!=null && cmd.equals("userinfo")) {
 			userinfo(req, resp);
-		}if(cmd!=null && cmd.equals("editpwd")) {
+		}else if(cmd!=null && cmd.equals("editpwd")) {
 			editpwd(req,resp);
-		}if(cmd!=null && cmd.equals("editpwdinfo")) {
+		}else if(cmd!=null && cmd.equals("editpwdinfo")) {
 			editpwdinfo(req,resp);
-		}if(cmd!=null && cmd.equals("shoppinglist")) {
+		}else if(cmd!=null && cmd.equals("shoppinglist")) {
 			shoppinglist(req, resp);
-		}if(cmd!=null && cmd.equals("updateshoppinglist")) {
+		}else if(cmd!=null && cmd.equals("updateshoppinglist")) {
 			updateshoppinglist(req, resp);
-		}if(cmd!=null && cmd.equals("trade")) {
+		}else if(cmd!=null && cmd.equals("trade")) {
 			trade(req, resp);
-		}if(cmd!=null && cmd.equals("updatetrade")) {
+		}else if(cmd!=null && cmd.equals("updatetrade")) {
 			updatetrade(req, resp);
-		}if(cmd!=null && cmd.equals("cart")) {
+		}else if(cmd!=null && cmd.equals("cart")) {
 			cart(req, resp);
-		}if(cmd!=null && cmd.equals("cartdelete")) {
+		}else if(cmd!=null && cmd.equals("cartdelete")) {
 			cartdelete(req, resp);
-		}if(cmd!=null && cmd.equals("point")) {
+		}else if(cmd!=null && cmd.equals("point")) {
 			point(req, resp);
-		}if(cmd!=null && cmd.equals("qna")) {
+		}else if(cmd!=null && cmd.equals("qna")) {
 			qna(req, resp);
-		}if(cmd!=null && cmd.equals("updateqna")) {
+		}else if(cmd!=null && cmd.equals("updateqna")) {
 			qnaupdate(req, resp);
 		}
 	}
@@ -138,6 +138,8 @@ public class MypageController extends HttpServlet{
 		ArrayList<GoodsDetailVo> glist=GoodsDetailDao.getInstance().selectAll();
 		req.setAttribute("goodsdetaillist", glist);
 		
+		req.setAttribute("id", id);
+		
 		req.getRequestDispatcher("/mypage/shoppinglistpage.jsp").forward(req, resp);
 	}
 	protected static void updateshoppinglist(HttpServletRequest req, 
@@ -156,6 +158,8 @@ public class MypageController extends HttpServlet{
 		ShoppinglistDao sdao=ShoppinglistDao.getInstance();
 		ArrayList<ShoppinglistVo> slist=sdao.select(id);
 		req.setAttribute("shoppinglist", slist);
+		
+		req.setAttribute("id", id);
 		
 		int tnum=0;
 		String snum=req.getParameter("snum");
@@ -200,6 +204,7 @@ public class MypageController extends HttpServlet{
 		
 		ArrayList<CartInfoVo> clist=CartDao.getInstance().getCartInfo();
 		
+		req.setAttribute("id", id);
 		req.setAttribute("cartlist", clist);
 		req.getRequestDispatcher("/mypage/cartpage.jsp").forward(req, resp);
 	}

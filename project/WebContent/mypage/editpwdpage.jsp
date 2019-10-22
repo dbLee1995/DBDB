@@ -65,7 +65,7 @@
         <a href="#" class="simple-text logo-mini">
           CT
         </a>
-        <a href="./index" class="simple-text logo-normal">
+        <a href="./index?id=${id }" class="simple-text logo-normal">
           	랭닭킹컴
         </a>
       </div>

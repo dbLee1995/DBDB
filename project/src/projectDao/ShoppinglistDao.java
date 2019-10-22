@@ -156,6 +156,41 @@ public class ShoppinglistDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	public ShoppinglistVo selectOrdernum(int ordernum) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select * from shoppinglist where ordernum=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, ordernum);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				ShoppinglistVo vo=
+						new ShoppinglistVo(rs.getInt("snum"),
+											rs.getInt("gdnum"),
+											rs.getString("id"),
+											rs.getInt("ordernum"),
+											rs.getInt("gdcount"),
+											rs.getDate("regdate"),
+											rs.getString("name"),
+											rs.getString("email"),
+											rs.getString("addr"),
+											rs.getString("msg"),
+											rs.getString("buyway"),
+											rs.getInt("state"));
+				return vo;
+			}
+			return null;
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 	public ArrayList<ShoppinglistVo> gdnameselectAll(){
 		Connection con=null;
 		PreparedStatement pstmt=null;

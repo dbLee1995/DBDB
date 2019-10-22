@@ -27,9 +27,11 @@ public class IndexController extends HttpServlet{
 		
 		String id="";
 		String rid=req.getParameter("id");
-		if(rid!=null && rid.equals("")) {id="guest";}
-		else if(rid==null) {id="guest";}
+		if(rid==null) {id="guest";}
+		else if(rid.equals("")) {id="guest";}
 		else {id=rid;}
+		
+		System.out.println(id);
 		
 		GoodsDetailDao dao=GoodsDetailDao.getInstance();
 		ArrayList<GoodsDetailVo> pricelist=dao.select("gdprice", 0);

@@ -65,44 +65,44 @@
         <a href="#" class="simple-text logo-mini">
           CT
         </a>
-        <a href="./index" class="simple-text logo-normal">
+        <a href="./index?id=${id }" class="simple-text logo-normal">
           	랭닭킹컴
         </a>
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
           <li class="active ">
-            <a href="./mypage?cmd=user">
+            <a href="./mypage?cmd=user&id=${id }">
               <i class="now-ui-icons users_single-02"></i>
               <p>내 정보</p>
             </a>
           </li>
           <li>
-            <a href="./mypage?cmd=shoppinglist">
+            <a href="./mypage?cmd=shoppinglist&id=${id }">
               <i class="now-ui-icons design_app"></i>
               <p>구매내역</p>
             </a>
           </li>
           <li>
-            <a href="./mypage?cmd=trade">
+            <a href="./mypage?cmd=trade&id=${id }">
               <i class="now-ui-icons design_app"></i>
               <p>교환/반품 신청내역</p>
             </a>
           </li>
           <li>
-            <a href="./mypage?cmd=cart">
+            <a href="./mypage?cmd=cart&id=${id }">
               <i class="now-ui-icons design_app"></i>
               <p>장바구니</p>
             </a>
           </li>
           <li>
-            <a href="./mypage?cmd=point">
+            <a href="./mypage?cmd=point&id=${id }">
               <i class="now-ui-icons location_map-big"></i>
               <p>포인트 내역</p>
             </a>
           </li>
           <li>
-            <a href="./mypage?cmd=qna">
+            <a href="./mypage?cmd=qna&id=${id }">
               <i class="now-ui-icons ui-1_bell-53"></i>
               <p>1:1 문의</p>
             </a>
