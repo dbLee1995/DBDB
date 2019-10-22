@@ -36,6 +36,7 @@
   				alert("비밀번호 확인");
   				return;
   			}
+  			
   			pwdxhr=new XMLHttpRequest();
   			pwdxhr.onreadystatechange=modipwdOk;
   			pwdxhr.open('post','./mypage?cmd=editpwdinfo', true);
@@ -50,7 +51,6 @@
 			location.href="./mypage?cmd=user";
   		}
   	}
-  	
   	</script>
   
 </head>

@@ -30,6 +30,15 @@
   			var fname=document.getElementById("fname").value;
   			var lname=document.getElementById("lname").value;
   			var addr=document.getElementById("addr").value;
+  			
+  			for(var i=0;i<email.length;i++){
+  				var ech=email.charAt(i);
+  				if(!(ech=='.') && !(ech=='@')){
+  					alert("올바른 이메일 형식으로 입력하시오");
+  					return false;
+  				}
+  			}  		
+  			
   			infoxhr=new XMLHttpRequest();
   			infoxhr.onreadystatechange=modiinfoOk;
   			infoxhr.open('post','./mypage?cmd=userinfo',true);
