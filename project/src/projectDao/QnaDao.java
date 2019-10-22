@@ -123,6 +123,41 @@ public class QnaDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	public ArrayList<QnaVo> completeselectAll(){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select to_char(regdate,'YYYY/MM/DD HH:MI:SS')qdate,qna.* " + 
+						  " from qna qna " + 
+						  " where answerstate=3" +
+					      " order by regdate";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			ArrayList<QnaVo> list=new ArrayList<QnaVo>();
+			while(rs.next()) {
+				QnaVo vo=
+						new QnaVo(
+								rs.getInt("qnum"),
+								rs.getString("id"),
+								rs.getString("category"),
+								rs.getString("title"),
+								rs.getString("content"),
+								rs.getDate("regdate"),
+								rs.getString("answer"),
+								rs.getDate("answerdate"),
+								rs.getInt("answerstate"));
+				list.add(vo);
+			}
+			return list;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 	public ArrayList<QnaVo> selectAll(){
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -165,6 +200,25 @@ public class QnaDao {
 			String sql="delete from qna where id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
+	public int update(String answer,int answerstate) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=JdbcUtil.getConn();
+			QnaVo qvo=new QnaVo();
+			int state=qvo.getAnswerstate();
+			String sql="update qna set answerstate=3, answer=?, answerdate=sysdate where answerstate=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, answer);
+			pstmt.setInt(2, answerstate);
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();

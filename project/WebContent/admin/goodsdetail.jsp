@@ -137,35 +137,32 @@
 		}
 	}
 
-	var  introFileAdd = document.getElementById('introFileAdd'),
-		  introPrivew = document.getElementById('introPrivew');
+	var  introFileAdd = document.getElementById('introFileAdd');
+	var  introPrivew = document.getElementById('introPrivew');
 	var setprefile = null;
 	introFileAdd.onchange=function(){
 	
-		  var prefile = introFileAdd.files[0],
-		      prereader = new FileReader();
-		 // setprefile=prefile;
+		  var prefile = introFileAdd.files[0];
+		  var   prereader = new FileReader();
 		  prereader.onload = function (event) {
 		    var preimg = new Image();
 		    preimg.src = event.target.result;
 		    introPrivew.innerHTML = '';
 		    introPrivew.appendChild(preimg);
+		    setprefile= introPrivew
+		    alert(preimg.src);
 		  };
-		 prereader.readAsDataURL(prefile);
-		// setprefile= prereader.readAsDataURL(prefile);
-		 
-
+		  prereader.readAsDataURL(prefile);
 	}
 	var  detailFileAdd = document.getElementById('detailFileAdd');
 	var detailPrivew = document.getElementById('detailPrivew');
-	var setdefile=null;
+	var setdeimg=null;
 	detailFileAdd.onchange=function(){//이벤트 생성
 		  var defile = detailFileAdd.files[0];
 		  var dereader = new FileReader();  
 		  setdefile=defile;
 		  dereader.onload = function (event) {
 		    var deimg = new Image();
-		    
 		    deimg.src = event.target.result; //event.targer - 이벤트가 발생된 객체(reader) / .result - blob  등 특수하게 가공된 URL을 출력
 		    detailPrivew.appendChild(deimg);
 		  };
@@ -178,19 +175,16 @@
 	}
 	function previewSubmit(){
 		document.gdDetailForm.encoding="application/x-www-form-urlencoded"; 
-		var url="goodspreview.jsp?&setprefile="+setprefile;
+		var url="goodspreview.jsp?";
 		var title="goodspreview";
 		window.open("",title,"width=800, height=900");
-		
+
 		document.gdDetailForm.target=title;
 		document.gdDetailForm.action=url;
-		//document.getDetailForm.
-	
-		alert(document.gdDetailForm.method);
+
+		alert(setprefile[0]);
 		document.gdDetailForm.submit();
-		
-		//document.gdDetailForm.action="goodsdetail?cmd=gdDetailPreview";
-		//
+
 	}
 
 	
