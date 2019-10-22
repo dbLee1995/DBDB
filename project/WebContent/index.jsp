@@ -127,6 +127,8 @@
 							class="nav-link">마이페이지</a></li>
 							<li class="nav-item"><a href="./examples/logout.jsp"
 							class="nav-link">로그아웃</a></li>
+							<li class="nav-item"><a href=""
+							class="nav-link">문의하기</a></li>
 						<%
 							}
 						%>

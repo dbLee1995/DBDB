@@ -51,12 +51,7 @@
           $card.addClass('hover');
       }
   }
-  function addqna(){
-	  var title=document.getElementById("title").value;
-	  var content=document.getElementById("content").value;
-	  var qnaselect=document.getElementById("qnaselect").value;
-	  location.href="./mypage?cmd=updateqna&id=${id}&title="+title+"&content="+content+"&qnaselect="+qnaselect;
-  }
+
   </script>
   <style type="text/css">
   	#qnacard{
@@ -167,19 +162,22 @@
                 <h5 >문의작성</h5>
               </div>
               
+              <form action="./mypage?cmd=updateqna" method="post">
               <div class="card-body">
               	<div class="table-responsive">
 					<div class="row">
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
                         <label>아이디</label>
-                        <input type="text" class="form-control" placeholder=id value="${id }" disabled >
+                        <input type="text" class="form-control" placeholder=id value="${id }" 
+                        		name="id" disabled >
                       </div>
                     </div>
                     <div class="col-md-5 pl-1">
                       <div class="form-group">
                         <label>이름</label>
-                        <input type="text" class="form-control" placeholder=name value="${name }" disabled >
+                        <input type="text" class="form-control" placeholder=name value="${name }" 
+                        		name="name" disabled >
                       </div>
                     </div>
                   </div>
@@ -187,7 +185,7 @@
                   	<div class="col-md-5 pl-1">
                   	<div class="form-group">
                   	<label>문의종류</label>
-                  	<select class="form-control" id="qnaselect">
+                  	<select class="form-control" name="qnaselect">
 				      <option>구매관련</option>
 				      <option>상품관련</option>
 				      <option>배송관련</option>
@@ -201,7 +199,7 @@
                       <div class="form-group">
                         <label>제목</label>
 							<input type="text" class="form-control" placeholder="제목을 입력해주세요" 
-								id="title">
+								name="title">
                       </div>
                     </div>
                   </div>
@@ -210,17 +208,19 @@
                       <div class="form-group">
                         <label>문의내용</label>
 							<input type="text" class="form-control" placeholder="내용을 입력해주세요" 
-								id="content">
+								name="content">
                       </div>
                     </div>
                   </div>
 
-					<button class="btn btn-1 btn-outline-warning" type="button" id="tbtn"
-						onclick="addqna()">작성하기</button>
+					<input class="btn btn-1 btn-outline-warning" type="submit" 
+						id="tbtn" value="작성하기">
 				 
                   
                	</div>
               </div>
+              </form>
+              
             </div>
           </div>
         </div>
