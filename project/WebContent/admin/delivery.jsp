@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<th>아이디</th>
+				<th>카테고리</th>
+				<th>제목</th>
+				<th>내용</th>
+				<th>작성일자</th>
+				<th>답변상태</th>
+
+
 <div id="content-wrapper">
 	<div class="card-header" style="margin-left: auto; margin-right: auto;">
 			<h3>배송 관리</h3>
