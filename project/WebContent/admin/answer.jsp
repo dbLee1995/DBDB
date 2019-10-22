@@ -9,6 +9,7 @@
 	
 		<form method="post" name="qnaForm" action="qna?cmd=answer">
 		<input type="hidden" value="${qvo.answerstate }" name="answerstate">
+		<input type="hidden" value="${qvo.qnum }" name="qnum">
 		<table class="table table-bordered" style="margin-left: auto; margin-right: auto">
 			<tr>
 				<th>아이디</th>

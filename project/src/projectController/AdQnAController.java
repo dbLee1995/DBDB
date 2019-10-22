@@ -95,8 +95,9 @@ public class AdQnAController extends HttpServlet {
 			req.setCharacterEncoding("utf-8");
 			String answer=req.getParameter("answer");
 			int answerstate=Integer.parseInt(req.getParameter("answerstate"));
+			int qnum=Integer.parseInt(req.getParameter("qnum"));
 			QnaDao qdao=QnaDao.getInstance();
-			int n=qdao.update(answer,answerstate);
+			int n=qdao.update(answer,qnum);
 			if(n>0) {
 				resp.sendRedirect(req.getContextPath()+"/admin/adindex.jsp?page=completedqna.jsp");
 			}

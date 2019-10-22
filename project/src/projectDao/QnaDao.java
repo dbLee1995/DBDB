@@ -208,17 +208,17 @@ public class QnaDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
-	public int update(String answer,int answerstate) {
+	public int update(String answer,int qnum) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getConn();
 			QnaVo qvo=new QnaVo();
 			int state=qvo.getAnswerstate();
-			String sql="update qna set answerstate=3, answer=?, answerdate=sysdate where answerstate=?";
+			String sql="update qna set answerstate=3, answer=?, answerdate=sysdate where qnum=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, answer);
-			pstmt.setInt(2, answerstate);
+			pstmt.setInt(2, qnum);
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
