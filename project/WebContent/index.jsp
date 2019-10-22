@@ -31,6 +31,10 @@
 .marginclass{
 	margin-left: 150px;
 }
+#errspan{
+	color: red;
+	font-size: 0.8em;
+}
 </style>
 	<script type="text/javascript">
 		function search(){
@@ -48,7 +52,18 @@
 			  modal.find('.modal-title').text('New message to ' + recipient)
 			  modal.find('.modal-body input').val(recipient)
 		})
-		
+		function ordercheck(){
+			var ordernum=document.getElementById("ordernum").value;
+			var orderpwd=document.getElementById("orderpwd").value;
+			
+			var errspan=document.getElementById("errspan");
+			if(orderpwd!=1111){
+				errspan.innerHTML="비밀번호가 틀렸습니다!";
+				return;
+			}
+			
+			location.href="./guestordercheck?id=${id}&ordernum="+ordernum;
+		}
 	</script>
 </head>
 <body>
@@ -127,18 +142,19 @@
 						        <form>
 						          <div class="form-group">
 						            <label for="recipient-name" class="col-form-label">주문번호</label>
-						            <input type="text" class="form-control" id="recipient-name">
+						            <input type="text" class="form-control" id="ordernum">
 						          </div>
 						          <div class="form-group">
 						            <label for="message-text" class="col-form-label">비밀번호</label>
-						            <input type="text" class="form-control" id="recipient-name">
+						            <input type="text" class="form-control" id="orderpwd">
 						          </div>
+						          <span id="errspan"></span>
 						        </form>
 						      </div>
 						      <div class="modal-footer">
 						        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 						        <button type="button" class="btn btn-primary"
-						        	onclick="">조회하기</button>
+						        	onclick="ordercheck()">조회하기</button>
 						        	<!-- onclick="location.href='./search'" -->
 						      </div>
 						    </div>
