@@ -21,8 +21,10 @@
   <link href="./assets/demo/demo.css" rel="stylesheet" />
   
   	<script type="text/javascript">
-  		function movepwd(){
-  ll;
+  	  		var pwdxhr=null;
+  	  		function movepwd(){
+  	  			location.href="./mypage?cmd=editpwd";
+  	  		}
   		function modiinfo(){
   			var email=document.getElementById("email").value;
   			var fname=document.getElementById("fname").value;
