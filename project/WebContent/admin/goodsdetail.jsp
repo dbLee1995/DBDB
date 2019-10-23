@@ -163,7 +163,7 @@
 		  dereader.readAsDataURL(defile);
 	}
 	function insertSubmit() {
-	
+		document.gdDetailForm.encoding="multipart/form-data";
 		document.gdDetailForm.action = "goodsdetail?cmd=gdDetailinsert";
 		document.gdDetailForm.submit();
 	}
