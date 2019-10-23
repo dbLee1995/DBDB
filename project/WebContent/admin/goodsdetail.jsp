@@ -169,7 +169,7 @@
 	}
 	function previewSubmit(){ 
 		document.gdDetailForm.encoding="application/x-www-form-urlencoded"; //프리뷰 인코딩 방식 재설정
-		var url="goodspreview.jsp?";
+		var url="goodspreview.jsp";
 		var title="goodspreview";
 		window.open("",title,"width=1000, height=900");
 
