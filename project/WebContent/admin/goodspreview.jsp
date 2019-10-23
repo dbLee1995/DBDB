@@ -104,6 +104,7 @@
 					<div class="col-lg-12">
 						<!-- Basic elements -->
 						<div class="container">
+
 						<input type="hidden">
 							<div class="row">
 								<div id="header">
@@ -125,9 +126,12 @@
 											<span id="result"></span>
 										</h2>
 										<br> <br> <br>
-										<button class="btn btn-1 btn-warning" type="button" id="btn">장바구니에 담기</button>
+										<button class="btn btn-1 btn-outline-warning" type="button"
+										id="close" onclick="window.close();">닫기</button>
+										<button class="btn btn-1 btn-warning" type="button" id="btn">장바구니에 담기1</button>
 										<button class="btn btn-1 btn-outline-warning" type="button"
 											id="btn">바로 결제하기</button>
+										
 									</form>
 								</div>
 							</div>
@@ -153,9 +157,10 @@
 				</nav>
 				<div id="detailPrivew"></div><br>
 			<br> <br>
-	
+			
 
 		</div>
+	
 	
 	</section>
 
