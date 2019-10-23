@@ -171,7 +171,7 @@
 		document.gdDetailForm.encoding="application/x-www-form-urlencoded"; //프리뷰 인코딩 방식 재설정
 		var url="goodspreview.jsp";
 		var title="goodspreview";
-		window.open(url,"_blank",width=1000, height=900");
+		window.open(url,"_blank","width=1000, height=900");
 
 		//document.gdDetailForm.target=title;
 		//document.gdDetailForm.action=url;
